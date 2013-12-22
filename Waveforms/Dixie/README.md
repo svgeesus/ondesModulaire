@@ -1,0 +1,1 @@
+Scope shots and spectra of the Intellijel Dixie 2 Voltage Controlled Oscillator (VCO).
