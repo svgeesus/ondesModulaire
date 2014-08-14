@@ -1,0 +1,95 @@
+http://www.openmusiclabs.com/learning/digital/input-matrix-scanning/
+
+61-key (5 octave) diode matrix keyboard, velocity sensitive 
+two switches per key, diode matrix
+http://www.doepfer.de/DIY/Matrix_61.gif
+
+state transitions:
+ unpressed - press started - press complete - (aftertouch) - release started - release finished - unpressed
+
+break - 8x8 single multiplexed (matrix, no shift registers) 16 io pins
+http://www.openmusiclabs.com/learning/digital/input-matrix-scanning/single-mux/
+scan columns read rows. rows on a port, read a port at once.
+    result = portRead(break)
+    get time in microseconds
+    pressed = (result != 0) 
+    compare result with last-scan-break[column] :
+	new press starts: 
+            save micros time to press[column, row]
+	new release finishes:  
+            compute release velocity (time - release[key]
+            send MIDI note-off
+     last-scan-break[column] = result 
+
+make - 8x8 single multiplexed (matrix, columns shared with break circuit) 8 more io pins
+only read a row if there are keys pressed on that row (press row flags)
+
+    if pressed then result = portRead(make)
+    get time in microseconds
+    last-scan-make row result
+    compare port read with last result:
+	new press completes: 
+            compute release velocity (time - press[key])
+            send MIDI note-on
+	new release starts: 
+            save micros time to release[column, row]
+
+data usage: 
+last-scan-break, last-scan-make are 8 element arrays of byte = 16 bytes
+press, release are 64 element (8x8) arrays of longint = 512 bytes. Could re-use the same storage for both.
+
+mapping from row,col to midi note number will need 64 element array of byte = 64 bytes
+
+mapping time difference to velocity should be linear, so no array needed.
+
+
+Teensy 2.0 plus 74HC595 parallel-out shift register mux
+http://www.openmusiclabs.com/learning/digital/input-matrix-scanning/shift-out-mux/
+(8+8+3=19 io)+RxTx
+does not seem to have contiguous port pins (0..7) available except port D
+PB 0..6 ☐
+PC 6..7 ☐
+PD 0..7 ☑
+PF 0..1, 4..7 ☐
+would need 8 individual pin reads for a row
+
+better:
+
+Teensy 2.0++ with single mux
+http://www.openmusiclabs.com/learning/digital/input-matrix-scanning/single-mux/
+(8+8+8=24 io)+RxTx
+PB 0..7 ☑
+PC 0..7 ☑
+PD 0..7 ☐ (PD2,3 needed for TxRx)
+PE 0..1, 6..7 ☐
+PF 0..7 ☑
+
+assuming port reads work on Teensy, like
+http://www.arduino.cc/en/Reference/PortManipulation
+
+assuming the column writes don't need to be latched (can set previous to 0 and current to 1, then read rows) then its more convenient to use PE7, PB0..PB6 as they are all next to each other on the pinout.
+If they need to be latched then writing to PortB would be better.
+
+the top set of switches is an 8 rows by 8 columns matrix; the bottom set is an 8 rows by 8 columns matrix. As far as I can see the rows can be shared between the two, so you loop through rows, output a signal per row and scan both sets of columns. That adds up to 24 pins (or less pins, if a serial-to-parallel latching port expander like 74HC595 is used to generate 8 rows from 3 pins). If the columns can use pins that correpond to a contiguous set of 8 on one port, then port reads can be used to read the entire column at once.
+
+For a velocity sensitive keyboard you would need to maintain a key state array with a entry for each key, based on the two scan results for upper and lower switches. The key states are:
+
+1) unpressed (upper and lower open)
+2) press started (upper closed, lower open)
+3) press complete  (upper and lower closed) (sample aftertouch)
+4) release started (upper closed, lower open)
+5) release finished (upper and lower open)
+
+Looking at those key states they are defined not only by the upper and lower switch states but also by whether they key is rising or falling i.e. the previous state.
+
+The normal sequence of key state transitions is 1, 2, 3, 4, 5, 1. Code should also cope with 1, 2, 1 (the key starts to depress but then goes up again, no MIDI generated) and 4,3,4 (key starts to rise but then goes back to fully depressed, no MIDI generated).
+
+At states 2 and 4 you would want to get the current time (millis) and store it. I believe the two times could use the same array location. 
+
+At states 3 and 6 you would want to get the current time (millis), compare it to the stored time, and then compute the velocity which is usually a 7-bit value where 1 is very soft (a long tie between the two switches) and 127 is hard (a  fast time between the two switches). Zero has a special meaning (a Note-On with velocity of zero means Note-Off). You would need to decide a minimum and maximum time to map to 1 and 127. This could be a linear relatinship or you could allow various velocity curves.
+
+Then a state 3 you send Note-On with velocity and go to state 4. At state 6 you send Note-Off with velocity and go to state 1.
+
+To cope with poor quality, easily confused lowest-common-denominator MIDI implementations I would also suggest providing the option to skip measuring the key release velocity and instead send Note-On with velocity zero at stage 6. This is for three reasons; firstly many synthesizes etc don't do anythng with release velocity so there is no benefit to measuring it; secondly if using MIDI-over-DIN your bandwidth is very limited and sending a sequecnce of Note-On v followed by Note-On 0 allows runing status so you only send the status byte once. (This does not apply to MIDI-over-USB which does not need, or indeed allow, runnin status and has ample bandwidth, 12Mbits instead of 31kbits). Thirdly, some poor implementations not only won't use release velocity but are actually confused by it and will not register a note-off. These are thankfuly rare.
+
+If your keyboard has a single pressure sensor, then you can also measure and send Channel Aftertouch during key stage 3. And if you are building your own keyboard and have lots of money for 61 pressure sensors plus ADC multiplexing circuitry, then you could measure and send Polyphonic Aftertouch at stage 3.
