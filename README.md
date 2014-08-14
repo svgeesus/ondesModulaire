@@ -1,4 +1,4 @@
-ondesModulaire
+﻿ondesModulaire
 ==============
 
 Eurorack analog synth implementation of ondes Martenot. This uses a
@@ -9,7 +9,7 @@ This repository documents the DIY modules that I am making specific to
 this project (as opposed to kits or designs made by others).
 
 It will also document the controllers I am making (and the speakers, if 
-I end up making any of those).
+I end up making any of those). They keyboard controller is started, partly working.
 
 Lastly, this repository houses resources (screenshots, recordings, notes) 
 related to ongoing experiments to find the best emulation.

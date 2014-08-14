@@ -1,0 +1,78 @@
+﻿Doepfer: "CV1: controlled by the currently pressed key, 1V/octave standard, 0...+5V range (5 octaves)
+Midi Out (polyphonic, only channel 1, with velocity, 0V CV1 corresponds to Midi note number 36)"
+http://www.doepfer.de/A100CGK.htm
+
+MIDI 36 is C2; middle C is 60, C4; concert A is 69, A4.
+So that is a range of 36 to 95, C2 to B6, 65.4064 Hz to 1975.53Hz.
+
+see http://www.sengpielaudio.com/calculator-notenames.htm
+
+oM has 6 octave keyboard with +/- 1 octave shift so 8 octaves.
+C1 to C9 (unshifted, C2 to C8)
+midi 24 to 120
+32.7032Hz to 7902.133Hz
+-1V to +6V
+
+OR
+
+C0 to C8
+midi 12 to 108
+16.352Hz to 4186.0 ** seems less likely
+-2 to +5V
+
+ondesModulaire has 5 octave with +/- 2 octave shift so 9 octaves
+range (shifted): -2 to +7V (C0 to C9)
+range (unshifted) 0 to +5V (C2 to C7
+
+A440 is (2 + 9/12 V) = 2.750V
+
+oM was tuned to A 442Hz. In Switzerland it is A4 = 442 Hz; maybe a common francophone standard?
+This is 7.85cents sharp compared to A440.
+Full midi range -3V (note 0) to 7 7/12V (note 127)
+
+For 9 octave range:
+
+A) LTC1595  [NO: expensive at best grade]
+SOIC8, 1-9 €46.13 
+AD586MNZ  precision 5V (2mV, 2ppm/C) ref with 1.5x amp = 7.5V (3mv) ref = 0 to -7.5V from LTC1595
+1:3 divider gives +1.25V ref
+unity inverting summer gives -1.25 .. +6.25V
+(ref needs  +10.8V to +36V rail)
+just two op amps so a high quality dual.
+
+at 7.5v ref, 16bit, 1 lsb = 114.4 uV = 0.137 cents. So need op amps with Vos < 50uV.
+ OPA277PA = 20μV typ / 50μV max = 0.2 typ 0.5 max LSB. £1.70 / £3.73 (2) 10-99 €3.08 dual 2277PA
+ OP277P   =10μV typ / 20μV (25μV dual) max. £4.42 / £7.47 (2) 10-99 €6.42 dual 2277P
+
+B) AD5570 [NO: noisy, poor gain error, drift; Farnell only has worst grade]
+SSOP16, 1-9 €27.77 
+operates on +/-12V, swing is vref*2 to vref*-2
+AD780BNZ 3.0V DIP8 1-9 €10.56 +/- 1mv, 3ppm/°C
+output +6 to -6V; 2:1divider+trim gives 1V offset = +7 to -5V
+or
+2.5V mode, +5 to -5V; 1:1 divider+trim gives 1.25V offset = +6.25 to -3.75V
+or
+2.5V mode, +5 to -5V; 2.5V offset = +7.5 to -2.5V ** no offset trim, no amp trim
+covers 10 octaves, -2V = C0 = 16.352Hz to +7V = C10 =  16,744.036Hz 
+
+1lsb = 10 ÷ ( 2^16 ) = 152μV. 6553.6 steps per octave; 5.46 steps per cent.
+ 
+
+or ADR440BRZ 2.048V 1mV 3ppm/°C SOIC8 1-9 €9.13
+output 4.096 to -4.096V; 2.048V offset gives 6.144V to -2.048V
+1lsb = 125μV; 6.66 steps per cent.
+
+C) AD5542CRZ [YES]
+SOIC14, €27.49
+INL ±0.5(typ) ±1.0(max) LSB
+DNL ±0.5(typ) ±1.0(max) LSB
+Gain error +0.5(typ) ±2(max) LSB at 25°C
+Gain Error Temperature Coefficient ±0.1ppm/°C
+
+AD780BNZ 2.5V DIP8 1-9 €10.56 +/- 1mv, 3ppm/°C
+
+dac output buffer at gain x2 -> +5 to -5V
+add 2.5V ref to get -2.5 - +7.5V
+OP277PA   =20μV(typ) 50μV(max). €3.08 dual 2277PA
+buffer constrained to use internal (ultramatched ±0.0015%) resistors so can't add gain. thus:
+generate negative voltage from dac, amp a is buffer (no external resistors), use amp b to gainx2 (2 resistors plus trimmer for gain), amp c inverts ref (2 resistors plus trimmer for gain = cv offset), amp d inverting add = positive (3 resistors).
