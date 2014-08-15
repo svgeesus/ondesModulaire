@@ -10,6 +10,7 @@ this project (as opposed to kits or designs made by others).
 
 It will also document the controllers I am making (and the speakers, if 
 I end up making any of those). They keyboard controller is started, partly working.
+Documentation at http://nantonos.github.io/ondesModulaire/keyboard/docs/
 
 Lastly, this repository houses resources (screenshots, recordings, notes) 
 related to ongoing experiments to find the best emulation.
