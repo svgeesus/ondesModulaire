@@ -1,0 +1,269 @@
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Keyboard matrix scanning</title>
+    <style type="text/css">
+#body {  
+  margin-top: 5mm;  
+  margin-right: 5mm;  
+  margin-bottom: 5mm;  
+  margin-left: 5mm;
+}
+
+</style></head>
+  <body id="body">
+    <h1 style="text-align: center;">Keyboard scanner</h1>
+    <h2>Microcontroller: PJRC Teensy++ 2.0</h2>
+    <div style="text-align: center;"><img alt="Teensy++ 2.0 pinout" src="pinout4a.png"></div>
+    <h2><br>
+      Keybed: Fatar TP/8O</h2>
+    <div style="text-align: center;"><img alt="three-quarters view of keybed showing key profile and paired switches"
+        src="TP_8O-700.jpg"></div>
+    <p>This is a five octave (61 key) waterfall style semi-weighted keybed with
+      dual switches per key (make and break). Velocity is measured by timing the
+      difference between the two switch activations. It has long keys (so black
+      and white keys are more similar in overall length and thus have more
+      similar velocity responses) and smooth rounded keys. The particular one I
+      have does not have the optional after-touch strip fitted, unfortunately.
+      This keybed uses an 8x8 matrix with diodes to disambiguate multiple
+      simultaneous keypresses (eliminate ghosting).</p>
+    <p>Left and right halves of the keybed matrix are separate circuits,
+      although the columns <span style="font-style: italic;">(Tn)</span> are
+      common between them.</p>
+    <div style="text-align: center;"><a target="_blank" href="file:///D:/modular/ondesModulaire/keyboard/left.png"><img
+          alt="left (32 keys)" src="left-small.png"></a></div>
+    <div style="text-align: center;"><img alt="right (29 keys)" src="right-small.png"></div>
+    <p>Connections are via two 16-pin Micromatch connectors, which have a 1.27mm
+      (1/20") pitch. Orientation is indicated by a small cutout on the PCB, on
+      the short side of the connector nearest pin 1. Pin numbering is along one
+      side from pin 1 to pi 8, then continuing along the other side from pin 9
+      (nearest pin 8) to pin 16 (nearest pin 1).</p>
+    <div style="text-align: center;"><img alt="two micromatch connectors with pin assignments"
+        src="micromatch.png"></div>
+    <h2>PCB</h2>
+    <p>PCB was created in Eagle (<a target="_blank" href="file:///D:/modular/ondesModulaire/keyboard/matrix-only.pdf">schematic</a><span
+        style="text-decoration: underline;"> in PDF</span>) and fabricated by
+      OSH Park. Besides connections for the Teensy and for the two micromatch
+      connectors, there are also pin connectors for two SPI devices, one I2C
+      device, and power (+5V, ground).</p>
+    <div style="text-align: center;"><img alt="matrix (top)" src="matrix-top-small.png">
+      <img alt="matrix (bottom)" src="matrix-btm-small.png"></div>
+    <h2>Scanning</h2>
+    <p>Keyboard scanning uses an 8 column by 8 row matrix for the upper and
+      lower contacts. Columns (T0 to T7 on the Fatar wiring diagram) connect to
+      port A (PA0 to PA7, interior pins on Teensy). Upper (break) rows connect
+      to port C (PC0 to PC7). Lower (make) rows connect to port F (PF0 to PF7).
+      All of the pins on the top half of the Teensy are thus left free for SPI,
+      I2C, chip select pins, gates, and suchlike.</p>
+    <h3>Unshifted. Break (upper) switches</h3>
+    <table border="1" width="100%">
+      <tbody>
+        <tr>
+          <td><br>
+          </td>
+          <td>T0 <span style="font-weight: bold;">PA0</span></td>
+          <td>T1 <span style="font-weight: bold;">PA1</span></td>
+          <td>T2 <span style="font-weight: bold;">PA2</span></td>
+          <td>T3 <span style="font-weight: bold;">PA3</span></td>
+          <td>T4 <span style="font-weight: bold;">PA4</span></td>
+          <td>T5 <span style="font-weight: bold;">PA5</span></td>
+          <td>T6 <span style="font-weight: bold;">PA6</span></td>
+          <td>T7 <span style="font-weight: bold;">PA7</span></td>
+        </tr>
+        <tr>
+          <td>BR0 (L) <span style="font-weight: bold;">PC0</span></td>
+          <td>C2</td>
+          <td>C#2</td>
+          <td>D2</td>
+          <td>D#2</td>
+          <td>E2</td>
+          <td>F2</td>
+          <td>F#2</td>
+          <td>G2</td>
+        </tr>
+        <tr>
+          <td>BR1 (L)<span style="font-weight: bold;"> PC1</span></td>
+          <td>G#2</td>
+          <td>A3</td>
+          <td>A#3</td>
+          <td>B3</td>
+          <td>C3</td>
+          <td>C#3</td>
+          <td>D3</td>
+          <td>D#3</td>
+        </tr>
+        <tr>
+          <td>BR2 (L)<span style="font-weight: bold;"> PC2</span></td>
+          <td style="height: 20px;">E3</td>
+          <td>F3</td>
+          <td>F#3</td>
+          <td>G3</td>
+          <td>G#3</td>
+          <td>A4</td>
+          <td>A#4</td>
+          <td>B4</td>
+        </tr>
+        <tr>
+          <td>BR3 (L) <span style="font-weight: bold;">PC3</span></td>
+          <td>C4</td>
+          <td>C#4</td>
+          <td>D4</td>
+          <td>D#4</td>
+          <td>E4</td>
+          <td>F4</td>
+          <td>F#4</td>
+          <td>G4</td>
+        </tr>
+        <tr>
+          <td>BR4 (R) <span style="font-weight: bold;">PC4</span></td>
+          <td>G#4</td>
+          <td>A5</td>
+          <td>A#5</td>
+          <td>B5</td>
+          <td>C5</td>
+          <td>C#5</td>
+          <td>D5</td>
+          <td>D#5</td>
+        </tr>
+        <tr>
+          <td>BR5 (R) <span style="font-weight: bold;">PC5</span></td>
+          <td>E5</td>
+          <td>F5</td>
+          <td>F#5</td>
+          <td>G5</td>
+          <td>G#5</td>
+          <td>A6</td>
+          <td>A#6</td>
+          <td>B6</td>
+        </tr>
+        <tr>
+          <td>BR6 (R) <span style="font-weight: bold;">PC6</span></td>
+          <td>C6</td>
+          <td>C#6</td>
+          <td>D6</td>
+          <td>D#6</td>
+          <td>E6</td>
+          <td>F6</td>
+          <td>F#6</td>
+          <td>G6</td>
+        </tr>
+        <tr>
+          <td>BR7 (R) <span style="font-weight: bold;">PC7</span></td>
+          <td>G#6</td>
+          <td>A7</td>
+          <td>A#7</td>
+          <td>B7</td>
+          <td>C7</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3> Make (lower)</h3>
+    <table border="1" width="100%">
+      <tbody>
+        <tr>
+          <td><br>
+          </td>
+          <td>T0 <span style="font-weight: bold;">PA0</span></td>
+          <td>T1 <span style="font-weight: bold;">PA1</span></td>
+          <td>T2 <span style="font-weight: bold;">PA2</span></td>
+          <td>T3 <span style="font-weight: bold;">PA3</span></td>
+          <td>T4 <span style="font-weight: bold;">PA4</span></td>
+          <td>T5 <span style="font-weight: bold;">PA5</span></td>
+          <td>T6 <span style="font-weight: bold;">PA6</span></td>
+          <td>T7 <span style="font-weight: bold;">PA7</span></td>
+        </tr>
+        <tr>
+          <td>MK0 (L) <span style="font-weight: bold;">PF0</span></td>
+          <td>C2</td>
+          <td>C#2</td>
+          <td>D2</td>
+          <td>D#2</td>
+          <td>E2</td>
+          <td>F2</td>
+          <td>F#2</td>
+          <td>G2</td>
+        </tr>
+        <tr>
+          <td>MK1 (L) <span style="font-weight: bold;">PF1</span></td>
+          <td>G#2</td>
+          <td>A3</td>
+          <td>A#3</td>
+          <td>B3</td>
+          <td>C3</td>
+          <td>C#3</td>
+          <td>D3</td>
+          <td>D#3</td>
+        </tr>
+        <tr>
+          <td>MK2 (L) <span style="font-weight: bold;">PF2</span></td>
+          <td style="height: 20px;">E3</td>
+          <td>F3</td>
+          <td>F#3</td>
+          <td>G3</td>
+          <td>G#3</td>
+          <td>A4</td>
+          <td>A#4</td>
+          <td>B4</td>
+        </tr>
+        <tr>
+          <td>MK3 (L) <span style="font-weight: bold;">PF3</span></td>
+          <td>C4</td>
+          <td>C#4</td>
+          <td>D4</td>
+          <td>D#4</td>
+          <td>E4</td>
+          <td>F4</td>
+          <td>F#4</td>
+          <td>G4</td>
+        </tr>
+        <tr>
+          <td>MK4 (R) <span style="font-weight: bold;">PF4</span></td>
+          <td>G#4</td>
+          <td>A5</td>
+          <td>A#5</td>
+          <td>B5</td>
+          <td>C5</td>
+          <td>C#5</td>
+          <td>D5</td>
+          <td>D#5</td>
+        </tr>
+        <tr>
+          <td>MK5 (R) <span style="font-weight: bold;">PF5</span></td>
+          <td>E5</td>
+          <td>F5</td>
+          <td>F#5</td>
+          <td>G5</td>
+          <td>G#5</td>
+          <td>A6</td>
+          <td>A#6</td>
+          <td>B6</td>
+        </tr>
+        <tr>
+          <td>MK6 (R) <span style="font-weight: bold;">PF6</span></td>
+          <td>C6</td>
+          <td>C#6</td>
+          <td>D6</td>
+          <td>D#6</td>
+          <td>E6</td>
+          <td>F6</td>
+          <td>F#6</td>
+          <td>G6</td>
+        </tr>
+        <tr>
+          <td>MK7 (R) <span style="font-weight: bold;">PF7</span></td>
+          <td>G#6</td>
+          <td>A7</td>
+          <td>A#7</td>
+          <td>B7</td>
+          <td>C7</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
