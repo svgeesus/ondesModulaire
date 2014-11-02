@@ -1,0 +1,138 @@
+PCB - $30
+SMD soldering - $15
+Tempco resistors - $6
+Shipping only PCB - $5
+
+Total for two sets (without panels)
+$112
+info(at)greenexpo.by 
+
+--------- farnel ie ---------------
+
+4	TL074BCN	€1.19/1		€4.76
+8	OPA2604		€3.48/10	€34.80
+8	THAT2180B	€5.45/10	€54.50
+4	THAT300P	€8.68/1		€34.72
+4	1N4004		€0.099/1	€0.40
+4	22uF elec	€0.069/10	€0.69 
+4	10R (met flm)	€0.02/50	€1.00
+8	BOURNS - 3296W	€2.07/1		€16.56
+8	Spacer 12mm	€0.33/4		€2.64
+					€150.07
+
+-- not this build ---
+2	Euro pwr	€2.06/10	€20.60
+8	50K_lin 9mm	$1.75/10	$17.50 
+30	3.5mm erth jack	$25.00/100	$25.00
+30	nuts		$5.00/100	$5.00
+
+
+--- extra this build ---
+8	51k 1%		€0.038/50	€1.90
+17	3.5mm jack+nut	€14.29/50	€14.29
+1	panel		? €20 ?		? €20 ?
+	
+
+erthenvar jacks in EU €14.29/50
+ http://www.thonk.co.uk/shop/pj301bm-3-5mm-jack-sockets-x50/
+or  LJE0352-4R $60.00/100
+ http://synthcube.com/cart/index.php?route=product/product&path=74_18&product_id=154
+
+caps
+http://ie.farnell.com/multicomp/mcgpr63v226m6-3x11/capacitor-22uf-63v/dp/9451498
+trimmer
+http://ie.farnell.com/bourns/3296w-1-503lf/trimmer-25-turn-50k/dp/9353305?Ntt=3296W-1-503LF
+spacer
+http://ie.farnell.com/jsp/search/productdetail.jsp?sku=1466845
+opamps
+http://ie.farnell.com/texas-instruments/opa2604ap/ic-op-amp-dual-fet-ip-2604-dip8/dp/1097431
+http://fr.farnell.com/texas-instruments/tl074bcn/ic-op-amp-jfet/dp/1459706
+that300
+http://ie.farnell.com/that-corporation/that300p14-u/transistor-array-dip14-300/dp/1354175?Ntt=that300p
+diode
+http://ie.farnell.com/diodes-inc/1n4004-t/diode-rectifier-400v-1a-do-41/dp/1843708
+10R
+http://ie.farnell.com/multicomp/mf25-10r/resistor-10r-0-25w-1/dp/9341145
+51k
+http://ie.farnell.com/multicomp/mf25-51k/resistor-0-25w-1-51k/dp/9342028?Ntt=mf25+51k
+
+
+Every trace is shielded with groundplane, I believe it helps to reduce noise. 
+http://www.muffwiggler.com/forum/viewtopic.php?p=1059881#1059881   
+
+I don't ready to share schematic to everyone, but will send who bought PCB's.
+For others - the module include three basic blocks:
+http://astinco.com/Article-Temperature-Compensated.php
+Temperature Compensated Logarithmic Amplifier - the same schematic but counted for R1 = 100K, R4 tempco = 2K
+VCA from THAT datasheets
+And simpliest possible mixer TL074 based.
+It's all.
+http://www.muffwiggler.com/forum/viewtopic.php?p=708622#708622
+
+IC1 and IC2 are used for CV processing, so here don't need hi-fi chip.
+IC3 used for mixing. 
+http://www.muffwiggler.com/forum/viewtopic.php?p=919417#919417
+
+CVin normalled to +5V5
+12 × 43 ÷ ( 43 + 50 ) = 5.54838709677419355
+
+You can add inputs through 10K resistors to 6 pin IC6.
+You can omit IC5 if no 1+2 and 3+4 outs. 
+http://www.muffwiggler.com/forum/viewtopic.php?p=1328936#1328936
+
+Color coding for jacks is:
+black = ground
+red = signal
+blue = norm
+
+CV inputs have not ground pads on PCB, so connect them to ground on panel.
+http://www.muffwiggler.com/forum/viewtopic.php?p=938537#938537
+
+Debugging Warning: After I populated the board, I wired up one VCA channel, or so I thought. When I plugged the module in, I didn't get any sound out. After some head scratching, I realized that by not connecting the CV1 jack, CV1 wasn't getting normaled. So the VCA was working perfectly by not producing any output. After I connected the CV1 jack, the first channel worked perfectly. 
+http://www.muffwiggler.com/forum/viewtopic.php?p=949678#949678
+
+Pot must attenuate this voltage. IOW you must have 0V at CCW, 5V at CW.
+It's on pot middle pin. 
+http://www.muffwiggler.com/forum/viewtopic.php?p=1155359#1155359
+
+A few questions before I order two of these for waveform mixers. The site says
+Quote:	
+Responce curve is in the middle between exponential and linear. Normalized to 5V and attenuated by LEVEL pots	
+
+
+Since its normalized to 5V I assume that 5V means no attenuation, 4V is some attenuation etc down to 0V. My questions:
+
+- what is the attenuation in dBV for 4V, assuming 5V is 0dBV attenuation? Or more precisely, if I want to attenuate by x dBV, how much of a voltage drop do I need relative to 5V? Because the response is between linear and expo, I'm not sure how to calculate this.
+
+- what is the attenuation at 0V? Is the VCA fully closed or is it just quiet? Do you need a small negative voltage to force closure and if so, how much?
+
+Reason for asking: I'm working on a circuit with eight 12-bit DACs which will generate the CVs. This will allow 1 to 7 oscillators to be mixed together while maintaining a constant level regardless of the number of oscillators which are used. I will do that by counting how many are in use and reducing the voltage output from the DACs to compensate.
+http://www.muffwiggler.com/forum/viewtopic.php?p=1310761#1310761
+
+Response curve can be changed by tweaking 150K resistor, greater values will give more sharp curve, lower values will give closer to linear, 82K will give linear, less than 82K will give antilog.
+
+I've tried true exponential responce which has 2180 chip, but it's too sharp for modulations and produses audible clicks on pikes.
+
+I used this calculator to convert volts to dB http://www.sengpielaudio.com/calculator-gainloss.htm
+http://www.muffwiggler.com/forum/viewtopic.php?p=1310966#1310966
+
+L-1 wrote:	
+This is VCA response from simulation,
+Response curve can be changed by tweaking 150K resistor, greater values will give more sharp curve, lower values will give closer to linear, 82K will give linear, less than 82K will give antilog.	
+
+
+Thanks Alex, that is helpful. It looks as if this will be fine for my application, but also it will be easiest for me to construct the VCA then do some measurements to find the exact voltages I will need to generate.
+
+L-1 wrote:	
+I've tried true exponential responce which has 2180 chip, but it's too sharp for modulations and produses audible clicks on pikes.	
+
+
+And that answers my "why not use the native exponential response" which would have been the next question. Yes, I want to avoid clicks as oscillators are switched in and out. I had expected to need some AR envelope on the CV to avoid this, but maybe not if your semi-exponential response already deals with it.
+
+Will negative CV produce any harmful effect? Since 0V does not fully close the VCA (or is -92dB the noise floor?)
+http://www.muffwiggler.com/forum/viewtopic.php?p=1311445#1311445
+
+No, negative CV doesn't produce any effect. VCA is completely mute at 0V CV. But again, if you equipment is very sensitive, changing one resistor can make 0V responce quiter.
+http://www.muffwiggler.com/forum/viewtopic.php?p=1311552#1311552
+
+
