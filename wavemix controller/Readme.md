@@ -41,35 +41,35 @@ shifter is used on the SPI lines to convert to 5V logic.
 
 ##Implementation
 
-enable:
-  calc new system max
-  update all channels except the one just enabled, with new max (they get quieter)
-  fade up new channel from zero to slider level over five milliseconds (avoid thumps)
-  LED to green
+###enable:
+*  calc new system max
+*  update all channels except the one just enabled, with new max (they get quieter)
+*  fade up new channel from zero to slider level over five milliseconds (avoid thumps)
+*  LED to green
 
-disable:
-  fade down new channel from slider level to zero over five milliseconds (avoid thumps)
-  calc new system max
-  update all channels except the one just enabled, with new max (they get louder)
-  LED to red
+###disable:
+*  fade down new channel from slider level to zero over five milliseconds (avoid thumps)
+*  calc new system max
+*  update all channels except the one just enabled, with new max (they get louder)
+*  LED to red
 
-fader change
-  calc new system max
-  update all channels
+###fader change
+*  calc new system max
+*  update all channels
 
-tutti on:
-  save slider levels and waveswitch state
-  set system max to tutti max
-  set 8 N C O G on, g S off
-  fade all channels from old values to current
-  update LEDs to orange
-  now ignore sliders and switches
+###tutti on:
+*  save slider levels and waveswitch state
+*  set system max to tutti max
+*  set 8 N C O G on, g S off
+*  fade all channels from old values to current
+*  update LEDs to orange
+*  now ignore sliders and switches
 
-tutti off:
-  read slider levels and switches
-  calc system max
-  fade all channels from old values to current
-  update LEDs based on switch state
+###tutti off:
+*  read slider levels and switches
+*  calc system max
+*  fade all channels from old values to current
+*  update LEDs based on switch state
   
 
 ##To Do
