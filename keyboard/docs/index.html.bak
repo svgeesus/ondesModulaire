@@ -281,9 +281,7 @@
       are a convenient place to do this. <span style="font-style: italic;">(<a
           href="../dac2b-only.pdf">schematic</a>)</span>.</p>
     <p>The PCB layout (shown without ground plane fill, for clarity):</p>
-    <img alt="PCB of DAC board" src="../main-dacboard-pcb.png"><br>
-    <br>
-    <br>
+    <img alt="PCB of DAC board" src="../main-dacboard-pcb.png">
     <p> </p>
   </body>
 </html>
