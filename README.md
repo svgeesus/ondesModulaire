@@ -8,8 +8,11 @@ are all DIY.
 This repository documents the DIY modules that I am making specific to 
 this project (as opposed to kits or designs made by others).
 
-It will also document the controllers I am making (and the speakers, if 
-I end up making any of those). They keyboard controller is started, partly working.
+It have also documented the controllers I am making, and the speakers. 
+
+The keyboard controller was started, was partly working, and was then 
+abandoned as the keybed was too heavy for the keyboard shake vibrato function. 
+The keys were also regular sized rather than the smaller OM style.
 Documentation at http://nantonos.github.io/ondesModulaire/keyboard/docs/
 
 Lastly, this repository houses resources (screenshots, recordings, notes) 
