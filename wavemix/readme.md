@@ -1,4 +1,4 @@
-﻿#WaveMix
+# WaveMix
 
 This is a seven-input waveform mixer using THAT 2180 VCAs, with OPA 2604 for the mixers.
 
@@ -8,3 +8,5 @@ Because of this, eight
 CVs are needed: four for the first four waveforms (the flat-topped ones, N C G g) which are submixed and sent to the 
 mixer send. This is normalled to mixer return together with the other three waveforms (O, 8, S) for a second, four 
 to one mixdown. Therefore the eighth CV is for submix level.
+
+Because the wavemix controller will be in a separate skiff, it is better to use balanced connection to transfer CVs. 8 balanced lines fit on a Tascam DB-25 connector. Use the Hinton impedance-balanced circuits with close-tolerance matched resistors.
