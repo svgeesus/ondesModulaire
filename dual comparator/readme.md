@@ -32,6 +32,8 @@ Nasillard is another pulse, but with around 5% mark/space.
 
 ![completed module](pcb-600.jpg)]
 
+[Bill of Materials](dual_comparator_BOM.md)
+
 ## Special Bonus Feature
 
 This module was designed to sit next to an Intellijel Dixie 2 oscillator, providing an additional two pulse waveforms. The Dixie 2 has coarse and fine tune pots, and also on the PCB a three-pin connector for an optional, third, ultrafine tune. There was spare space on this module so I added a handy ultra-fine-tune pot. There are no jacks for this, use a 3-pin jumper cable to go from the internal 3-pin connector
