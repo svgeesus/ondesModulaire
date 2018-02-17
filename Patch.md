@@ -17,13 +17,16 @@ This is the top half of a dual 4-way passive mult.
 - sine out 1 -> ondesMix O in (Onde)
 - sine out 2 -> Precision Rectifier
 
+Optionally, put sine out 1 into a second μVCF whose pitch is 4 octaves above.
+Leaves fundamental, second and third harmonics but cuts higher harmonics.
+
 ## Mult 2
 
 Bottom half
 
 - tri in from Dixie
-- tri out -> Dual Comparator
-- tri out -> Optodist
+- tri out 1 -> Dual Comparator
+- tri out 2 -> Optodist
 
 ## Dual Comparator
 
@@ -61,11 +64,13 @@ Custom module for rectification (one level of wavefolding).
 
 ## Offsets
 
-Custom module for pitch CV offset
+Custom module for pitch CV offset (dual shifted outputs)
 
 - input 1 from pitchCV
 - offset knob 1 +5V
 - output 1 -> μVCF
+- offset knob 2
+- output 2
 
 ## μVCF
 
@@ -96,6 +101,11 @@ would need a second pitch offset and second, HPF.
 
 ## Currently missing
 
+- keyboard with shake (using Roli Seaboard)
+- bague (using Roli Seaboard glide)
+- touche (using Roli Seaboard aftertouch)
+- pins (designed but not yet built)
 - soft filter, controlled from tiroir or foot pedal, more of a mellow to sharp tone control
 - switching and level controls for the 4 speaker sounds
+- palme speaker, or digital emulation of one
 
