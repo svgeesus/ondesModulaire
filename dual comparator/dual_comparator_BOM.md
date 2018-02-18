@@ -36,7 +36,7 @@ Generic 1% metal film, no particular requirements for tempco or precision.
 
 ## PCB
 
-![top](top.png)
+![top](images/top.png)
 
 [Shared on OSH Park](https://oshpark.com/shared_projects/FYjulcN6)
 

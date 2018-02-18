@@ -10,7 +10,7 @@ I needed this because the Ondes Martenot has two pulse waveforms: Gambe and Nasi
 Gambe is roughly a pulse wave with 45% mark/space. (Petit gambe is a lowpass-filtered version of Gambe).
 Nasillard is another pulse, but with around 5% mark/space.
 
-![dual-comparator](panel-500.png)
+![dual-comparator](images/panel-500.png)
 
 ## Features
 
@@ -30,7 +30,7 @@ Nasillard is another pulse, but with around 5% mark/space.
 - two output buffers (TL072).
 - small pcb with just 2 pots. 6 jacks wired to pcb.
 
-![completed module](pcb-600.jpg)]
+![completed module](images/pcb-600.jpg)]
 
 [Bill of Materials](dual_comparator_BOM.md)
 
