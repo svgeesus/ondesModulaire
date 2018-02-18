@@ -21,6 +21,8 @@ Generic 1% metal film, no particular requirements for tempco or precision.
 
 ## Semiconductors
 
+Mostly generic. However, the op-amp used as comparator needs to be able to recover fast from overload, since it is used without negative feedback and constantly driven into the rails. The LT1213 copes with this while an 072 would not.
+
 - 1N5817 * 2
 - TL074CP * 1
 - TL072CP * 1
@@ -28,6 +30,8 @@ Generic 1% metal film, no particular requirements for tempco or precision.
 - REF195GPZ * 1
 
 ## Etc
+
+I socketed the op-amps and voltage reference, up to you. The  jacks are panel mount so use whatever you have, no particular PCB footprint although they are fairly closely clustered on the panel.
 
 - 3.5mm jacks * 6
 - euro power conn. 10pin * 1
