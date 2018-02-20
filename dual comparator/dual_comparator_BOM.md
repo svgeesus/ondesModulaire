@@ -15,13 +15,15 @@ Generic 1% metal film, no particular requirements for tempco or precision.
 
 ## Capacitors
 
+Oordinary decoupling caps and electrolytics.
+
 - 100nF ceramic, 2.5mm * 7
 - 1uF ceramic, 5mm * 1
 - 22uF 25V electrolytic * 2
 
 ## Semiconductors
 
-Mostly generic. However, the op-amp used as comparator needs to be able to recover fast from overload, since it is used without negative feedback and constantly driven into the rails. The LT1213 copes with this while an 072 would not.
+Mostly generic. However, the op-amp used as comparator needs to be able to recover fast from overload, since it is used without negative feedback and constantly driven into the rails. The LT1213 copes with this while a TL072 would not.
 
 - 1N5817 * 2
 - TL074CP * 1
@@ -31,7 +33,7 @@ Mostly generic. However, the op-amp used as comparator needs to be able to recov
 
 ## Etc
 
-I socketed the op-amps and voltage reference, up to you. The  jacks are panel mount so use whatever you have, no particular PCB footprint although they are fairly closely clustered on the panel.
+I socketed the op-amps and voltage reference, up to you. The jacks are panel mount so use whatever you have, no particular PCB footprint although they are fairly closely clustered on the panel.
 
 - 3.5mm jacks * 6
 - euro power conn. 10pin * 1
