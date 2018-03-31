@@ -49,7 +49,7 @@
 *power cable*
 	Eurorack 10pin to 16pin ribbon cable, red stripe to -12V
 
-*pcb*	(https://oshpark.com/shared_projects/KNj1dFOE)
+*pcb*	[Shared on OSH Park](https://oshpark.com/shared_projects/KNj1dFOE)
 
 *panel*	[Schaeffer/Front Panel Express file](precision_rectifier.fpd)
 
