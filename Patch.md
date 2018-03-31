@@ -56,7 +56,7 @@ Top half of a second  dual 4-way passive mult.
 - sine out 2 -> Precision Rectifier
 
 Optionally, put sine out 1 into a second μVCF whose pitch is 4 octaves above.
-Leaves fundamental, second and third harmonics but cuts higher harmonics.
+Leaves fundamental, second and third harmonics but cuts higher harmonics. Would be better to use a clean 24db/oct filter, though.
 
 ## Precision Rectifier
 
@@ -74,7 +74,6 @@ Custom module for pitch CV offset (dual shifted outputs)
 - offset knob 1 +5V
 - output 1 -> μVCF for gambe
 - offset knob 2
-- output 2
 - output 2 -> uVCF 2 for sine purifing
 
 ## μVCF
@@ -83,7 +82,7 @@ Commercial 12bB/oct clean-sounding filter with good pitch tracking.
 
 - in from mult 3 (40% pulse)
 - fm1 from pitch CV offset 1, 5 octave offset
-- lpf -> ondesMix g (petit gambe)
+- low pass filter -> ondesMix g (petit gambe)
 
 ## Noise
 
@@ -105,6 +104,12 @@ would need a second pitch offset and second, HPF.
 
 Currently using a Levit8 8-input mixer until ondesMix build is complete.
 
+# Outputs
+
+- "principal" output to Exit Strategy (balanced out), power amp, powered speaker
+- "resonnance" with a single-chanel VCA for volume, Misuc Thing Modular spring reverb, then to Exit Strategy
+- "metallique" output to second Exit Strategy, second channel of power amp, resonator bolted to gong.
+- "palme" still to-do (and hard to do).
 
 ## Currently missing
 
