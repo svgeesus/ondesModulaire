@@ -25,7 +25,7 @@
 
 ## Resistors
 
-*R1, R2, R3
+*R1, R2, R3*
 	100kΩ 0.1% metal film (app note says to use closely
 	matched values hence 0.1%)
 
@@ -37,7 +37,7 @@
 ## Hardware
 
 *U1, U2, U3*
-	[Thonk PJ302M right-angled PCB mount mono 3.5mm jack] (http://www.thonk.co.uk/shop/pj302m/)
+	[Thonk PJ302M right-angled PCB mount mono 3.5mm jack](http://www.thonk.co.uk/shop/pj302m/)
 
 *IC sockets*
 	four 8pin DIL sockets (or solder ICs directly if you want)
@@ -54,7 +54,7 @@
 *panel*	[Schaeffer/Front Panel Express file](precision_rectifier.fpd)
 
 *knob*	Your choice of knob to fit the pot you are using.
-	I used [Davies 1911 clone from Thonk] (http://www.thonk.co.uk/shop/knobs-davies-1900h-clone-metal/)
+	I used [Davies 1911 clone from Thonk](http://www.thonk.co.uk/shop/knobs-davies-1900h-clone-metal/)
 
 ## Construction
 
