@@ -76,7 +76,8 @@ reverse voltage protection.**
 
 Power up the module. If you see smoke, read the previous paragraphs again more carefully and replace all the ICs.
 
-**Note that this module is DC coupled and typically has a 2.5V DC offset** *this lets you rectify CVs*
+**Note that this module is DC coupled and typically has a 2.5V DC offset** *this lets you rectify CVs and LFOs*
+
 With a voltmeter, check that there is +5.00V on pin 6 of the voltage reference.
 Check that the voltage on the central pin of the pot swings between -5V and +5V
 as the pot is turned.
@@ -87,3 +88,5 @@ visible on a scope if you have one.
 
 Moving the pot, or adding a CV (+/- 5V) affects the fold position so the
 folded wave is asymmetric (alternating large and small peaks).
+
+![finished](completed.jpg)
