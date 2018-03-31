@@ -68,6 +68,6 @@ Completed module:
 
 ![completed](completed.jpg)
 
-Scope output, showing sharply-filded sine like the original Ondes Martenot waveform.
+Scope output, showing sharply-folded sine like the original Ondes Martenot waveform.
 
 ![sharp fold](20141002_120903.png)
