@@ -1,28 +1,18 @@
 # the Ondes Martenot patch
 
+![ondes patch modules](ondes-osc.png)
+
 ## Dixie 2
 
-Commercial sine-core oscillator by Intellijel.
-Needs accurate tracking over 9 octaves, a pure sine, and a good triangle.
+Ondes oscillator needs accurate tracking over 9 octaves, a pure sine, and a good triangle. Commercial sine-core oscillator by Intellijel.
 
 - pitch CV in
-- sine out -> mult 1
-- tri out -> mult 2
+- sine out -> mult 3
+- tri out -> mult 1
 
 ## Mult 1
 
 This is the top half of a dual 4-way passive mult.
-
-- sine in from Dixie
-- sine out 1 -> ondesMix O in (Onde)
-- sine out 2 -> Precision Rectifier
-
-Optionally, put sine out 1 into a second μVCF whose pitch is 4 octaves above.
-Leaves fundamental, second and third harmonics but cuts higher harmonics.
-
-## Mult 2
-
-Bottom half
 
 - tri in from Dixie
 - tri out 1 -> Dual Comparator
@@ -35,42 +25,57 @@ Custom module with dual comparators.
 - tri in 1 from mult 2 (Dixie tri out)
 - pulse width 1 knob (5%)
 - pulse 1 -> ondesMix N in (Nasillard)
-- pulse width 2 knob (40%)
-- pulse 2 -> mult 3
+- pulse width 2 knob (45%)
+- pulse 2 -> mult 2
 
-## Mult 3
-
-Top half of a second  dual 4-way passive mult.
-
-- 45% pulse in from Dual Comparator
-- pulse out 1 to ondesMix G in (Gambe)
-- pulse out 2 to μVCF
+This module also has an ultra-fine-tune for the Dixie 2.
 
 ## Optodist
 
 Commercial DIY kit
 
-- tri in from mult 2 (Dixie tri out)
+- tri in from mult 1 (Dixie tri out)
 - soft clipping
 - out -> ondesMix C in (Creux)
+
+## Mult 2
+
+Bottom half
+
+- 45% pulse in from Dual Comparator
+- pulse out 1 to ondesMix G in (Gambe)
+- pulse out 2 to μVCF
+
+
+## Mult 3
+
+Top half of a second  dual 4-way passive mult.
+
+- sine in from Dixie
+- sine out 1 -> ondesMix O in (Onde)
+- sine out 2 -> Precision Rectifier
+
+Optionally, put sine out 1 into a second μVCF whose pitch is 4 octaves above.
+Leaves fundamental, second and third harmonics but cuts higher harmonics.
 
 ## Precision Rectifier
 
 Custom module for rectification (one level of wavefolding).
 
-- input from mult 1 (Dixie sine)
+- input from mult 3 (Dixie sine)
 - offset knob about 2 o'clock
 - output -> ondesMix 8 in (Octaviant)
 
-## Offsets
+## Offsets (not yet built)
 
 Custom module for pitch CV offset (dual shifted outputs)
 
 - input 1 from pitchCV
 - offset knob 1 +5V
-- output 1 -> μVCF
+- output 1 -> μVCF for gambe
 - offset knob 2
 - output 2
+- output 2 -> uVCF 2 for sine purifing
 
 ## μVCF
 
@@ -86,10 +91,10 @@ Commercial noise source from Liivatera. Wide variety of modules suitable here.
 
 pink -> ondesMix S in (Souffle)
 
-## ondesMix
+## ondesMix (started, not yet complete)
 
 Custom 7-input voltage-controlled mixer. Internally, two
-cascaded 4-input mixers so actually needs 8 CVs).
+cascaded 4-input mixers (so actually needs 8 CVs). Constructed from two L-1 4-input VCA mixer boards, custom balanced 8-input CV in, custom panel.
 
 Possibly a need to submix N, C, G g for high-pass phase distortion,
 would need a second pitch offset and second, HPF.
@@ -97,6 +102,8 @@ would need a second pitch offset and second, HPF.
 - 7 inputs from wave shapers etc
 - 8 (balanced) CV inputs o DB-25 connector
 - mix output -> VCA for articulation and volume control
+
+Currently using a Levit8 8-input mixer until ondesMix build is complete.
 
 
 ## Currently missing
