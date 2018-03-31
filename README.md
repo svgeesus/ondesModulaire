@@ -8,6 +8,8 @@ are all DIY. See [the patch](Patch.md).
 This repository documents the DIY modules that I am making specific to
 this project (as opposed to kits or designs made by others).
 
+- [Precision rectifier](precision rectifier/README.md)
+
 It is also documenting the controllers I am making, and the speakers.
 
 The keyboard controller was started, was partly working, and was then
