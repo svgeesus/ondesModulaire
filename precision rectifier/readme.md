@@ -6,8 +6,8 @@ This module is to produce the Ondes Martenot "Octaviant" waveform.
 
 ## First attempt - μFold
 
-I was originally using the Intellijel μFold II for this purpose
-http://www.modulargrid.net/e/intellijel-%CE%BCfold-ii
+I was originally using the [Intellijel μFold II](http://www.modulargrid.net/e/intellijel-%CE%BCfold-ii) for this purpose
+
 
 However, while this is a great module in general, for this specific
 application it was not a good fit. The settings needed (2 folds,
@@ -57,7 +57,7 @@ the offset with an inverting summer (thus restoring the phase).
 - [schematic (pdf)](offset_rectifier.pdf)
 - [Eagle schematic](offset_rectifier.sch)
 - [Eagle board](offset_rectifier.brd)
-- [Mill of Materials](BOM.md)
+- [Bill of Materials](BOM.md)
 
 The board was made at OSH Park.
 
