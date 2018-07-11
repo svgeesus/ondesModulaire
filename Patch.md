@@ -22,7 +22,7 @@ This is the top half of a dual 4-way passive mult.
 
 Custom module with dual comparators.
 
-- tri in 1 from mult 2 (Dixie tri out)
+- tri in 1 from mult 1 (Dixie tri out)
 - pulse width 1 knob (5%)
 - pulse 1 -> ondesMix N in (Nasillard)
 - pulse width 2 knob (45%)
