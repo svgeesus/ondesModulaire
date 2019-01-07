@@ -32,7 +32,7 @@ This module also has an ultra-fine-tune for the Dixie 2.
 
 ## Optodist
 
-Commercial DIY kit
+Commercial DIY kit from RYO.
 
 - tri in from mult 1 (Dixie tri out)
 - soft clipping
@@ -58,7 +58,7 @@ Top half of a second  dual 4-way passive mult.
 Optionally, put sine out 1 into a second μVCF whose pitch is 4 octaves above.
 Leaves fundamental, second and third harmonics but cuts higher harmonics. Would be better to use a clean 24db/oct filter, though.
 
-## Precision Rectifier
+## [Precision Rectifier](precision%20rectifier/)
 
 Custom module for rectification (one level of wavefolding).
 
@@ -66,19 +66,21 @@ Custom module for rectification (one level of wavefolding).
 - offset knob about 2 o'clock
 - output -> ondesMix 8 in (Octaviant)
 
-## Offsets (not yet built)
+## [Offsets](offsets/) (not yet built)
 
 Custom module for pitch CV offset (dual shifted outputs)
 
 - input 1 from pitchCV
+- ultrafine tune (millivolt offset) and trimmable gain for precise 1V/octave tracking
+- corrected pitchCV output to Dixie 2
 - offset knob 1 +5V
 - output 1 -> μVCF for gambe
-- offset knob 2
+- offset knob 2 +4V
 - output 2 -> uVCF 2 for sine purifing
 
 ## μVCF
 
-Commercial 12bB/oct clean-sounding filter with good pitch tracking.
+Commercial 12bB/oct clean-sounding filter from Intellijel, with good pitch tracking.
 
 - in from mult 3 (40% pulse)
 - fm1 from pitch CV offset 1, 5 octave offset
@@ -90,7 +92,7 @@ Commercial noise source from Liivatera. Wide variety of modules suitable here.
 
 pink -> ondesMix S in (Souffle)
 
-## ondesMix (started, not yet complete)
+## [ondesMix](wavemix/) (started, not yet complete)
 
 Custom 7-input voltage-controlled mixer. Internally, two
 cascaded 4-input mixers (so actually needs 8 CVs). Constructed from two L-1 4-input VCA mixer boards, custom balanced 8-input CV in, custom panel.
@@ -102,9 +104,11 @@ would need a second pitch offset and second, HPF.
 - 8 (balanced) CV inputs o DB-25 connector
 - mix output -> VCA for articulation and volume control
 
-Currently using a Levit8 8-input mixer until ondesMix build is complete.
+I am currently using a Levit8 8-input mixer until ondesMix build is complete.
 
 # Outputs
+
+A real ondes Martenot has four outputs, each routed to a different speaker or other transducer. In this implementation, I use:
 
 - "principal" output to Exit Strategy (balanced out), power amp, powered speaker
 - "resonnance" with a single-chanel VCA for volume, Misuc Thing Modular spring reverb, then to Exit Strategy
