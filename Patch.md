@@ -4,7 +4,7 @@
 
 ## Dixie 2
 
-Ondes oscillator needs accurate tracking over 9 octaves, a pure sine, and a good triangle. Commercial sine-core oscillator by Intellijel.
+An Ondes oscillator needs accurate tracking over 9 octaves, a pure sine, and a good triangle. I'm using a commercial sine-core oscillator by Intellijel.
 
 - pitch CV in
 - sine out -> mult 3
@@ -18,7 +18,7 @@ This is the top half of a dual 4-way passive mult.
 - tri out 1 -> Dual Comparator
 - tri out 2 -> Optodist
 
-## Dual Comparator
+## [Dual Comparator](dual%20comparator/)
 
 Custom module with dual comparators.
 
