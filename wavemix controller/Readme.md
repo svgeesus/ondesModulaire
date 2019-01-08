@@ -39,10 +39,12 @@ The eight bicolor LEDs are controlled with a MCP23017 multiplexer. ([schematic](
 
 ![front](controller%20PCB%20front.png) ![back](controller%20PCB%20back.png)
 
-A separate board holds a TI DAC8568 and eight unity-gain output buffers (TL074 * 2). For reliable performance, a level
+A separate board holds a TI DAC8568 16-bit octal DAC, and eight unity-gain output buffers (TL074 * 2). For reliable performance, a level
 shifter is used on the SPI lines to convert to 5V logic. ([schematic](OctalDAC.pdf), [board](OctalDAC_pcb.pdf))
 
 ![octal front](OctalDAC%20PCB%20front.png) ![octal back](OctalDAC%20PCB%20back.png)
+
+In the first iteration, "outside the loop" protection resistors were used (although 47R rather than the typical 1k). This might be good enough, but a two resistors plus capacitor "in the loop" configuration would be better. Some thought to mounting holes would also be an improvement :)
 
 Balanced output for reliable transmission of CV between skiff and main rig is planned, but not implemented in this first iteration of the circuit.
 
