@@ -4,7 +4,7 @@ Two pitch CV inputs with variable small offset (ultrafine tune) and trimmable 1V
 
 Two untrimmed pich CV inputs,
 
-Switch to null ultrafinee tune, for easy zero offset.
+Switch to null ultrafine tune, for easy zero offset.
 
 Pitch CV output.
 
@@ -18,6 +18,8 @@ Use a 6-pin vref board connector for flexibility. +12V, -12V, 5V force, 5V sense
 
 [LT1236ACN8-5](https://www.mouser.com/ProductDetail/Analog-Devices/LT1236ACN8-5PBF) $7.96/1 A grade 2 ppm/°C 2.5mV error, 20ppm/kHr. But see datasheet fig.G08 _Output Voltage Temperature Drift LT1236-5_
 
+Probably good enough in this appplication, but vref socket allows upgrading if needed.
+
 ### Vref usage
 
 Inverting plus non-inverting buffers give +5V -5V. Apply across two pots for variable offset voltage. Or is 5V too much? Maybe 3V?
@@ -26,11 +28,11 @@ Voltage divider to ultrafine pot, plus larger resistor in input mixer gives mayb
 
 ## Op-amps
 
-OPA4192ID 5μV offset, low offset drift (±0.2 µV/°C, typ).
+OPA4192ID 5μV (typ) offset, low offset drift (±0.2 µV/°C, typ).
 
 quad, good price/perf tradeoff ($6.25/10).
 
-in TSSOP-14 package. 1/20 inch pin spacing, so easy to hand solder. Needs 8 opamps = 2 quad packages.
+in TSSOP-14 package. 1/20 inch pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
 
 ### Input gain
 
