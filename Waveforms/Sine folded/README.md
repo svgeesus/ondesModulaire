@@ -9,6 +9,8 @@ Scope shots and spectra of attempts to emulate the ondes Martenot Octaviant (8) 
 The FFT spectra are scaled with 0dBFS at the top and -96dbFS at the bottom; frequencies
 go from 20Hz to 20kHz although the FFT is unreliable much below 50Hz.
 
+A prominent third harmonic is visible, with some secod, and rolling off rapidly above the fourth harmonic.
+
 ## with the uFold
 
 Sine from the Intellijel Dixie 2 VCO fed into an Intellijel μFold waveshaper set to
