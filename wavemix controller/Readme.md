@@ -31,13 +31,18 @@ two four-channel mixers.
 
 ## Circuit
 
-A Teensy 3.0 is used as the microcontroller. Unless there are noise issues I plan to use the internal 1.2V
+In this first prototype, a Teensy 3.0 is used as the microcontroller. Unless there are noise issues I plan to use the internal 1.2V
 reference to drive the sliders. Switches use the Bounce library.
 
-The eight bicolor LEDs are controlled with a MCP23017 multiplexer.
+The eight bicolor LEDs are controlled with a MCP23017 multiplexer. ([schematic](wavemix_T3_schem.pdf),
+[board](wavemix_T3_brd.pdf))
+
+![front](controller%20PCB%20front.png) ![back](controller%20PCB%20back.png)
 
 A separate board holds a TI DAC8568 and eight unity-gain output buffers (TL074 * 2). For reliable performance, a level
-shifter is used on the SPI lines to convert to 5V logic.
+shifter is used on the SPI lines to convert to 5V logic. ([schematic](OctalDAC.pdf), [board](OctalDAC_pcb.pdf))
+
+![octal front](OctalDAC%20PCB%20front.png) ![octal back](OctalDAC%20PCB%20back.png)
 
 Balanced output for reliable transmission of CV between skiff and main rig is planned, but not implemented in this first iteration of the circuit.
 
