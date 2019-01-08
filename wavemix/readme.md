@@ -13,7 +13,7 @@ CVs are needed: four for the first four waveforms (the flat-topped ones, N C G g
 mixer send. This is normalled to mixer return together with the other three waveforms (O, 8, S) for a second, four
 to one mixdown. Therefore the eighth CV is for submix level.
 
-Because the wavemix controller will be in a separate skiff, it is better to use balanced connection to transfer CVs. 8 balanced lines fit on a Tascam DB-25 connector. Use the Hinton impedance-balanced circuits with close-tolerance matched resistors.
+Because the [wavemix controller](../wavemix%20controller/) will be in a separate skiff, it is better to use balanced connection to transfer CVs. 8 balanced lines fit on a Tascam DB-25 connector. Use the Hinton impedance-balanced circuits with close-tolerance matched resistors.
 
 The VCA response is somewhere between linear and logarithmic. From the designer, here is a the response table:
 
