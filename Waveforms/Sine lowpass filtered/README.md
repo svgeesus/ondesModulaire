@@ -59,3 +59,9 @@ a substantially cleaned-up sine is produced with distortion mainly second and th
 
 Intellijel μVCF 12dB/octave SVF (Coolaudio V2164 based) would be interesting to try for this application. It
 might be cleaner, but the 24db/octave of the A-122 probably makes it the better choice here.
+
+### Doepfer A-105
+
+This is a 24dB/octave using the SSM filter chip SSM2044. There is also the quad filter A-105-4, again with SSM2044.
+
+
