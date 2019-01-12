@@ -111,3 +111,60 @@ Jacks:
 | Fin1 | PCV4 | Fin2 |
 | Fout1 | Pitch | Fout2 |
 
+## PCB
+
+### Front (Jack and pot) PCB
+
+Avoid flying leads, use a PCB for panel-mounted jacks, pots, trimmers and switches with 0.1" connectors to the rear (electronics) PCB which sits behind it. Panel mount the multiturn wirewound put and provide a circular arc cutout on the front PCB to clear this large pot. The resistive dividers for the ultrafine tune could also conveniently sit here.
+
+### Rear (electronics) PCB
+
+Contains the Eurorack power connector, reverse voltage protection, power filtering. Has the op-amps, resistors and caps. Keep input resistors close to the summing inputs. General layout has input signals on the left, fed from input jacks (6 op amps = 3 halves of 3 quad packages) then the vref buffering/inversion (2 op amps), cv mixing and re-inversion (2 op-amps) and filter cv mixing (2 op-amps).
+
+### Vref PCB
+
+Small, upgradable Vref PCB which takes in a filtered +12V, -12V from the main PCB, houses the Vref chip and any caps, resistors or trimmers that needs and outputs 0V and Vref with both force and sense lines. If the Vref does not provide force and sense, connct them. If the destination does not use force and sense, connect them. Use a standard connector for all future modules that use Vrefs.
+
+### Board connections
+
+Left
+
+- gnd
+- pcv1
+- pcv3
+- gnd
+- pcv2
+- pcv4
+- gnd
+- fin1
+- fin2
+- gnd
+
+Right
+
+- gnd
+- uftune
+- vref+
+- vref-
+- cvout
+- foffs1
+- foffs2
+- fout2
+- fout1
+- gnd
+
+Vref
+
+- 0VS
+- 0vF
+- +12V
+- -12V
+- VrefF
+- VrefS
+
+Top of front board
+
+- divided-down Vref+
+- uftune (wiper)
+- divided down Vref-
+
