@@ -38,19 +38,45 @@ in TSSOP-14 package. 1/20 inch pin spacing, so easy to hand solder. Needs 12 opa
 
 Avoid quad packs, as they are only pairwise matched. Go for single low tempco 0.1% resistors and do any additional matching (the two untrimmed CV inputs vs. the mixer gain resistor is the critical point).
 
-28 of 100k 0.1% 5ppm/C
-2 of 105k 1% or better 10ppm/C or better
-2 of 70k  1% or better 10ppm/C or better (but check tempco of trimmer)
-3 of 330R 1%  20ppm/C
+- 28 of 100k 0.1% 5ppm/C 2.07 * 28 = $57.96
+
+OR
+
+- 10 of 100k 0.1% 10ppm/C
+- 18 of 10k 0.01% 5ppm/C 0.753 * 25 + 2.6 * 25 = $83.825
+
+and also
+
+- 2 of 105k 1% or better 10ppm/C or better
+- 2 of 70k  1% or better 10ppm/C or better (but check tempco of trimmer)
+- 3 of 330R 1%  20ppm/C
+- 1 of 1M any tolerance (ensuring 0V output with unconnected but patched inputs)
+- 2 of 10R through-hole any tolerance (power lines)
 
 
-### 100k close tolerance
+### close tolerance
+
+Close tolerance 0805 0.1% or better resistors.
+
+Assuming the input and feedback resistors are close together and similar in terms of temperature and airflow, closer absolute matching is more important. Susumu 5ppm is available (RG2012V), but only up to 10k.
+
+Consider making the mixers 10k, while keeping input resistors 100k? Would then be 10 110k input resistors (and the ones for CV2 and CV4 need to be well matched, at least) plus 18 very close tolerance 10k. Probably not worth it.
 
 #### Vishay TNPU0805100KBZEN00
 
-Close tolerance 0805 0.1% resistors.
+0.1% 5ppm/C  0.1%/8kHr  $2.50/1 **$2.07/25** No.
 
-0.1% 5ppm/C  0.1%/8kHr  $2.50/1 $2.07/25
+#### Susumu RG2012N-104-W-T1
+
+0.05% 10ppm/C   $1.06/1 **$0.753/25**
+
+worse tempco than the Vishay, but closer tolerance and cheaper.
+
+#### Susumu RG2012V-103-P-T1
+
+0.01% 5ppm/C $3.66/1 $2.64/10 $2.60/25
+
+a reasonable balance between tolerance/tempco and price. URG2012L-103-L-T05 available in 10k (0.01% 2ppm) but $12.32/1!
 
 ### Other value resistors
 
@@ -77,6 +103,12 @@ Non stocked!! Min 5000!!
 330R 0805
 
 0.5% 25ppm/C  $0.10/1 $0.085/10
+
+#### Susumu RR1220P-105-D
+
+1M 0805
+
+0.5% (not needed, but whatever) $0.10/1
 
 
 ### Input gain
