@@ -34,9 +34,59 @@ quad, good price/perf tradeoff ($6.25/10).
 
 in TSSOP-14 package. 1/20 inch pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
 
+## Resistors
+
+Avoid quad packs, as they are only pairwise matched. Go for single low tempco 0.1% resistors and do any additional matching (the two untrimmed CV inputs vs. the mixer gain resistor is the critical point).
+
+28 of 100k 0.1% 5ppm/C
+2 of 105k 1% or better 10ppm/C or better
+2 of 70k  1% or better 10ppm/C or better (but check tempco of trimmer)
+3 of 330R 1%  20ppm/C
+
+
+### 100k close tolerance
+
+#### Vishay TNPU0805100KBZEN00
+
+Close tolerance 0805 0.1% resistors.
+
+0.1% 5ppm/C  0.1%/8kHr  $2.50/1 $2.07/25
+
+### Other value resistors
+
+#### Susumu RG2012N-1053-D-T5
+
+105k 0805
+
+0.5% 10ppm/C $0.77/1 $0.66/10
+
+#### Susumu RG2012N-6982-D-T5
+
+69.8k 0805
+
+Non stocked!! Min 5000!!
+
+#### Susumu RG2012N-6812-D-T5
+
+68.1k 0805
+
+0.5% 10ppm/C $0.77/1 $0.66/10
+
+#### Susumu RR1220P-331-D
+
+330R 0805
+
+0.5% 25ppm/C  $0.10/1 $0.085/10
+
+
 ### Input gain
 
-Inverting 1.07x 100k input gain stage (2, one per input) = 2 opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct.
+Inverting 1.07x 100k input gain stage (2, one per input) = 2 opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
+
+Maybe ±7% adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 5% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
+
+E96 value is 69.8k. However Mouser doesn't carry it (min order 5k, non-stocked) but they do have 68.1k. With a 5k trimmer, range is +5% to  105 * 68.1 / ( 68.1 + 5 ) = 97.818 = -2%.
+
 
 ### Vref buffer
 
@@ -130,6 +180,8 @@ Small, upgradable Vref PCB which takes in a filtered +12V, -12V from the main PC
 Left
 
 - gnd
+- cv1buff
+- cv3buff
 - pcv1
 - pcv3
 - gnd
