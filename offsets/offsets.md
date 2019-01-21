@@ -1,28 +1,58 @@
 # offsets Eurorack module
 
-Two pitch CV inputs with variable small offset (ultrafine tune) and trimmable 1V/oct gain.
+Two pitch CV inputs with trimmable 1V/oct gain, for sources with a 1k output resistance.
 
-Two untrimmed pich CV inputs,
+Two untrimmed pitch CV inputs, for sources with low output resistance.
 
-Switch to null ultrafine tune, for easy zero offset.
+Variable small offset (ultrafine tune). Switch to null ultrafine tune, for easy zero offset.
 
-Pitch CV output.
+Pitch CV output (sum of inputs and ultrafine offset).
 
-Two sets of pitch CV, with offsets and external CV in, for filters.
+Two sets of pitch CV, with additional offsets and external CV in, for filters.
+
+## General design
+
+### Vref buffer
+
+One non-inverting unity and one inverting unity for + and - Vref = **2** op-amps.
+
+### Input gain
+
+Inverting 1.07x 100k input gain stage (2, one per input) = **2** opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
+
+Maybe ±7% adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 105% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
+
+E96 value is 69.8k. However Mouser doesn't carry it (min order 5k, non-stocked) but they do have 68.1k. With a 5k trimmer, range is +5% to  105 * 68.1 / ( 68.1 + 5 ) = 97.818 = -2%.
+
+Inverting 1.0x 100k input gain stage = **2** op-amps.
+
+Tempco of trimmer dominates the gain error on the two trimmed inputs.
+
+### Mixers
+
+One inverting mixer for inputs one to four plus ultrafine offset. Mixer is also the output stage = 1 op-amp.
+
+Two inverting mixers for the two offset stages (pitch CV, ext input). BUT output from the first mixing stage needs to be inverted first = 3 more op-amps. And Ext CV also, = **6** in total op-amps.
+
+### Output stages
+
+None, just straight to the jacks. Single output jacks, can use passive mut if more needed.
 
 ## Vref
 
-Use a 6-pin vref board connector for flexibility. +12V, -12V, 5V force, 5V sense, 0v force, 0V sense. Non-kelvin Vrefs can just tie the force and sense together. Allows anything from a cheapo vref to an LM399 board.
+Use a 6-pin vref board connector for flexibility. +12V, -12V, 5V force, 5V sense, 0v force, 0V sense? Non-kelvin Vrefs can just tie the force and sense together. Allows anything from a cheapo vref to an LM399 board. Or just use a simple Vref, 0V connection which is sufficient here; stability more important than absolute value. Can still tie the gnd connection to the load, per *Standard Series Mode* figure. May also help to add insulation to prevent turbulent air flow.
 
-### LTLT1236
+### LTLT1236-5
 
-[LT1236ACN8-5](https://www.mouser.com/ProductDetail/Analog-Devices/LT1236ACN8-5PBF) $7.96/1 A grade 2 ppm/°C 2.5mV error, 20ppm/kHr. But see datasheet fig.G08 _Output Voltage Temperature Drift LT1236-5_
+[LT1236ACN8-5](https://www.mouser.com/ProductDetail/Analog-Devices/LT1236ACN8-5PBF) $7.96/1 A grade tempco 2 ppm/°C, initial accuracy 2.5mV, drift 20ppm/1kHr. But see datasheet fig.G08 _Output Voltage Temperature Drift LT1236-5_
 
 Probably good enough in this appplication, but vref socket allows upgrading if needed.
 
+DIP package. For precise 5V trim, also needs 27k, 50k trimmer, 1N4148 or similar diode. Not clear that is especially valuable in this application. Maybe add footprints on PCB, but allow to be used unpopulated.
+
 ### Vref usage
 
-Inverting plus non-inverting buffers give +5V -5V. Apply across two pots for variable offset voltage. Or is 5V too much? Maybe 3V?
+Inverting plus non-inverting buffers give +5V -5V. Apply across two pots for variable offset voltage. Or is 5V too much? Maybe 3V? No, Ondes needs up to 5 octave shift for filtering. Typical synth with resonant filter can use a smaller range. *(Maybe allow some unpopulated resistive dividers by the two pots to allow a smaller range like ±2V?)*
 
 Voltage divider to ultrafine pot, plus larger resistor in input mixer gives maybe +10 to -10mV ultrafine trim (experiment to find useful value) Or wider range with a multiturn pot.
 
@@ -36,14 +66,28 @@ in TSSOP-14 package. 1/20 inch pin spacing, so easy to hand solder. Needs 12 opa
 
 ## Resistors
 
-Avoid quad packs, as they are only pairwise matched. Go for single low tempco 0.1% resistors and do any additional matching (the two untrimmed CV inputs vs. the mixer gain resistor is the critical point).
+Balance of quality (tolerance, drift) and cost. Avoid quad packs, as they are only pairwise matched. Go for single low tempco 0.1% resistors and do any additional matching (the two untrimmed CV inputs vs. the mixer gain resistor is the critical point). 0805 size for ease of hand soldering.
 
-- 28 of 100k 0.1% 5ppm/C 2.07 * 28 = $57.96
+Gain trimmers just below ultrafine pot, PC mount.
 
-OR
+- 28 of 100k 0.1% 5ppm/C
+
+2.07 * 28 = $57.96
+
+OR (better)
 
 - 10 of 100k 0.1% 10ppm/C
-- 18 of 10k 0.01% 5ppm/C 0.753 * 25 + 2.6 * 25 = $83.825
+- 18 of 10k 0.01% 5ppm/C
+
+0.753 * 25 + 2.6 * 25 = $83.825
+
+OR (even better)
+
+- 6 of 100k 0.1% 10ppm/C
+- 4 of 100k 0.05% 10ppm/C (for the two untrimmed CV inputs)
+- 18 of 10k 0.01% 5ppm/C
+
+0.753 * 25 + 1.06 * 5 + 2.6 * 25 = $89.125
 
 and also
 
@@ -62,21 +106,23 @@ Assuming the input and feedback resistors are close together and similar in term
 
 Consider making the mixers 10k, while keeping input resistors 100k? Would then be 10 110k input resistors (and the ones for CV2 and CV4 need to be well matched, at least) plus 18 very close tolerance 10k. Probably not worth it.
 
-#### Vishay TNPU0805100KBZEN00
+#### ~~Vishay TNPU0805100KBZEN00~~
 
-0.1% 5ppm/C  0.1%/8kHr  $2.50/1 **$2.07/25** No.
+0.1% 100k, 5ppm/C  0.1%/8kHr  $2.50/1 **$2.07/25** No, too expensive for the quality.
 
 #### Susumu RG2012N-104-W-T1
 
-0.05% 10ppm/C   $1.06/1 **$0.753/25**
+0.05% 100k, 10ppm/C   $1.06/1 **$0.753/25** Good for the untrimmed input stages.
 
 worse tempco than the Vishay, but closer tolerance and cheaper.
 
 #### Susumu RG2012V-103-P-T1
 
-0.01% 5ppm/C $3.66/1 $2.64/10 $2.60/25
+0.01% 10k, 5ppm/C $3.66/1 $2.64/10 $2.60/25
 
-a reasonable balance between tolerance/tempco and price. URG2012L-103-L-T05 available in 10k (0.01% 2ppm) but $12.32/1!
+Five times better tolerance for 3 times the price. A reasonable balance between tolerance/tempco and price.  Good for the precision mixers. Max value is 10k.
+
+URG2012L-103-L-T05 available in 10k (0.01% 2ppm) but $12.32/1! Also RG2012L-103-L-T05 0.01% 2ppm/C but $5.96/1 $4.29/10. Neither available in 100k.
 
 ### Other value resistors
 
@@ -86,17 +132,27 @@ a reasonable balance between tolerance/tempco and price. URG2012L-103-L-T05 avai
 
 0.5% 10ppm/C $0.77/1 $0.66/10
 
-#### Susumu RG2012N-6982-D-T5
+or
+
+#### Susumu ~~RG2012N-1053-W-T1~~
+
+105k 0805
+
+0.05% 10ppm/C  not available at Mouser, and marked obsolete
+
+#### Susumu ~~RG2012N-6982-D-T5~~
 
 69.8k 0805
 
-Non stocked!! Min 5000!!
+*Non stocked!! Min 5000!!*
 
 #### Susumu RG2012N-6812-D-T5
 
 68.1k 0805
 
 0.5% 10ppm/C $0.77/1 $0.66/10
+
+Only 0.5%, but used with a trimmer.
 
 #### Susumu RR1220P-331-D
 
@@ -110,45 +166,32 @@ Non stocked!! Min 5000!!
 
 0.5% (not needed, but whatever) $0.10/1
 
+## Trimmers
 
-### Input gain
+### Bourns 3296W-1-502LF
 
-Inverting 1.07x 100k input gain stage (2, one per input) = 2 opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
+5k 25 turn cermet 10% (!!) ±100ppm/C (!!!) these are the usual ones I have used before. $3.66/1 $2.86/10
 
-Maybe ±7% adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 5% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
+### Bourns 3296W-LTC-502
 
-E96 value is 69.8k. However Mouser doesn't carry it (min order 5k, non-stocked) but they do have 68.1k. With a 5k trimmer, range is +5% to  105 * 68.1 / ( 68.1 + 5 ) = 97.818 = -2%.
+5k 25 turn 10% ±20ppm/C $6.48/500 **non-stocked at Mouser, min 500**
 
+### Vishay Y40535K00000K0L
 
-### Vref buffer
+5k 21 turn bulk foil 10% ±25ppm/C $29.45/1
 
-One non-inverting unity and one inverting unity for + and - Vref = 2 op-amps.
+Same footprint as Bourns 3296 so could be retrofitted if needed. Check height for panel hole line-up though.
 
-### Mixers
+### Vishay Y50515K00000J0L
 
-One inverting mixer for inputs one to four plus  ultrafine offset. Mixer is also the output stage = 1 op-amp.
+5k 25 turn bulk metal foil 5% ±10ppm/C (end to end) ±25 ppm/C (through the wiper). Annoying end-screw, would need a different way to mount at 90 degrees. $21.72/1 $20.75/10 so very expensive.
 
-Two inverting mixers for the two offset stages (pitch CV, ext input). BUT output from the first mixing stage needs to be inverted first = 3 op-amps. And Ext CV also, = 5 op-amps (CV in adds a dual).
-
-### Output stages
-
-None, just straight to the jacks. Single output jacks, can use passive mut if more needed.
-
-## Resistors
-
-Balance of quality (tolerance, drift) and cost. Avoid pricy quad-packs. 0805 size for ease of hand soldering.
-
-Yaego RT0805BRB07100KL 100k 0.1% 10ppm/C thin film, 0805 package.
-
-$0.95/1, $0.682/10, $0.387/100.
-
-Gain trimmers just below ultrafine pot, PC mount.
 
 ## Ultrafine control
 
 10-turn Vishay [534B1104JC](https://www.mouser.com/ProductDetail/Vishay-Spectrol/534B1104JC) or Bourns [3590S-4-104L](https://www.mouser.com/ProductDetail/Bourns/3590S-4-104L) panel-mount wirewound or (preferably) plastic/hybrid 100k pot for ultrafine. Probably makes the panel 6HP rather than 4. However Mouser seems to have only wirewound in single-unit quantities; hybriton is MOQ 25.
 
-### 3590 10-turn pot
+### Bourns 3590-4-104L 10-turn pot
 
 -4 means sealed, metal bushing, metal shaft, solder lug connectors. $22.03/1.
 
@@ -160,7 +203,7 @@ Gain trimmers just below ultrafine pot, PC mount.
 
 Tempco ±50 ppm/°C, but ratiometric so should not matter.
 
-### 534B1104JC
+### Vishay 534B1104JC
 
 $25.17/1.
 
@@ -170,9 +213,18 @@ $25.17/1.
 
 ## Offset controls
 
-For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SYCQE](https://www.mouser.com/ProductDetail/CK/7201SYCQE)) to go between positive and negative polarity?
+For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SYCQE](https://www.mouser.com/ProductDetail/CK/7201SYCQE)) to go between positive and negative polarity? Get tempco of the Thonk Apha post (but ratiometric so does not matter).
 
-Jacks at the bottom of the panel.
+Thonkikkon jacks at the bottom of the panel.
+
+## Capacitors
+
+### Ceramic decoupling
+
+Many types, G0G or X7R preferred. 25V 100nF 1206.
+
+- Vishay VJ1206Y104KXXMP  $0.123/50
+- Kemet C1206C104K3GEC7210  $0.051/100
 
 ## Panel
 
@@ -199,6 +251,8 @@ Jacks:
 
 Avoid flying leads, use a PCB for panel-mounted jacks, pots, trimmers and switches with 0.1" connectors to the rear (electronics) PCB which sits behind it. Panel mount the multiturn wirewound put and provide a circular arc cutout on the front PCB to clear this large pot. The resistive dividers for the ultrafine tune could also conveniently sit here.
 
+Max height 110mm, say 108 for safety. Pot is 22mm diameter so max height to cut-out is around 108 - 25 = 83mm.
+
 ### Rear (electronics) PCB
 
 Contains the Eurorack power connector, reverse voltage protection, power filtering. Has the op-amps, resistors and caps. Keep input resistors close to the summing inputs. General layout has input signals on the left, fed from input jacks (6 op amps = 3 halves of 3 quad packages) then the vref buffering/inversion (2 op amps), cv mixing and re-inversion (2 op-amps) and filter cv mixing (2 op-amps).
@@ -209,24 +263,26 @@ Small, upgradable Vref PCB which takes in a filtered +12V, -12V from the main PC
 
 ### Board connections
 
-Left
+Left, 12pin (mostly inputs)
 
 - gnd
 - cv1buff
 - cv3buff
-- pcv1
-- pcv3
+- cvin1
+- cvin3
 - gnd
-- pcv2
-- pcv4
+- cvin2
+- cvin4
 - gnd
 - fin1
 - fin2
 - gnd
 
-Right
+Right, 12pin (mostly outputs)
 
 - gnd
+- cv1trim
+- cv3trim
 - uftune
 - vref+
 - vref-
@@ -252,3 +308,9 @@ Top of front board
 - uftune (wiper)
 - divided down Vref-
 
+### Layout
+
+![initial layout](brd-overview.png)
+
+- [Eagle brd]() |  [PDF board layout](offsets_board_2019-01-21.pdf)
+- [Eagle sch]() | [PDF schematic](offsets_schematic_2019-01-21.pdf)
