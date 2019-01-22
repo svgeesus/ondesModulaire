@@ -2,17 +2,30 @@
 
 ![ondes patch modules](ondes-osc.png)
 
+## [Offsets](offsets/) (not yet built)
+
+Custom module for pitch CV offset (dual shifted outputs). (Not yet shown in the modules picture).
+
+- input 1 from pitchCV
+- ultrafine tune (millivolt offset) and trimmable gain for precise 1V/octave tracking
+- corrected pitchCV output to Dixie 2
+- offset knob 1 +5V
+- filter output 1 -> μVCF for gambe
+- offset knob 2 +4V
+- filter output 2 -> uVCF 2 for sine purifing
+
 ## Dixie 2
 
-An Ondes oscillator needs accurate tracking over 9 octaves, a pure sine, and a good triangle. I'm using a commercial sine-core oscillator by Intellijel.
+An Ondes oscillator needs accurate tracking over 9 octaves, a pure sine, and a good triangle. I'm using a commercial triangle-core oscillator by Intellijel,
+which is known to have excellent stability and tracking.
 
-- pitch CV in
+- pitch CV in, from offsets
 - sine out -> mult 3
 - tri out -> mult 1
 
 ## Mult 1
 
-This is the top half of a dual 4-way passive mult.
+This is the top half of a dual, 4-way passive mult.
 
 - tri in from Dixie
 - tri out 1 -> Dual Comparator
@@ -66,17 +79,6 @@ Custom module for rectification (one level of wavefolding).
 - offset knob about 2 o'clock
 - output -> ondesMix 8 in (Octaviant)
 
-## [Offsets](offsets/) (not yet built)
-
-Custom module for pitch CV offset (dual shifted outputs)
-
-- input 1 from pitchCV
-- ultrafine tune (millivolt offset) and trimmable gain for precise 1V/octave tracking
-- corrected pitchCV output to Dixie 2
-- offset knob 1 +5V
-- output 1 -> μVCF for gambe
-- offset knob 2 +4V
-- output 2 -> uVCF 2 for sine purifing
 
 ## μVCF
 
@@ -104,15 +106,15 @@ would need a second pitch offset and second, HPF.
 - 8 (balanced) CV inputs o DB-25 connector
 - mix output -> VCA for articulation and volume control
 
-I am currently using a Levit8 8-input mixer until ondesMix build is complete.
+I am currently using a Levit8 8-input mixer, until ondesMix build is complete.
 
 # Outputs
 
 A real ondes Martenot has four outputs, each routed to a different speaker or other transducer. In this implementation, I use:
 
 - "principal" output to Exit Strategy (balanced out), power amp, powered speaker
-- "resonnance" with a single-chanel VCA for volume, Misuc Thing Modular spring reverb, then to Exit Strategy
-- "metallique" output to second Exit Strategy, second channel of power amp, resonator bolted to gong.
+- "resonnance" with a single-chanel VCA for volume, Music Thing Modular spring reverb, then to Exit Strategy
+- "metallique" output to second Exit Strategy, second channel of power amp, resonator bolted to Chinese gong.
 - "palme" still to-do (and hard to do).
 
 ## Currently missing
@@ -120,7 +122,7 @@ A real ondes Martenot has four outputs, each routed to a different speaker or ot
 - keyboard with shake (using Roli Seaboard)
 - bague (using Roli Seaboard glide)
 - touche (using Roli Seaboard aftertouch)
-- pins (designed but not yet built)
+- pins (designed, but not yet built)
 - soft filter, controlled from tiroir or foot pedal, more of a mellow to sharp tone control
 - switching and level controls for the 4 speaker sounds
 - palme speaker, or digital emulation of one

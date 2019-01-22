@@ -9,6 +9,9 @@ This repository documents the DIY modules that I am making specific to
 this project (as opposed to kits or designs made by others).
 
 - [Precision rectifier](precision%20rectifier/readme.md)
+- [Dual Comparator](dual%20comparator/)
+- [ondesMix](wavemix/)
+- [Offsets](offsets/)
 
 It is also documenting the controllers I am making, and the speakers.
 
@@ -20,14 +23,12 @@ Documentation at http://nantonos.github.io/ondesModulaire/keyboard/docs/
 Lastly, this repository houses resources (screenshots, recordings, notes)
 related to ongoing experiments to find the best emulation.
 
-Planned state of the modules is available on Modular Grid and is updated
-as experiments proceed:
-http://www.modulargrid.net/e/racks/view/30175
-The actual current state is also available
-http://www.modulargrid.net/e/racks/view/61770
-and is updated as modules are purchased, built, or designed and built,
+[Planned state of the modules](http://www.modulargrid.net/e/racks/view/30175) is available on Modular Grid and is updated
+as experiments proceed.
+
+The [actual current state](http://www.modulargrid.net/e/racks/view/61770) is also available and is updated as modules are purchased, built, or designed and built,
 respectively.
 
-A discussion thread on Muffs forum is the main place where this and related
+A [discussion thread on Muffs forum](http://www.muffwiggler.com/forum/viewtopic.php?p=1261346) is the main place where this and related
 projects are discussed
-http://www.muffwiggler.com/forum/viewtopic.php?p=1261346
+
