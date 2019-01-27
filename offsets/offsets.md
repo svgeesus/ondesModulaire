@@ -44,7 +44,7 @@ Use a 6-pin vref board connector for flexibility. +12V, -12V, 5V force, 5V sense
 
 ### LTLT1236-5
 
-[LT1236ACN8-5](https://www.mouser.com/ProductDetail/Analog-Devices/LT1236ACN8-5PBF) $7.96/1 A grade tempco 2 ppm/°C, initial accuracy 2.5mV, drift 20ppm/1kHr. But see datasheet fig.G08 _Output Voltage Temperature Drift LT1236-5_
+[LT1236ACN8-5](https://www.mouser.com/ProductDetail/Analog-Devices/LT1236ACN8-5PBF) **$7.96/1** A grade tempco 2 ppm/°C, initial accuracy 2.5mV, drift 20ppm/1kHr. But see datasheet fig.G08 _Output Voltage Temperature Drift LT1236-5_
 
 Probably good enough in this appplication, but vref socket allows upgrading if needed.
 
@@ -58,17 +58,17 @@ Voltage divider to ultrafine pot, plus larger resistor in input mixer gives mayb
 
 ## Op-amps
 
-OPA4192ID 5μV (typ) offset, low offset drift (±0.2 µV/°C, typ).
+OPA4192ID ±5μV (typ) ±25μV (max @ 25C) ±50μV (max over 0 to 70C) offset, low offset drift (±0.2 µV/°C, typ).
 
-quad, good price/perf tradeoff ($6.25/10).
+quad, good price/perf tradeoff (**$6.25/10**).
 
-in TSSOP-14 package. 1/20 inch pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
+in SOIC-14 package. 1.27mm (1/20 inch) pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
 
 ## Resistors
 
 Balance of quality (tolerance, drift) and cost. Avoid quad packs, as they are only pairwise matched. Go for single low tempco 0.1% resistors and do any additional matching (the two untrimmed CV inputs vs. the mixer gain resistor is the critical point). 0805 size for ease of hand soldering.
 
-Gain trimmers just below ultrafine pot, PC mount.
+Place gain trimmers just below ultrafine pot, PC mount.
 
 - 28 of 100k 0.1% 5ppm/C
 
@@ -83,8 +83,10 @@ OR (better)
 
 OR (even better)
 
-- 6 of 100k 0.1% 10ppm/C
+- 6 of 100k 0.1% 10ppm/C (for the trimmed cv and the frequency offset inputs)
 - 4 of 100k 0.05% 10ppm/C (for the two untrimmed CV inputs)
+- 2 of 100k 0.05% 10ppm/C (for the ultrafine tune dividers)
+- 2 of 1k 0.05% 10ppm/C (for the ultrafine tune dividers)
 - 18 of 10k 0.01% 5ppm/C
 
 0.753 * 25 + 1.06 * 5 + 2.6 * 25 = $89.125
@@ -118,7 +120,7 @@ worse tempco than the Vishay, but closer tolerance and cheaper.
 
 #### Susumu RG2012V-103-P-T1
 
-0.01% 10k, 5ppm/C $3.66/1 $2.64/10 $2.60/25
+0.01% 10k, 5ppm/C $3.66/1 $2.64/10 **$2.60/25**
 
 Five times better tolerance for 3 times the price. A reasonable balance between tolerance/tempco and price.  Good for the precision mixers. Max value is 10k.
 
@@ -131,6 +133,8 @@ URG2012L-103-L-T05 available in 10k (0.01% 2ppm) but $12.32/1! Also RG2012L-103-
 105k 0805
 
 0.5% 10ppm/C $0.77/1 $0.66/10
+
+which is ample given it is in series with a trimmer with 100ppm/C
 
 or
 
@@ -186,6 +190,10 @@ Same footprint as Bourns 3296 so could be retrofitted if needed. Check height fo
 
 5k 25 turn bulk metal foil 5% ±10ppm/C (end to end) ±25 ppm/C (through the wiper). Annoying end-screw, would need a different way to mount at 90 degrees. $21.72/1 $20.75/10 so very expensive.
 
+### Bourns 50k
+
+(for LT1236 trim, if used)
+
 
 ## Ultrafine control
 
@@ -201,7 +209,7 @@ Same footprint as Bourns 3296 so could be retrofitted if needed. Check height fo
 
 22.22mm ± .38 (.875 inch ±.015) diameter = 4.37HP so needs 5 or 6HP. Free panel mounted with wire connections, not PCB.
 
-Tempco ±50 ppm/°C, but ratiometric so should not matter.
+Tempco ±50 ppm/°C, but ratiometric, so should not matter.
 
 ### Vishay 534B1104JC
 
@@ -213,7 +221,7 @@ $25.17/1.
 
 ## Offset controls
 
-For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SYCQE](https://www.mouser.com/ProductDetail/CK/7201SYCQE)) to go between positive and negative polarity? Get tempco of the Thonk Apha post (but ratiometric so does not matter).
+For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SYCQE](https://www.mouser.com/ProductDetail/CK/7201SYCQE)) to go between positive and negative polarity? Get tempco of the Thonk Apha pot (but ratiometric, so does not matter).
 
 Thonkikkon jacks at the bottom of the panel.
 
@@ -308,9 +316,37 @@ Top of front board
 - uftune (wiper)
 - divided down Vref-
 
-### Layout
+### PCB Layout
 
 ![initial layout](brd-overview.png)
 
 - [Eagle brd]() |  [PDF board layout](offsets_board_2019-01-21.pdf)
 - [Eagle sch]() | [PDF schematic](offsets_schematic_2019-01-21.pdf)
+
+## Error analysis
+
+### Untrimmed input buffer (properly made sources)
+
+Gain error: Input buffer is pair of 100k 0.05%, error is 50R. Worst case match is 100,050 to 99,950.
+
+100,050 / 99,950 = 1.00100050025013 = +10.005mV error on 10V = +12 cents
+
+99,950 / 100,050  0.99900049975013 = -9.9950mV error on +10V = -12 cents
+
+Offset error: Input buffer has *max* offset of ±25μV = 30 millicents
+
+Hand matching resistor pairs on these inputs reduces total system error significantly.
+
+### Trimmed inputs
+
+Gain error: depends on resolution of trimmer movement (depends on manual dexterity, backlash, drift over time) and especially, depends on tempco of the gain divider chain. Re-trimmin as temperature changes is likely. Front-mounted trimmers allows trimming at equilibrium case temperature.
+
+### CV mixer
+
+Gain error: Mixer is pair of 10k 0.01%, error is 1R. Worst case match is 10,001 to 9,999.
+
+10,001 / 9,999 = 1.000200020002 = 2.0002mV error on 10V = 2.4 cents.
+
+Offset error: mixer has *max* offset of ±25μV = 30 millicents
+
+Total max error for untrimmed inputs is 14.46 cents.
