@@ -4,7 +4,7 @@ Two pitch CV inputs with trimmable 1V/oct gain, for sources with a 1k output res
 
 Two untrimmed pitch CV inputs, for sources with low output resistance.
 
-Variable small offset (ultrafine tune). Switch to null ultrafine tune, for easy zero offset.
+Variable small offset (ultrafine tune). ~~Switch to null ultrafine tune, for easy zero offset~~ (just unplug the pot, for setup).
 
 Pitch CV output (sum of inputs and ultrafine offset).
 
@@ -221,7 +221,12 @@ $25.17/1.
 
 ## Offset controls
 
-For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SYCQE](https://www.mouser.com/ProductDetail/CK/7201SYCQE)) to go between positive and negative polarity? Get tempco of the Thonk Apha pot (but ratiometric, so does not matter).
+For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SYCQE](https://www.mouser.com/ProductDetail/CK/7201SYCQE) or from [Thonk](https://www.thonk.co.uk/shop/sub-mini-toggle-switches/)) to go between positive and negative polarity? **check** eagle has a dpdt from multicomp as the standard switch, check the footprint, pin spacing, size of panel cutout.
+
+8.13 x 9.14mm size.
+0.2" (5.08mm) x 0.1" (2.54mm) pin spacing
+
+Get tempco of the Thonk Apha pot (but ratiometric, so does not matter).
 
 Thonkikkon jacks at the bottom of the panel.
 
@@ -320,8 +325,22 @@ Top of front board
 
 ![initial layout](brd-overview.png)
 
+#### Top
+
+![top](top.png)
+
+#### Bottom
+
+![bottom](bottom.png)
+
 - [Eagle brd]() |  [PDF board layout](offsets_board_2019-01-21.pdf)
 - [Eagle sch]() | [PDF schematic](offsets_schematic_2019-01-21.pdf)
+
+[OSH Park](https://oshpark.com/shared_projects/nziWwjZL) 3 boards at **$55.65**
+
+#### Legend/description
+
+Eurorack pitch CV mixer with ultrafinetune and two filter CV offset outputs.
 
 ## Error analysis
 
@@ -339,7 +358,7 @@ Hand matching resistor pairs on these inputs reduces total system error signific
 
 ### Trimmed inputs
 
-Gain error: depends on resolution of trimmer movement (depends on manual dexterity, backlash, drift over time) and especially, depends on tempco of the gain divider chain. Re-trimmin as temperature changes is likely. Front-mounted trimmers allows trimming at equilibrium case temperature.
+Gain error: depends on resolution of trimmer movement (depends on manual dexterity, backlash, drift over time) and especially, depends on tempco of the gain divider chain. Re-trimming as temperature changes is likely. Front-mounted trimmers allows trimming at equilibrium case temperature.
 
 ### CV mixer
 
