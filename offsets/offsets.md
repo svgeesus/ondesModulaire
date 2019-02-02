@@ -245,7 +245,7 @@ Large multiturn pot at top of panel, panel mount not PCB.
 
 Below that, tucked in the corners, two front-acessible PCB mount gain trimmers.
 
-Switch to enable/disable ultrafine?
+~~Switch to enable/disable ultrafine?~~ Dropped, no room.
 
 Pot for filter1 plus polarity switch.
 
@@ -257,6 +257,17 @@ Jacks:
 |--|--|--|
 | Fin1 | PCV4 | Fin2 |
 | Fout1 | Pitch | Fout2 |
+
+PCB plus multiturn pot is 110.49mm tall.
+128.5 -110.49 = 18.01 /2 = 9mm (0.35") for top and bottom for rails, mounting holes.
+
+Jack centers at 0.35" 0.90" 1.45" from bottom of PCB = 0.7" 1.25" 1.8" from bottom of panel. Jacks spaced on 0.5" centers horizontally.
+
+Pot, switch centers spaced  0.5" horizontally, 0.7" then 0.7 + 0.55= 1.25" above top jack center = 2.50", 3.05" from bottom of panel.
+
+Trimmer access holes are 0.55" above top pot center = 3.60" from bottom of panel. 1.20" centers horizontally. Chamfered holes. Find out suitable diameters.
+
+Multiturn center 1.10" above top pot center = 4.15" from bottom of panel.
 
 ## PCB
 
@@ -341,6 +352,12 @@ Top of front board
 #### Legend/description
 
 Eurorack pitch CV mixer with ultrafinetune and two filter CV offset outputs.
+
+#### Build and test
+
+Status: board ordered at OSH Park, not yet built or tested.
+
+For testing, since the board comes in a set of 3, build one with cheaper components (1% resistors, 074 or similar op-amps) for testing and debugging before comitting a lot of expensive, close tolerance components. Built board (if it works) can still be used for less critical mixing and offset duties.
 
 ## Error analysis
 
