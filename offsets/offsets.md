@@ -10,6 +10,8 @@ Pitch CV output (sum of inputs and ultrafine offset).
 
 Two sets of pitch CV, with additional offsets and external CV in, for filters.
 
+8HP (40mm).
+
 ## General design
 
 ### Vref buffer
@@ -174,7 +176,7 @@ Only 0.5%, but used with a trimmer.
 
 ### Bourns 3296W-1-502LF
 
-5k 25 turn cermet 10% (!!) ±100ppm/C (!!!) these are the usual ones I have used before. $3.66/1 $2.86/10
+5k 25 turn cermet 10% (!!) ±100ppm/C (!!!) these are the usual ones I have used before. $3.66/1 $2.86/10. LF is the RoHS lead-free type (and is less expensive).
 
 ### Bourns 3296W-LTC-502
 
@@ -234,7 +236,7 @@ Thonkikkon jacks at the bottom of the panel.
 
 ### Ceramic decoupling
 
-Many types, G0G or X7R preferred. 25V 100nF 1206.
+Many types, C0G or X7R preferred. 25V 100nF 1206.
 
 - Vishay VJ1206Y104KXXMP  $0.123/50
 - Kemet C1206C104K3GEC7210  $0.051/100
@@ -243,7 +245,7 @@ Many types, G0G or X7R preferred. 25V 100nF 1206.
 
 Large multiturn pot at top of panel, panel mount not PCB.
 
-Below that, tucked in the corners, two front-acessible PCB mount gain trimmers.
+Below that, tucked in the corners, two front-accessible PCB mount gain trimmers.
 
 ~~Switch to enable/disable ultrafine?~~ Dropped, no room.
 
@@ -258,16 +260,28 @@ Jacks:
 | Fin1 | PCV4 | Fin2 |
 | Fout1 | Pitch | Fout2 |
 
+### Panel dimensions
+
 PCB plus multiturn pot is 110.49mm tall.
 128.5 -110.49 = 18.01 /2 = 9mm (0.35") for top and bottom for rails, mounting holes.
 
-Jack centers at 0.35" 0.90" 1.45" from bottom of PCB = 0.7" 1.25" 1.8" from bottom of panel. Jacks spaced on 0.5" centers horizontally.
+Panel center at 20mm. Jacks at 7.3mm, 20mm, 32.7mm
 
-Pot, switch centers spaced  0.5" horizontally, 0.7" then 0.7 + 0.55= 1.25" above top jack center = 2.50", 3.05" from bottom of panel.
+Jack centers at 0.35" 0.90" 1.45" from bottom of PCB = 0.7" 1.25" 1.8" from bottom of panel (4.30" 3.75" 3.20" = **109.22mm 95.25mm 81.28mm** from top). Jacks spaced on 0.5" centers horizontally.
 
-Trimmer access holes are 0.55" above top pot center = 3.60" from bottom of panel. 1.20" centers horizontally. Chamfered holes. Find out suitable diameters.
+Pot, switch centers spaced  0.5" horizontally, 0.7" then 0.7 + 0.55= 1.25" above top jack center = 2.50", 3.05" from bottom of panel (2.50", 1.95" = **63.50mm, 49.53mm** from top). 0.5 from left and right PCB edges = 1.5" across overall =38.1mm. 0.95mm from PCB edge to panel edge. **13.65mm, 26.35mm** from left panel edge.
 
-Multiturn center 1.10" above top pot center = 4.15" from bottom of panel.
+Trimmer access holes are 0.55" above top pot center = 3.60" from bottom of panel (1.40" = *35.56mm* from top). 1.20" centers horizontally = 4.76mm from each panel edge **but adjust for the inaccurage Eagle footprint** so reduce X by 1.14mm, shift Y by 0.95mm towards bottom. So hole centres at **3.62mm, 36.51mm** and **34.1mm, 36.51mm**
+
+Chamfered holes. Find out suitable diameters.
+
+Multiturn center 1.10" above top pot center = 4.15" from bottom of panel (0.85" = **21.59mm** from top).
+
+## Knobs
+
+Maybe [‘Erica Synths’ style Knobs – 6.35mm Shaft](https://www.thonk.co.uk/shop/erica-knobs-6-35mm-shaft/) with the smallest size (20mm dia) for the filter offsets *No, too big for the smaller ones* and largest (28mm dia) for the ultrafine *will work ok*.
+
+[Davies 1900 clone](https://www.thonk.co.uk/shop/1900h-round/) (12mm diameter, the ones for the 6.35mm round shafts) for the filter offset knobs (because the switches are stupidly close to the knobs on the v0.1PCB) and then maybe the [MXR style]() for the larger one *(no, only D-shaft)* or [Davies Skirted Knobs](https://www.thonk.co.uk/shop/davies-skirted-knobs/) 1913BW Bold Large which is 28.45mm diameter (skirt). Black only, unfortunately.
 
 ## PCB
 
@@ -355,9 +369,9 @@ Eurorack pitch CV mixer with ultrafinetune and two filter CV offset outputs.
 
 #### Build and test
 
-Status: board ordered at OSH Park, not yet built or tested.
+Status: v0.1 board ordered at OSH Park, not yet built or tested.
 
-For testing, since the board comes in a set of 3, build one with cheaper components (1% resistors, 074 or similar op-amps) for testing and debugging before comitting a lot of expensive, close tolerance components. Built board (if it works) can still be used for less critical mixing and offset duties.
+For testing, since the board comes in a set of 3, build one with cheaper components (1% resistors, 074 or similar op-amps) for testing and debugging before comitting a lot of expensive, close tolerance components. Built board (if it works) can still be used for less critical CV mixing and offset duties.
 
 ## Error analysis
 
