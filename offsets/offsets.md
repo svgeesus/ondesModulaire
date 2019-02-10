@@ -188,7 +188,7 @@ Only 0.5%, but used with a trimmer.
 
 5k 21 turn bulk foil 10% ±25ppm/C $29.45/1
 
-Same footprint as Bourns 3296 so could be retrofitted if needed. Check height for panel hole line-up though.
+Same footprint as Bourns 3296 so could be retrofitted if needed. Check height and screw position for panel hole line-up though. Very expensive.
 
 ### Vishay Y50515K00000J0L
 
@@ -196,7 +196,7 @@ Same footprint as Bourns 3296 so could be retrofitted if needed. Check height fo
 
 ### Bourns 50k
 
-(for LT1236 trim, if used)
+(for LT1236 trim, if used, but not needed or slightly detrimental (tempco made worse) here)
 
 
 ## Ultrafine control
@@ -230,11 +230,27 @@ For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SY
 8.13 x 9.14mm size.
 0.2" (5.08mm) x 0.1" (2.54mm) pin spacing
 
-Get tempco of the Thonk Apha pot (but ratiometric, so does not matter).
+Get tempco of the Thonk Alpha pot (but ratiometric, so does not matter).
 
-Thonkikkon jacks at the bottom of the panel.
+Thonkikon jacks at the bottom of the panel.
+
+### Alpha pots
+
+- VERTICAL: B10K - 10K Linear Alpha pots, Thonk £1.42/1
+
+6.35mm shaft diameter. M7 bushing. 7.2mm hole.
+
+### DPDT switches
+
+- DW4 - DPDT ON-OFF-ON, Thonk £1.33/1
+
+10-48 UNS2 bushing, whatever weird imperial shit that means. Specifies 4.95mm hole (without tolerances), use 5.00mm.
 
 ## Capacitors
+
+### PSU Electrolytic
+
+25V 22uF Nichicon etc electrolytic.
 
 ### Ceramic decoupling
 
@@ -242,6 +258,12 @@ Many types, C0G or X7R preferred. 25V 100nF 1206.
 
 - Vishay VJ1206Y104KXXMP  $0.123/50
 - Kemet C1206C104K3GEC7210  $0.051/100
+
+### Feedback loop
+
+25V 33pF 0805
+
+- Kemet C0805C330J3GACTU C0G $0.125/10
 
 ## Panel
 
@@ -267,13 +289,17 @@ Jacks:
 PCB plus multiturn pot is 110.49mm tall.
 128.5 -110.49 = 18.01 /2 = 9mm (0.35") for top and bottom for rails, mounting holes.
 
-Panel center at 20mm. Jacks at 7.3mm, 20mm, 32.7mm
+Panel 40mm wide, so center at 20mm. Jacks at 0.5" spacing so 7.3mm, 20mm, 32.7mm
 
 Jack centers at 0.35" 0.90" 1.45" from bottom of PCB = 0.7" 1.25" 1.8" from bottom of panel (4.30" 3.75" 3.20" = **109.22mm 95.25mm 81.28mm** from top). Jacks spaced on 0.5" centers horizontally.
 
 Pot, switch centers spaced  0.5" horizontally, 0.7" then 0.7 + 0.55= 1.25" above top jack center = 2.50", 3.05" from bottom of panel (2.50", 1.95" = **63.50mm, 49.53mm** from top). 0.5 from left and right PCB edges = 1.5" across overall =38.1mm. 0.95mm from PCB edge to panel edge. **13.65mm, 26.35mm** from left panel edge.
 
-Trimmer access holes are 0.55" above top pot center = 3.60" from bottom of panel (1.40" = *35.56mm* from top). 1.20" centers horizontally = 4.76mm from each panel edge **but adjust for the inaccurage Eagle footprint** so reduce X by 1.14mm, shift Y by 0.95mm towards bottom. So hole centres at **3.62mm, 36.51mm** and **34.1mm, 36.51mm**
+Trimmer access holes are 0.55" above top pot center = 3.60" from bottom of panel (1.40" = *35.56mm* from top). 1.20" centers horizontally = 4.76mm from each panel edge **but adjust for the inaccurate Eagle footprint** so reduce X by 1.14mm, shift Y by 0.95mm towards bottom. So hole centres at **3.62mm, 36.51mm** and **34.1mm, 36.51mm**
+
+Check: 3296W Trimmer is 4.83mm wide, pins are 2.41mm from "blips" edge. Screw is 1.27mm from other edge. 2.42 - 1.27 = 1.15mm horizontally from pins centerline to screw centerline. 9.53mm tall, central pin is 9.53 / 2 = 4.765mm from each short end. Screw is 1.27mm from end, so 3.495mm from central pin. Pins on 0.1" spacing (2.54mm) so 3.495 - 2.54 = 0.955mm from closest pin. 1.15mm ≈ 1.14mm. 0.955mm ≈ 0.95mm. Check completed.
+
+*Note that the dimensions for Thonk "3296 stye" trimmers are slightly different. They would fit on the PCB, but the trimmer screw would not align with the front panel. Also the Thonk ones have no specified tempco or linearity.*
 
 Chamfered holes. Find out suitable diameters.
 

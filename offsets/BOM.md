@@ -42,13 +42,13 @@ Then (these are the same for low cost and high accuracy versions):
 
 ## Hardware
 
-- (2) DW4 - DPDT ON-OFF-ON, Thonk £1.33/1 = **£2.66** get 4
-- (2) VERTICAL: B10K - 10K Linear Alpha pots, Thonk £1.42/1 = **£2.84** get 2 more, to be sure
 - (1) 10-pin Euro power,
 - (1) 10-16 Pin (Long - 25cm), Thonk £1.59/1 = **£1.59**
 - (2:4) 12-pin 0.1" socket
 - (2:4) 12-pin 0.1" plug
 - (1) assorted 0.1" pin strip
+- (2) DW4 - DPDT ON-OFF-ON, Thonk £1.33/1 = **£2.66** get 4
+- (2) VERTICAL: B10K - 10K Linear Alpha pots, Thonk £1.42/1 = **£2.84** get 2 more, to be sure
 - (9) Thonkikon PJ398SM jacks (or older PJ301M-12, same footprint) Thonk £0.40/1 =  **£3.60** (already got)
 - (9) Knurled nuts or hex nuts as desired, Thonk £1.50/50 (already got)
 - (9) Washers, Thonk £1.50/50 (already got)
