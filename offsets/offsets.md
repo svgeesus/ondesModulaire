@@ -60,11 +60,13 @@ Voltage divider to ultrafine pot, plus larger resistor in input mixer gives mayb
 
 ## Op-amps
 
-OPA4192ID ±5μV (typ) ±25μV (max @ 25C) ±50μV (max over 0 to 70C) offset, low offset drift (±0.2 µV/°C, typ).
+OPA4172ID ±200μV (typ) ±1mV (max @ 25°C) ±1.15mV (max over 40°C to +125°C) offset. 240millicent (typ) 1.3cent (max over temp). **$2.84/10**
 
-quad, good price/perf tradeoff (**$6.25/10**).
+OPA4192ID ±5μV (typ) ±25μV (max @ 25°C) ±50μV (max over 0 to 70°C) offset, low offset drift (±0.2 µV/°C, typ). quad, good price/perf tradeoff (**$6.25/10**).
 
-in SOIC-14 package. 1.27mm (1/20 inch) pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
+both in SOIC-14 package. 1.27mm (1/20 inch) pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
+
+Compare to ±50mV ultrafine tune = ±60cent tuning range = 12cent/turn = 33millicent per degree of turn. So 1.3cents offset means 36 degrees of tuning adjustment.
 
 ## Resistors
 
@@ -99,7 +101,7 @@ and also
 - 2 of 70k  1% or better 10ppm/C or better (but check tempco of trimmer)
 - 3 of 330R 1%  20ppm/C
 - 1 of 1M any tolerance (ensuring 0V output with unconnected but patched inputs)
-- 2 of 10R through-hole any tolerance (power lines)
+- ~~2 of 10R through-hole any tolerance (power lines)~~
 
 
 ### close tolerance
@@ -108,7 +110,7 @@ Close tolerance 0805 0.1% or better resistors.
 
 Assuming the input and feedback resistors are close together and similar in terms of temperature and airflow, closer absolute matching is more important. Susumu 5ppm is available (RG2012V), but only up to 10k.
 
-Consider making the mixers 10k, while keeping input resistors 100k? Would then be 10 110k input resistors (and the ones for CV2 and CV4 need to be well matched, at least) plus 18 very close tolerance 10k. Probably not worth it.
+Better, make the mixers 10k, while keeping input resistors 100k. Would then be 10 110k input resistors (and the ones for CV2 and CV4 need to be well matched, at least) plus 18 very close tolerance 10k.
 
 #### ~~Vishay TNPU0805100KBZEN00~~
 
@@ -201,7 +203,7 @@ Same footprint as Bourns 3296 so could be retrofitted if needed. Check height fo
 
 10-turn Vishay [534B1104JC](https://www.mouser.com/ProductDetail/Vishay-Spectrol/534B1104JC) or Bourns [3590S-4-104L](https://www.mouser.com/ProductDetail/Bourns/3590S-4-104L) panel-mount wirewound or (preferably) plastic/hybrid 100k pot for ultrafine. Probably makes the panel 6HP rather than 4. However Mouser seems to have only wirewound in single-unit quantities; hybriton is MOQ 25.
 
-### Bourns 3590-4-104L 10-turn pot
+### Bourns 3590S-4-104L  10-turn pot
 
 -4 means sealed, metal bushing, metal shaft, solder lug connectors. $22.03/1.
 
@@ -276,6 +278,10 @@ Trimmer access holes are 0.55" above top pot center = 3.60" from bottom of panel
 Chamfered holes. Find out suitable diameters.
 
 Multiturn center 1.10" above top pot center = 4.15" from bottom of panel (0.85" = **21.59mm** from top).
+
+## Jacks
+
+Thonkikon PJ398SM (or older PJ301M-12, same footprint)
 
 ## Knobs
 
@@ -400,3 +406,9 @@ Gain error: Mixer is pair of 10k 0.01%, error is 1R. Worst case match is 10,001 
 Offset error: mixer has *max* offset of ±25μV = 30 millicents
 
 Total max error for untrimmed inputs is 14.46 cents.
+
+For comparison, mixer gain error with cheap 0.5% resistors:
+
+10k 0.5%, error is 50R.
+
+10,050 / 9,950 = 1.01005025125628 = 100mV error on 10V = 120 cents (more than a semitone!)
