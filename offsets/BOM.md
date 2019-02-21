@@ -54,3 +54,7 @@ Then (these are the same for low cost and high accuracy versions):
 - (9) Washers, Thonk £1.50/50 (already got)
 - (1) ‘Erica Synths’ style Knobs – 6.35mm Shaft, Large Black, Thonk £0.70/1 = **£0.70**
 - (2) Davies 1900h Clone – 6.35mm Round Shaft, Black, Thonk £0.70/1 = **£2.40**
+
+Thonk order Feb 15 2019
+OSH Park order Jan 27 2019 **pcb's arrived**
+FrontPanel Express order Feb 11 2019

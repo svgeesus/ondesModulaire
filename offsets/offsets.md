@@ -62,9 +62,11 @@ Voltage divider to ultrafine pot, plus larger resistor in input mixer gives mayb
 
 OPA4172ID ±200μV (typ) ±1mV (max @ 25°C) ±1.15mV (max over 40°C to +125°C) offset. 240millicent (typ) 1.3cent (max over temp). **$2.84/10**
 
+OPA4197ID  ±25μV (typ) ±100μV (max @ 25°C)  120millicent (max @ 25°C ) **$3.39/10** (IDR version)
+
 OPA4192ID ±5μV (typ) ±25μV (max @ 25°C) ±50μV (max over 0 to 70°C) offset, low offset drift (±0.2 µV/°C, typ). quad, good price/perf tradeoff (**$6.25/10**).
 
-both in SOIC-14 package. 1.27mm (1/20 inch) pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
+all in SOIC-14 package. 1.27mm (1/20 inch) pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
 
 Compare to ±50mV ultrafine tune = ±60cent tuning range = 12cent/turn = 33millicent per degree of turn. So 1.3cents offset means 36 degrees of tuning adjustment.
 
