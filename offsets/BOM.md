@@ -2,9 +2,9 @@
 
 offsets v0.1
 
-First build a low-cost version for design verification. Build first to ensure circuit works, before blowing a lot of expensive precision resistors on an unproven design. Then (if it is okay apart from gain errors) build a high-accuracy version of the rear PCB, with better resistors.  Front PCB, and front panel, is the same. Can re-use Vref board also.
+I'm first builingd a low-cost version for design verification. Build first to ensure circuit works, before blowing a lot of expensive precision resistors on an unproven design. Then (if it is okay apart from gain errors) build a high-accuracy version of the rear PCB, with better resistors.  Front PCB, and front panel, is the same. Can re-use Vref board also.
 
-(x:2x) means these components are the same for low cost and high-cost versions. You neex only x of them if building just one version.
+(x:2x) means these components are the same for low cost and high-cost versions. You need only x of them if building just one version.
 
 ## ICs, actives
 
@@ -13,6 +13,8 @@ Both versions will use OPA4172, because offsets are mostly swamped by oscillator
 - (1:2) LT1236ACN8-5 Mouser $7.96/1 get 2 = **$15.92**
 - (3:6) OPA4172ID Mouser $2.84/10 get 10 = **$29.40**
 - (2:4) 1N5817B (already got)
+
+**$45.32** for actives
 
 ## Passives
 
@@ -51,6 +53,7 @@ Then (these are the same for low cost and high accuracy versions):
 - (2:4) 12-pin 0.1" socket
 - (2:4) 12-pin 0.1" plug
 - (1) assorted 0.1" pin strip, for the Vref and multi-turn pot connections. JST connectors could also be used.
+- (1) 0.1" pin socket, ideally 90-degree for the Vref connection, cable mount for the pot connection
 - (2) DW4 - DPDT ON-OFF-ON, Thonk £1.33/1 = **£2.66** get 4
 - (2) VERTICAL: B10K - 10K Linear Alpha pots, Thonk £1.42/1 = **£2.84** get 2 more, to be sure
 - (9) Thonkikon PJ398SM jacks (or older PJ301M-12, same footprint) Thonk £0.40/1 =  **£3.60** (already got)
@@ -59,6 +62,17 @@ Then (these are the same for low cost and high accuracy versions):
 - (1) ‘Erica Synths’ style Knobs – 6.35mm Shaft, Large Black, Thonk £0.70/1 = **£0.70**
 - (2) Davies 1900h Clone – 6.35mm Round Shaft, Black, Thonk £0.70/1 = **£2.40**
 
+## PCB
+
+**$55.65** (for 3) for PCB
+
+Vref PSB is just a DIP socket on a scrap of veroboard
+
+## Panel
+
+**$72.49** for panel
+
+## Order status
 
 OSH Park order Jan 27 2019 **pcb's arrived**
 
