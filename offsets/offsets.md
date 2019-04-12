@@ -417,6 +417,14 @@ Single turn pots, jacks, knobs and power cable orderd from Thonk. Has arrived.
 
 Electronic components not yet ordered.
 
+For v0.2, desirable fixes:
+
+- fix the routing goof where pots and switch 1 and 2 are swapped :(
+- consider trimmers for the input gain resistors on the "untrimmed" (1.0x gain) inputs. Need not be front-palel acessible
+- reposition the trimmers so the panel looks symmetrical. Maybe use panel-mount trimmers.
+- if the resistors look cramped in practice, space them a bit more
+- better spacing between offsets pots and switches. Probably means moving the inter-board connectors, for example above and below the posts/switches, to get more room side to side
+
 ## Error analysis
 
 ### Untrimmed input buffer (properly made sources)

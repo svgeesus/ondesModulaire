@@ -66,7 +66,7 @@ Then (these are the same for low cost and high accuracy versions):
 
 **$55.65** (for 3) for PCB
 
-Vref PSB is just a DIP socket on a scrap of veroboard
+Vref PCB is just a DIP socket on a scrap of veroboard, plus connectors to the main board
 
 ## Panel
 
