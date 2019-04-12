@@ -14,6 +14,8 @@ Two sets of pitch CV, with additional offsets and external CV in, for filters.
 
 ## General design
 
+See also [detailed bill of materials](BOM.md)
+
 ### Vref buffer
 
 One non-inverting unity and one inverting unity for + and - Vref = **2** op-amps.
@@ -307,6 +309,8 @@ Chamfered holes. Find out suitable diameters.
 
 Multiturn center 1.10" above top pot center = 4.15" from bottom of panel (0.85" = **21.59mm** from top).
 
+![front panel](offsets.svg)
+
 ## Jacks
 
 Thonkikon PJ398SM (or older PJ301M-12, same footprint)
@@ -409,7 +413,9 @@ For testing, since the board comes in a set of 3, build one with cheaper compone
 
 v0.1 panel ordered at Front Panel Express, has arrived, not yet built or tested.
 
-Components not yet ordered.
+Single turn pots, jacks, knobs and power cable orderd from Thonk. Has arrived.
+
+Electronic components not yet ordered.
 
 ## Error analysis
 
