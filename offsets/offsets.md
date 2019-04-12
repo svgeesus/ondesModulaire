@@ -403,9 +403,13 @@ Eurorack pitch CV mixer with ultrafinetune and two filter CV offset outputs.
 
 #### Build and test
 
-Status: v0.1 board ordered at OSH Park, not yet built or tested.
+Status: v0.1 board ordered at OSH Park, has arrived, not yet built or tested.
 
 For testing, since the board comes in a set of 3, build one with cheaper components (1% resistors, 074 or similar op-amps) for testing and debugging before comitting a lot of expensive, close tolerance components. Built board (if it works) can still be used for less critical CV mixing and offset duties.
+
+v0.1 panel ordered at Front Panel Express, has arrived, not yet built or tested.
+
+Components not yet ordered.
 
 ## Error analysis
 
