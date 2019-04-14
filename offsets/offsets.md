@@ -1,5 +1,14 @@
 # offsets Eurorack module
 
+## Purpose
+
+_This module is a precision adder for pitch CV signals. The design aims for the highest precision possible; pitch deviation should be less than 15 cents cumulative over 10 octaves. An ultrafine tune is also provided. The output is low impedance, allowing it to drive an unbuffered mult._
+
+_Also, two outputs are provided which track the main pitch CV but are offset from it. These are primarily intended for driving the pitch input on keyboard-tracking filters._
+
+
+## Inputs and Outputs
+
 Two pitch CV inputs with trimmable 1V/oct gain, for sources with a 1k output resistance.
 
 Two untrimmed pitch CV inputs, for sources with low output resistance.
