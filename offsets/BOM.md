@@ -2,7 +2,7 @@
 
 offsets v0.1
 
-I'm first builingd a low-cost version for design verification. Build first to ensure circuit works, before blowing a lot of expensive precision resistors on an unproven design. Then (if it is okay apart from gain errors) build a high-accuracy version of the rear PCB, with better resistors.  Front PCB, and front panel, is the same. Can re-use Vref board also.
+I'm first builing a low-cost version for design verification. Build first to ensure circuit works, before blowing a lot of expensive precision resistors on an unproven design. Then (if it is okay apart from gain errors) build a high-accuracy version of the rear PCB, with better resistors.  Front PCB, and front panel, is the same. Can re-use Vref board also.
 
 (x:2x) means these components are the same for low cost and high-cost versions. You need only x of them if building just one version.
 
@@ -28,7 +28,7 @@ These are the low-accuracy resistors (only needed for design verification)
 Definitely needed high-accuracy resistors! *And critical 100k pairs need to be matched closer.*
 
 - (12) Susumu RG2012N-104-W-T1 100k 0.05%  10ppm 0.753/25 = *$18.25*
-- (18) Susumu RG2012V-103-P-T1 10k 0.01% 50ppm $2.60/25 = **$65.00**
+- (18) Susumu RG2012V-103-P-T1 10k 0.02% 5ppm $2.60/25 = **$65.00**
 
 Then (these are the same for low cost and high accuracy versions):
 

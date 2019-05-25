@@ -31,19 +31,38 @@ One non-inverting unity and one inverting unity for + and - Vref = **2** op-amps
 
 ### Input gain
 
-Inverting 1.07x 100k input gain stage (2, one per input) = **2** opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
+#### Trimmed inputs
+
+![trimmed inputs](trim-inputs.png)
+
+These are for CV sources with ill-advided 1k output resistors and the like. Inverting 1.07x 100k input gain stage (2, one per input) = **2** opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
 
 Maybe ±7% adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 105% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
 
 E96 value is 69.8k. However Mouser doesn't carry it (min order 5k, non-stocked) but they do have 68.1k. With a 5k trimmer, range is +5% to  105 * 68.1 / ( 68.1 + 5 ) = 97.818 = -2%.
 
+Tempco of trimmer dominates the gain error on the two trimmed inputs.
+
+#### Untrimmed inputs
+
+![untrimmed](untrim-inputs.png)
+
+These are for CV sources which are correctly designed and can drive with a low output impedance.
+
 Inverting 1.0x 100k input gain stage = **2** op-amps.
 
-Tempco of trimmer dominates the gain error on the two trimmed inputs.
 
 ### Mixers
 
+#### Main pitch CV mixer
+
+![mix](summer.png)
+
 One inverting mixer for inputs one to four plus ultrafine offset. Mixer is also the output stage = 1 op-amp.
+
+#### Offset mixers
+
+![offsets](offset-mixers.png)
 
 Two inverting mixers for the two offset stages (pitch CV, ext input). BUT output from the first mixing stage needs to be inverted first = 3 more op-amps. And Ext CV also, = **6** in total op-amps.
 
@@ -67,7 +86,7 @@ DIP package. For precise 5V trim, also needs 27k, 50k trimmer, 1N4148 or similar
 
 Inverting plus non-inverting buffers give +5V -5V. Apply across two pots for variable offset voltage. Or is 5V too much? Maybe 3V? No, Ondes needs up to 5 octave shift for filtering. Typical synth with resonant filter can use a smaller range. *(Maybe allow some unpopulated resistive dividers by the two pots to allow a smaller range like ±2V?)*
 
-Voltage divider to ultrafine pot, plus larger resistor in input mixer gives maybe +10 to -10mV ultrafine trim (experiment to find useful value) Or wider range with a multiturn pot.
+Voltage divider to ultrafine multiturn pot, plus larger resistor in input mixer gives +50 to -50mV ultrafine trim (±60 cents, or 12 cents per turn; experiment to find useful value).
 
 ## Op-amps
 
@@ -137,9 +156,9 @@ worse tempco than the Vishay, but closer tolerance and cheaper.
 
 #### Susumu RG2012V-103-P-T1
 
-0.01% 10k, 5ppm/C $3.66/1 $2.64/10 **$2.60/25**
+0.02% 10k, 5ppm/C $3.66/1 $2.64/10 **$2.60/25**
 
-Five times better tolerance for 3 times the price. A reasonable balance between tolerance/tempco and price.  Good for the precision mixers. Max value is 10k.
+2.5 times better tolerance for 3 times the price. A reasonable balance between tolerance/tempco and price.  Good for the precision mixers. Max value is 10k.
 
 URG2012L-103-L-T05 available in 10k (0.01% 2ppm) but $12.32/1! Also RG2012L-103-L-T05 0.01% 2ppm/C but $5.96/1 $4.29/10. Neither available in 100k.
 
@@ -395,6 +414,8 @@ Top of front board
 
 ### PCB Layout
 
+Note: _This has a bunch of airwires because Eagle doesn't believe that a pin connector and a socket connector can connect without a PCB track to join them_
+
 ![initial layout](brd-overview.png)
 
 #### Top
@@ -440,9 +461,9 @@ For v0.2, desirable fixes:
 
 Gain error: Input buffer is pair of 100k 0.05%, error is 50R. Worst case match is 100,050 to 99,950.
 
-100,050 / 99,950 = 1.00100050025013 = +10.005mV error on 10V = +12 cents
+100,050 / 99,950 = 1.00100050025013 = +10mV error on 10V = +12 cents
 
-99,950 / 100,050  0.99900049975013 = -9.9950mV error on +10V = -12 cents
+99,950 / 100,050  0.99900049975013 = -10mV error on 10V = -12 cents
 
 Offset error: Input buffer has *max* offset of ±25μV = 30 millicents
 
@@ -454,9 +475,10 @@ Gain error: depends on resolution of trimmer movement (depends on manual dexteri
 
 ### CV mixer
 
-Gain error: Mixer is pair of 10k 0.01%, error is 1R. Worst case match is 10,001 to 9,999.
+Gain error: Mixer is pair of 10k 0.02%, error is 2R.
+Worst case match is 10,002 to 9,998.
 
-10,001 / 9,999 = 1.000200020002 = 2.0002mV error on 10V = 2.4 cents.
+10,002 / 9,998 = 1.000400080016 = 4mV error on 10V = 4.8 cents.
 
 Offset error: mixer has *max* offset of ±25μV = 30 millicents
 
@@ -466,4 +488,5 @@ For comparison, mixer gain error with cheap 0.5% resistors:
 
 10k 0.5%, error is 50R.
 
-10,050 / 9,950 = 1.01005025125628 = 100mV error on 10V = 120 cents (more than a semitone!)
+10,050 / 9,950 = 1.01005025125628 = 100mV error on 10V
+= 120 cents (more than a semitone!)
