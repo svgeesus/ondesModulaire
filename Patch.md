@@ -4,11 +4,14 @@
 
 ## [Offsets](offsets/) (not yet built)
 
+![offsets](offsets/offsets.svg)
+
 Custom module for pitch CV offset (dual shifted outputs). (Not yet shown in the modules picture).
 
-- input 1 from pitchCV
+- input PCV2 from pitchCV source
+- input PCV4 from pins
 - ultrafine tune (millivolt offset) and trimmable gain for precise 1V/octave tracking
-- corrected pitchCV output to Dixie 2
+- corrected, mixed pitchCV output to Dixie 2
 - offset knob 1 +5V
 - filter output 1 -> μVCF for gambe
 - offset knob 2 +4V
