@@ -86,6 +86,8 @@ DIP package. For precise 5V trim, also needs 27k, 50k trimmer, 1N4148 or similar
 
 Inverting plus non-inverting buffers give +5V -5V. Apply across two pots for variable offset voltage. Or is 5V too much? Maybe 3V? No, Ondes needs up to 5 octave shift for filtering. Typical synth with resonant filter can use a smaller range. *(Maybe allow some unpopulated resistive dividers by the two pots to allow a smaller range like ±2V?)*
 
+![buffers](vref-buffers.png)
+
 Voltage divider to ultrafine multiturn pot, plus larger resistor in input mixer gives +50 to -50mV ultrafine trim (±60 cents, or 12 cents per turn; experiment to find useful value).
 
 ## Op-amps
@@ -337,7 +339,9 @@ Chamfered holes. Find out suitable diameters.
 
 Multiturn center 1.10" above top pot center = 4.15" from bottom of panel (0.85" = **21.59mm** from top).
 
-![front panel](offsets.svg)
+![front panel](panel.png)
+
+[svg](offsets.svg) [fpd](offsets.fpd)
 
 ## Jacks
 
