@@ -2,19 +2,21 @@
 
 offsets v0.1
 
-I'm first builing a low-cost version for design verification. Build first to ensure circuit works, before blowing a lot of expensive precision resistors on an unproven design. Then (if it is okay apart from gain errors) build a high-accuracy version of the rear PCB, with better resistors.  Front PCB, and front panel, is the same. Can re-use Vref board also.
+I'm first builing a low-cost version for design verification. Build first to ensure circuit works, before blowing a lot of expensive precision resistors on an unproven design. Then (after measuring performance, and if it is okay apart from gain errors) build a high-accuracy version of the rear PCB, with better resistors.  Front PCB, and front panel, is the same. Can re-use Vref board also.
 
-(x:2x) means these components are the same for low cost and high-cost versions. You need only x of them if building just one version.
+"(x:2x)" means these components are the same for low cost and high-cost versions. You need only x of them if building just one version.
+
+"get x" means what I plan to order for the first prototype, taking into account quantity price breaks and my estimate of my likelihood of using the same component in the future.
 
 ## ICs, actives
 
-Both versions will use OPA4172, because offsets are mostly swamped by oscillator coarse/fine tune and then the 50mV variable offsets from ultrafine, or 5V from filter offset. Gain is **much** more critical than offset here.
+Both versions will use OPA4172, because the ±200μV (typ) op-amp offsets are mostly swamped by oscillator coarse/fine tune and then the 50mV variable offsets from ultrafine, or 5V from filter offset. Gain is **much** more critical than op-amp offset here.
 
 - (1:2) LT1236ACN8-5 Mouser $7.96/1 get 2 = **$15.92**
-- (3:6) OPA4172ID Mouser $2.84/10 get 10 = **$29.40**
+- (3:6) OPA4172ID Mouser $2.84/10 get 10 = **$28.40**
 - (2:4) 1N5817B (already got)
 
-**$45.32** for actives
+**$44.32** for actives
 
 ## Passives
 
@@ -39,7 +41,7 @@ Then (these are the same for low cost and high accuracy versions):
 - (2:4) Susumu RG2012N-222-D-T5   2k2 0.5% $0.66/10 get 10 (in case 1k/100k = 50mV is too small)? = **$6.60**
 - (1:2) Susumu RR1220P-105-D 1Meg $0.085/10 get 10 = **$0.85**
 - (2:4) Bourns 3296W-1-502LF $1.90/10 get 10 = **$19.00**
-- (1:2) Bourns 3590S-4-104L  $22.03/1 get 2 = **$22.03**
+- (1:2) Bourns 3590S-4-104L  $22.03/1 get 2 = **$22.03** _only needed if making a trimmable vref_
 - (2:4) 22uF 25V or better electros (already got)
 - (6:12) Kemet C1206C104K3GEC7210 25V 100nF 1206 ceramics $0.051/100 = **$5.10**
 - (3:6) Kemet C0805C330J3GACTU 33pF 0805 C0G $0.125/10 = **$1.25**
@@ -49,7 +51,7 @@ Then (these are the same for low cost and high accuracy versions):
 ## Hardware
 
 - (1) 10-pin Euro power,
-- (1) 10-16 Pin (Long - 25cm), Thonk £1.59/1 = **£1.59**
+- (1) power cable, 10-16 Pin (Long - 25cm), Thonk £1.59/1 = **£1.59**
 - (2:4) 12-pin 0.1" socket
 - (2:4) 12-pin 0.1" plug
 - (1) assorted 0.1" pin strip, for the Vref and multi-turn pot connections. JST connectors could also be used.
@@ -66,7 +68,7 @@ Then (these are the same for low cost and high accuracy versions):
 
 **$55.65** (for 3) for PCB
 
-Vref PCB is just a DIP socket on a scrap of veroboard, plus connectors to the main board
+Vref PCB is just a DIP socket on a scrap of veroboard, plus connectors to the main board. Only use a single gnd connection point.
 
 ## Panel
 

@@ -82,6 +82,10 @@ Probably good enough in this appplication, but vref socket allows upgrading if n
 
 DIP package. For precise 5V trim, also needs 27k, 50k trimmer, 1N4148 or similar diode. Not clear that is especially valuable in this application. Maybe add footprints on PCB, but allow to be used unpopulated.
 
+10k load (from inverting buffer) means 0.5mA current is sourced, which is optimal (see datasheet, figure LT1236 G13).
+
+![vref](vref-pinout.png)
+
 ### Vref usage
 
 Inverting plus non-inverting buffers give +5V -5V. Apply across two pots for variable offset voltage. Or is 5V too much? Maybe 3V? No, Ondes needs up to 5 octave shift for filtering. Typical synth with resonant filter can use a smaller range. *(Maybe allow some unpopulated resistive dividers by the two pots to allow a smaller range like ±2V?)*
@@ -341,7 +345,7 @@ Multiturn center 1.10" above top pot center = 4.15" from bottom of panel (0.85" 
 
 ![front panel](panel.png)
 
-[svg](offsets.svg) [fpd](offsets.fpd)
+Panel design as [svg](offsets.svg), [fpd](offsets.fpd)
 
 ## Jacks
 
@@ -418,7 +422,7 @@ Top of front board
 
 ### PCB Layout
 
-Note: _This has a bunch of airwires because Eagle doesn't believe that a pin connector and a socket connector can connect without a PCB track to join them_
+Note: _This has a bunch of airwires because Eagle doesn't believe that a pin connector and the corresponding socket connector can connect without a PCB track to join them_
 
 ![initial layout](brd-overview.png)
 
