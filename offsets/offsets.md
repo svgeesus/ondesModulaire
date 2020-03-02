@@ -347,6 +347,8 @@ Multiturn center 1.10" above top pot center = 4.15" from bottom of panel (0.85" 
 
 Panel design as [svg](offsets.svg), [fpd](offsets.fpd)
 
+![panel photo](panel-photo.png)
+
 ## Jacks
 
 Thonkikon PJ398SM (or older PJ301M-12, same footprint)
