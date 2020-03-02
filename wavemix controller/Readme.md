@@ -9,6 +9,8 @@ switches plus level control sliders (for three of the waveforms) and an "all on"
 In this implementation each waveform was a slider. The mixer needs 5V for no attenuation, zero for
 max attenuation and the volume law is "semi logarithmic".
 
+The controller is intended to go in a tiroir-like controller skiff, with other controllers (pins, touche, and speaker control).
+
 ## Details
 
 To avoid glitches caused by the VCAs in the mixer changing attenuation value too fast, when a
@@ -31,8 +33,12 @@ two four-channel mixers.
 
 ## Circuit
 
-In this first prototype, a Teensy 3.0 is used as the microcontroller. Unless there are noise issues I plan to use the internal 1.2V
-reference to drive the sliders. Switches use the Bounce library.
+In this first prototype, a Teensy 3.0 was used as the microcontroller. Could well be that a Teensy LC is sufficient. Only outer pins on the two long sides, plus the group of three inner through-hole pins (AREF, A10, A11) are used which are common to 3.x and LC. The inner pads (3.x only) are not used.
+
+Unless there are noise issues I plan to use the internal 1.2V AREF
+reference to drive the sliders. TEST total current draw on this with all 7 sliders!
+
+Switches use the Bounce library, no hardware debounce circuitry.
 
 The eight bicolor LEDs are controlled with a MCP23017 multiplexer. ([schematic](wavemix_T3_schem.pdf),
 [board](wavemix_T3_brd.pdf))
@@ -44,43 +50,57 @@ shifter is used on the SPI lines to convert to 5V logic. ([schematic](OctalDAC.p
 
 ![octal front](OctalDAC%20PCB%20front.png) ![octal back](OctalDAC%20PCB%20back.png)
 
-In the first iteration, "outside the loop" protection resistors were used (although 47R rather than the typical 1k). This might be good enough, but a two resistors plus capacitor "in the loop" configuration would be better. Some thought to mounting holes would also be an improvement :)
+In the first iteration, "outside the loop" protection resistors were used (although 47R rather than the typical 1k). This might be good enough, but a two resistors plus capacitor "in the loop" configuration would be better. Maybe switch to SMD or at least smaller resistors for the second iteration. Some thought to mounting holes would also be an improvement :)
 
-Balanced output for reliable transmission of CV between skiff and main rig is planned, but not implemented in this first iteration of the circuit.
+Balanced output for reliable transmission of CV between skiff and main rig is planned, but not implemented in this first iteration of the circuit; balanced output on 8 Bantam TRS jacks or on one DB25 for the 8 signals.
 
-## Implementation
+## Software Implementation
 
 ### enable:
-*  calc new system max
-*  update all channels except the one just enabled, with new max (they get quieter)
-*  fade up new channel from zero to slider level over five milliseconds (avoid thumps)
-*  LED to green
+
+    *  calc new system max
+    *  update all channels except the one just enabled, with new max (they get quieter)
+    *  fade up new channel from zero to slider level over five milliseconds (avoid thumps)
+    *  LED to green
 
 ### disable:
-*  fade down new channel from slider level to zero over five milliseconds (avoid thumps)
-*  calc new system max
-*  update all channels except the one just enabled, with new max (they get louder)
-*  LED to red
+
+    *  fade down new channel from slider level to zero over five milliseconds (avoid thumps)
+    *  calc new system max
+    *  update all channels except the one just enabled, with new max (they get louder)
+    *  LED to red
 
 ### fader change
-*  calc new system max
-*  update all channels
+
+    *  calc new system max
+    *  update all channels
 
 ### tutti on:
-*  save slider levels and waveswitch state
-*  set system max to tutti max
-*  set 8 N C O G on, g S off
-*  fade all channels from old values to current
-*  update LEDs to orange
-*  now ignore sliders and switches
+
+    *  save slider levels and waveswitch state
+    *  set system max to tutti max
+    *  set 8 N C O G on, g S off
+    *  fade all channels from old values to current
+    *  update LEDs to orange
+    *  now ignore sliders and switches
 
 ### tutti off:
-*  read slider levels and switches
-*  calc system max
-*  fade all channels from old values to current
-*  update LEDs based on switch state
+
+    *  read slider levels and switches
+    *  calc system max
+    *  fade all channels from old values to current
+    *  update LEDs based on switch state
 
 
 ## To Do
-* Need to find out how many dB attenuation per volt (complicated, semi-log)
-* ~~Need to find if negative CV needed for fully closed~~ (NO)
+
+    * Need to find out how many dB attenuation per volt (complicated, semi-log)
+    * ~~Need to find if negative CV needed for fully closed~~ (NO)
+    * Measure output of prototype
+
+## Panel
+
+Eurorack-like 3U panel; outputs are on the back panel of a skiff rather than being on the main panel, so all the cables are out the way of the controllers.
+
+
+7 sliders, 8 switches (7 waveforms plus tutti), 8 bicolor LEDs.
