@@ -475,9 +475,14 @@ Gain error: Input buffer is pair of 100k 0.05%, error is 50R. Worst case match i
 
 99,950 / 100,050  0.99900049975013 = -10mV error on 10V = -12 cents
 
+Alternatively, dropping the input resistors to 10k allows use of 0.02%, error is 20R. Worst case match is 100,020 to 99,980.
+
+100,020 / 99,980 = 1.000400080016 = 4mV error on 10V = 4.8 cents.
+
 Offset error: Input buffer has *max* offset of ±25μV = 30 millicents
 
 Hand matching resistor pairs on these inputs reduces total system error significantly.
+Should really have included parallel trimmers for these.
 
 ### Trimmed inputs
 
@@ -492,7 +497,7 @@ Worst case match is 10,002 to 9,998.
 
 Offset error: mixer has *max* offset of ±25μV = 30 millicents
 
-Total max error for untrimmed inputs is 14.46 cents.
+Total max error for untrimmed inputs is 14.46 cents, or 9.6 cents with 10k 0.02%.
 
 For comparison, mixer gain error with cheap 0.5% resistors:
 
