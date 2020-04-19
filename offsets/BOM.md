@@ -13,7 +13,7 @@ I'm first builing a low-cost version for design verification. Build first to ens
 Both versions will use OPA4172, because the ±200μV (typ) op-amp offsets are mostly swamped by oscillator coarse/fine tune and then the 50mV variable offsets from ultrafine, or 5V from filter offset. Gain is **much** more critical than op-amp offset here.
 
 - (1:2) LT1236ACN8-5 Mouser $7.96/1 get 2 = **$15.92**
-- (3:6) OPA4172ID Mouser $2.84/10 get 10 = **$28.40**
+- (3:6) OPA4172ID Mouser $2.84/10 get 10 = **$28.40** but no, use OPA4197ID same as transpositeurs
 - (2:4) 1N5817B (already got)
 
 **$44.32** for actives
