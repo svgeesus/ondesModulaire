@@ -98,7 +98,7 @@ Temp drift essentially flat from 20 to 40°C (fig.11)
 
 ### Op-amps
 
-Op-amps, use one quad SOIC-14.
+Op-amps, use a quad SOIC-14.
 
 OPA4172ID ±200μV (typ) ±1mV (max @ 25°C) ±1.15mV (max over 40°C to +125°C) offset. 240millicent (typ) 1.3cent (max over temp). **$2.84/10**
 
