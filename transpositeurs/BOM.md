@@ -27,11 +27,11 @@ Capacitors non-critical tolerance here, but use C0G; 100nF seem to be 1206 not 0
 
 - (4) 100n C0G Kemet C1206C104K3GEC7210 25V 100nF 1206 ceramics $0.051/100 = **$5.10** [included in offsets order]
 - (1) 33pF 25V C0G C0805C330J3GACTU 0805 $0.14/10 get 10 **$1.40**
-- (2) 10μF 25V Nichicon etc [**GOT**]
+- (2) 10μF 25V Nichicon etc [**GOT**] check diameter!
 
 ## Hardware
 
-- (1) Deltron 650-0500 DIN socket, panel mount **$6.38** [**GOT**]
+- (1) Deltron 650-0500 DIN socket, panel mount **$6.38** [**GOT**] look in box to be sure
 - (1) 3.5mm jack socket, panel mount [**GOT**]
 - (1) twisted-pair, braided screen cable for MIDI
 - (1) 2.54mm pitch pin header
