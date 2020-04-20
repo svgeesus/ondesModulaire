@@ -279,3 +279,9 @@ Option: Use Hinton balanced output impedance circuit, Bantam TT.
 - [Eagle brd](digibuttons.brd) |  [PDF board layout](board.pdf)
 - [Eagle sch](digibuttons.sch) | [PDF schematic](schematic.pdf)
 
+## Panel
+
+Switch has circular, 12.7mm -0+0.2mm diameter mounting hole - say 12.8, so inner radius 6.4
+Outer radius 7.40mm see https://calcresource.com/geom-hexagon.html
+
+Top bezel is 14.0mm diameter.
