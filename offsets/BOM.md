@@ -10,7 +10,7 @@ I'm first builing a low-cost version for design verification. Build first to ens
 
 ## ICs, actives
 
-Both versions will use OPA4172, because the ±200μV (typ) op-amp offsets are mostly swamped by oscillator coarse/fine tune and then the 50mV variable offsets from ultrafine, or 5V from filter offset. Gain is **much** more critical than op-amp offset here.
+Both versions will use OPA4172, because the ±200μV (typ) op-amp offsets are mostly swamped by oscillator coarse/fine tune and then the 50mV variable offsets from ultrafine, or 5V from filter offset. Gain is **much** more critical than op-amp offset here. For low quality version maybe use SOIC TL074 even.
 
 - (1:2) LT1236ACN8-5 Mouser $7.96/1 get 2 = **$15.92**
 - (3:6) OPA4172ID Mouser $2.84/10 get 10 = **$28.40** but no, use OPA4197ID same as transpositeurs
@@ -22,7 +22,7 @@ Both versions will use OPA4172, because the ±200μV (typ) op-amp offsets are mo
 
 Over-ordering on commonly-used 10k and 100k resistors for use in other projects, will be left with around 80 of each.
 
-These are the low-accuracy resistors (only needed for design verification)
+These are the low-accuracy resistors (only needed for design verification) but useful for other projects.
 
 - (12) Susumu RG2012N-104-D-T5 100k 0.5% Mouser $0.66/10 $0.267/100 get 20? (check what hi-cost version needs) = **$26.70**
 - (18) Susumu RG2012N-103-D-T5 10k 0.5% Mouser $0.66/10 $0.267/100 get 25 = $16.50 or 100 for **$26.70**

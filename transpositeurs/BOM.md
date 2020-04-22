@@ -27,7 +27,7 @@ Capacitors non-critical tolerance here, but use C0G; 100nF seem to be 1206 not 0
 
 - (4) 100n C0G Kemet C1206C104K3GEC7210 25V 100nF 1206 ceramics $0.051/100 = **$5.10** [included in offsets order]
 - (1) 33pF 25V C0G C0805C330J3GACTU 0805 $0.14/10 get 10 **$1.40**
-- (2) 10μF 25V Nichicon etc [**GOT**] check diameter!
+- (2) 10μF 25V Nichicon USV1E100MFD  [**GOT**] 5mm diameter!
 
 ## Hardware
 
