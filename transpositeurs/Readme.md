@@ -273,6 +273,8 @@ using circuit from (CA-033) MIDI 1.0 Electrical Specification Update [2014].
 
 ## PCB
 
+Ordered OSH Park 2 May 2020 [OSH Park](https://oshpark.com/shared_projects/Cj8NEUIK)
+
 ### Top
 
 ![top](top.png)
