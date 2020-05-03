@@ -254,16 +254,21 @@ further effect from input resistor to mixer, trimmed at mixer stage.
 That trim will also affect the DAC output,
 but DAC scaling has its own trimmer and can also be adjusted digitally.
 
-### Output (second inverting stage to restore polarity)
+### Output (second inverting mixer stage to restore polarity)
 
 Use innie 47r and 33pF C0G cap for cv inverter topology. [got 47R 0.1% and 33pF]
 trim for gain 1.0 with offset jumpered to 0V.
-If that trim shifts the offset, re-trim offset trimmer to compensate CV out.
+If that trim shifts the offset, correct 0V code digitally to compensate CV out.
 
 Both inputs to the mixer via 3-way pin connector, can be jumpered to 0V (for trimming) or
 actual voltage.
 
 Option: Use Hinton balanced output impedance circuit, Bantam TT.
+
+### MIDI out
+
+Button status expressed as MIDI 14bit pitchbend, output over DIN current loop with 3V3 resistor values
+using circuit from (CA-033) MIDI 1.0 Electrical Specification Update [2014].
 
 
 ## PCB
