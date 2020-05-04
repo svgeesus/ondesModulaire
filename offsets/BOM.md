@@ -34,11 +34,14 @@ Definitely needed high-accuracy resistors! *And critical 100k pairs need to be m
 
 Then (these are the same for low cost and high accuracy versions):
 
-- (2:4) Susumu RG2012N-1053-D-T5 105k 0.5% $0.66/10 get 10 = **$6.80**
+- (2:4) Susumu RG2012N-1053-D-T5 105k 0.5% $0.66/10 get 10 = **$6.80** _backordered_
+- (substitute) RN73C2A105KBTDF 0.1% 10ppm $0.80/1
 - (2:4) Susumu RG2012N-6812-D-T5 68k1 0.5% $0.66/10 get 10 = **$6.80**
 - (3:6) Susumu RR1220P-331-D 330R 0.5% $0.085/10 $0.035/100 get 100? = **$3.50**
-- (2:4) Susumu RG2012N-102-D-T5  1k 0.5% $0.66/10 get 10 = **$6.60**
-- (2:4) Susumu RG2012N-222-D-T5   2k2 0.5% $0.66/10 get 10 (in case 1k/100k = 50mV is too small)? = **$6.60**
+- (2:4) Susumu RG2012N-102-D-T5  1k 0.5% $0.66/10 get 10 = **$6.60**  _backordered_
+- (substitute) RN732ATTD1001B10  0.1% 10ppm $0.80/1
+- (2:4) Susumu RG2012N-222-D-T5   2k2 0.5% $0.66/10 get 10 (in case 1k/100k = 50mV is too small)? = **$6.60**  _backordered_
+- (substitute) not needed
 - (1:2) Susumu RR1220P-105-D 1Meg $0.085/10 get 10 = **$0.85**
 - (2:4) Bourns 3296W-1-502LF $1.90/10 get 10 = **$19.00**
 - (1:2) Bourns 3590S-4-104L  $22.03/1 get 2 = **$22.03** _NO only needed if making a trimmable vref_
@@ -64,6 +67,8 @@ Then (these are the same for low cost and high accuracy versions):
 - (1) ‘Erica Synths’ style Knobs – 6.35mm Shaft, Large Black, Thonk £0.70/1 = **£0.70**
 - (2) Davies 1900h Clone – 6.35mm Round Shaft, Black, Thonk £0.70/1 = **£2.40**
 
+Also get flux pen! CQ4LF  $7.95/1
+
 ## PCB
 
 **$55.65** (for 3) for PCB
@@ -82,4 +87,4 @@ FrontPanel Express order Feb 11 2019 **panel arrived**
 
 Thonk order Feb 15 2019 **arrived**
 
-Mouser order _not yet made_
+Mouser order May 03 2020 _not yet arrived_
