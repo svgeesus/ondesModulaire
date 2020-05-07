@@ -61,6 +61,7 @@ Then (these are the same for low cost and high accuracy versions):
 - (1) 0.1" pin socket, ideally 90-degree for the Vref connection, cable mount for the pot connection
 - (2) DW4 - DPDT ON-OFF-ON, Thonk £1.33/1 = **£2.66** get 4
 - (2) VERTICAL: B10K - 10K Linear Alpha pots, Thonk £1.42/1 = **£2.84** get 2 more, to be sure
+- (1) Vishay Spectrol 534B1104JC $25.17/1 = **$25.17**  [**GOT**]
 - (9) Thonkikon PJ398SM jacks (or older PJ301M-12, same footprint) Thonk £0.40/1 =  **£3.60** (already got)
 - (9) Knurled nuts or hex nuts as desired, Thonk £1.50/50 (already got)
 - (9) Washers, Thonk £1.50/50 (already got)
@@ -87,4 +88,4 @@ FrontPanel Express order Feb 11 2019 **panel arrived**
 
 Thonk order Feb 15 2019 **arrived**
 
-Mouser order May 03 2020 _not yet arrived_
+Mouser order May 03 2020 **arrived** but missing 3 items and forgot the multiturn pot

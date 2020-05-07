@@ -6,14 +6,14 @@ placed to the right of the touche d'intensité,
 which produce small shifts in pitch.
 They may be pressed in combination to generate larger shifts.
 
-|  button   |   tones  |  semitones   | millivolts (semitones /12)    |
-|--:  |--:  |--:  |--:  |
-| 1    | -1/4    | -0.5    | -41.6666666666666667    |
-| 2    | +1/4    | +0.5    | 41.6666666666666667    |
-| 3    | +1/2    | +1    | 83.3333333333333333    |
-| 4    | +1    | +2    |  166.666666666666667   |
-| 5    | +2    | +4    |  333.333333333333333   |
-| 6    | +3 1/2    | +7    |  583.333333333333333   |
+|  button   |   tones  |  semitones   | millivolts (semitones /12)    | interval |
+|--:  |--:  |--:  |--:  |--:  |
+| 1    | -1/4    | -0.5    | -41.6666666666666667    | quarter-down |
+| 2    | +1/4    | +0.5    | 41.6666666666666667    | quarter-up |
+| 3    | +1/2    | +1    | 83.3333333333333333    | semitone |
+| 4    | +1    | +2    |  166.666666666666667   | tone |
+| 5    | +2    | +4    |  333.333333333333333   | third |
+| 6    | +3 1/2    | +7    |  583.333333333333333   | fifth |
 
 My initial design attempts were purely analog. However,
 analog buttons circuit is basically a DAC, so try designing as a DAC.
