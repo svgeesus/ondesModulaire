@@ -68,7 +68,7 @@ Then (these are the same for low cost and high accuracy versions):
 - (1) ‘Erica Synths’ style Knobs – 6.35mm Shaft, Large Black, Thonk £0.70/1 = **£0.70**
 - (2) Davies 1900h Clone – 6.35mm Round Shaft, Black, Thonk £0.70/1 = **£2.40**
 
-Also get flux pen! CQ4LF  $7.95/1
+Also get flux pen! Kester 952D6 $10.18/1 = **$10.18**
 
 ## PCB
 
@@ -89,3 +89,5 @@ FrontPanel Express order Feb 11 2019 **panel arrived**
 Thonk order Feb 15 2019 **arrived**
 
 Mouser order May 03 2020 **arrived** but missing 3 items and forgot the multiturn pot
+
+Mouser order 2,

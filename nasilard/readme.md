@@ -25,7 +25,7 @@ Unlike many other comparators, the LM339 can be powered off of large supplies. S
 - B input triggers on voltage level (2V for high) independent of rise time.
 - Pulse width = 0.7 C R, 2k < R < 100k.
 - 5V rail (4.5 to 5.5)
-- SOIC-16 only. Breadboard with a DIP adaptor.
+- SOIC-16 or DIP.
 
 1.73010380622837E-4 / 0.7 / 10,000 = 2.47157686604053E-8 = 24.7nF for 10k
 closest is 22nF so R = 1.73010380622837E-4 / 0.7 / 2.2E-8
@@ -40,15 +40,16 @@ Alternative, for breadboarding: Texas CD74HCT221E PDIP-16 $0.77/1
 ## LM339 comparator
 
 Run on +12 -12 to allow all possible input voltages. Needs wo 100n bypass caps, from +12 to GND and -12 to GND.
+Uh, and this is a quad but we don't need a window so a dual would be better.
 
 Open-collector output pulled up to +5V to feed the 74HCT221
 
-LM399AN is PDIP-14, LM399AD is SOIC-14
+LM339AN is PDIP-14, LM339AD is SOIC-14
 
 For breadboarding, Vref of 2V5 from 1/2 5V rail is enough.
 
 For rising/falling, see [CGS slope detector](https://www.elby-designs.com/webtek/cgs/cgs62/cgs62_sd.html).
-The same signal is fed to both inputs of the comparator, but the negative input is fed by a 2k2 - 1M voltage divider to -12V to pull it low. The positive input is fed by and RC network with R = 10k + 1M trimmer, and C = 100n to ground. A rising voltage will be delayed by the RC circuit and rise slower, triggering the comparator. (That circuit assumes the next stage is inverting, so experiment and swap as needed).
+The same signal is fed to both inputs of the comparator, but the negative input is fed by a 2k2 - 1M voltage divider to -12V to pull it low. The positive input is fed by an RC network with R = 10k + 1M trimmer, and C = 100n to ground. A rising voltage will be delayed by the RC circuit and rise slower, triggering the comparator. (That circuit assumes the next stage is inverting, so experiment and swap as needed).
 
 ## BOM for breadboarding
 
