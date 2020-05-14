@@ -22,6 +22,8 @@ Unlike many other comparators, the LM339 can be powered off of large supplies. S
 
 ## 74HCT221 dual retriggerable monostable multivibrator with reset
 
+Needs a TTL-compatible 0V to 5V input.
+
 - B input triggers on voltage level (2V for high) independent of rise time.
 - Pulse width = 0.7 C R, 2k < R < 100k.
 - 5V rail (4.5 to 5.5)
@@ -37,19 +39,30 @@ Also see 12.1   Power-down considerations for protection circuit (Schottky diode
 
 Alternative, for breadboarding: Texas CD74HCT221E PDIP-16 $0.77/1
 
+DC Supply Voltage, VCC range -0.5V to 7V and DC Input or Output Voltage, VI, VO 0V to VCC
+
+Use a 1k input resistor for current limiting.
+
+Use voltage follower output buffers to prevent negative inputs at the outputs, or high current drain if an output is shorted.
+
 ## LM339 comparator
 
-Run on +12 -12 to allow all possible input voltages. Needs wo 100n bypass caps, from +12 to GND and -12 to GND.
+Could run on +12 -12 to allow all possible input voltages. Needs two 100n bypass caps, from +12 to GND and -12 to GND. Note that output swings from pull-up voltage when high, to the negative rail voltage when low (17V swing) so will need clamping to 0V before sending to the monostable.
+
+Alternatively, run on +12 0V so output low is 0V, and do the bipolar to unipolar conversion ahead of the comparator. Could use a zener diode, possibly with a voltage follower or two inverting stages.
+
 Uh, and this is a quad but we don't need a window so a dual would be better.
 
 Open-collector output pulled up to +5V to feed the 74HCT221
 
 LM339AN is PDIP-14, LM339AD is SOIC-14
 
-For breadboarding, Vref of 2V5 from 1/2 5V rail is enough.
-
 For rising/falling, see [CGS slope detector](https://www.elby-designs.com/webtek/cgs/cgs62/cgs62_sd.html).
 The same signal is fed to both inputs of the comparator, but the negative input is fed by a 2k2 - 1M voltage divider to -12V to pull it low. The positive input is fed by an RC network with R = 10k + 1M trimmer, and C = 100n to ground. A rising voltage will be delayed by the RC circuit and rise slower, triggering the comparator. (That circuit assumes the next stage is inverting, so experiment and swap as needed).
+
+LM393A or LM293A (PDIP, dual) comparators may be more suitable, rather than using only two comparators from a quad package. However, max input voltage is only V+ -2V. Maybe incorporate protection clipping to +10V?
+
+Pull-up should give 100 μA to max 1mA current, so for a 5V pull up the resistor should be 4k7 to 47k, with larger resistance values providing a slower rise time.
 
 ## BOM for breadboarding
 
