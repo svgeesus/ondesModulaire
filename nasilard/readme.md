@@ -8,7 +8,7 @@ Also, how would you shape this in the analog domain, given a triangle wave input
 
 2890Hz (and multiples) formants. so 2,890^-1 / 2 = 1.73010380622837E-4 = 173μs pulse
 
-TODO check again the pulse width and dfferent audio frequencies.
+TODO check again the pulse width and different audio frequencies.
 
 > comparator, then monostable
 
@@ -19,6 +19,10 @@ TODO check again the pulse width and dfferent audio frequencies.
 So if it is powered from ground and +12v, and the pull-up is tied to +12v, then the output will go between ground and +12v. Since it's open collector you can tie the pull-up to a different voltage than the positive supply (but it must be more positive than the ground/negative supply pin). So you could power it from +12v and have the pull-up tied to +5v, giving a zero to +5v output. Or power the chip on +5v and have the pullup tied to +12v, giving a zero to +12v output.
 
 Unlike many other comparators, the LM339 can be powered off of large supplies. So it could be powered off of +/-12v or +/-15v and then the input and output would both be bipolar."
+
+## Input voltage conditioning to unipolar
+
+See Application Note snoaa35a for split voltage divider with clamp. Input series resistor R1a 70k and zener diode to ground gives max -600mV; then R1b 20k series and R2 10k to gnd reduces this to -200mV. Positive 10V becomes +1V meanwhile.
 
 ## 74HCT221 dual retriggerable monostable multivibrator with reset
 
