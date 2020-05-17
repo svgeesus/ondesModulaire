@@ -1,4 +1,6 @@
-# Nasilard pulse maker
+# Nasillard pulse maker
+
+## Problem statement
 
 Its a pulse wave, where the mark part is of a constant, fixed width regardless of frequency and the space part is whatever is needed for the frequency. So as the frequency increases and thus the wavelength decreases, the proportion of mark to space increases. I assume this will produce formants due to the non-harmonic nature of the pulse?
 
@@ -23,6 +25,27 @@ Unlike many other comparators, the LM339 can be powered off of large supplies. S
 ## Input voltage conditioning to unipolar
 
 See Application Note snoaa35a for split voltage divider with clamp. Input series resistor R1a 70k and zener diode to ground gives max -600mV; then R1b 20k series and R2 10k to gnd reduces this to -200mV. Positive 10V becomes +1V meanwhile.
+
+Could either condition input, or condition output of comparator.
+
+## LM339 comparator
+
+Could run on +12 -12 to allow all possible input voltages. Needs two 100n bypass caps, from +12 to GND and -12 to GND. Note that output swings from pull-up voltage when high, to the negative rail voltage when low (17V swing) so will need clamping to 0V before sending to the monostable.
+
+Alternatively, run on +12 0V so output low is 0V, and do the bipolar to unipolar conversion ahead of the comparator. Could use a zener diode, possibly with a voltage follower or two inverting stages.
+
+Uh, and this is a quad but we don't need a window so a dual would be better.
+
+Open-collector output pulled up to +5V to feed the 74HCT221
+
+LM339AN is PDIP-14, LM339AD is SOIC-14
+
+For rising/falling, see [CGS slope detector](https://www.elby-designs.com/webtek/cgs/cgs62/cgs62_sd.html).
+The same signal is fed to both inputs of the comparator, but the negative input is fed by a 2k2 - 1M voltage divider to -12V to pull it low. The positive input is fed by an RC network with R = 10k + 1M trimmer, and C = 100n to ground. A rising voltage will be delayed by the RC circuit and rise slower, triggering the comparator. (That circuit assumes the next stage is inverting, so experiment and swap as needed).
+
+LM393A or LM293A (PDIP, dual) comparators may be more suitable, rather than using only two comparators from a quad package. However, max input voltage is only V+ -2V. Maybe incorporate protection clipping to +10V?
+
+Pull-up should give 100 μA to max 1mA current, so for a 5V pull up the resistor should be 4k7 to 47k, with larger resistance values providing a slower rise time.
 
 ## 74HCT221 dual retriggerable monostable multivibrator with reset
 
@@ -49,24 +72,6 @@ Use a 1k input resistor for current limiting.
 
 Use voltage follower output buffers to prevent negative inputs at the outputs, or high current drain if an output is shorted.
 
-## LM339 comparator
-
-Could run on +12 -12 to allow all possible input voltages. Needs two 100n bypass caps, from +12 to GND and -12 to GND. Note that output swings from pull-up voltage when high, to the negative rail voltage when low (17V swing) so will need clamping to 0V before sending to the monostable.
-
-Alternatively, run on +12 0V so output low is 0V, and do the bipolar to unipolar conversion ahead of the comparator. Could use a zener diode, possibly with a voltage follower or two inverting stages.
-
-Uh, and this is a quad but we don't need a window so a dual would be better.
-
-Open-collector output pulled up to +5V to feed the 74HCT221
-
-LM339AN is PDIP-14, LM339AD is SOIC-14
-
-For rising/falling, see [CGS slope detector](https://www.elby-designs.com/webtek/cgs/cgs62/cgs62_sd.html).
-The same signal is fed to both inputs of the comparator, but the negative input is fed by a 2k2 - 1M voltage divider to -12V to pull it low. The positive input is fed by an RC network with R = 10k + 1M trimmer, and C = 100n to ground. A rising voltage will be delayed by the RC circuit and rise slower, triggering the comparator. (That circuit assumes the next stage is inverting, so experiment and swap as needed).
-
-LM393A or LM293A (PDIP, dual) comparators may be more suitable, rather than using only two comparators from a quad package. However, max input voltage is only V+ -2V. Maybe incorporate protection clipping to +10V?
-
-Pull-up should give 100 μA to max 1mA current, so for a 5V pull up the resistor should be 4k7 to 47k, with larger resistance values providing a slower rise time.
 
 ## BOM for breadboarding
 
