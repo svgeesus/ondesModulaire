@@ -455,11 +455,16 @@ v0.1 panel ordered at Front Panel Express, has arrived, not yet built or tested.
 
 Single turn pots, jacks, knobs and power cable orderd from Thonk. Has arrived.
 
-Electronic components not yet ordered.
+Electronic components ordered May 2020.
 
 For v0.2, desirable fixes:
 
 - fix the routing goof where pots and switch 1 and 2 are swapped :(
+
+v0.2 PCB ordered after discovering several unrouted traces, 18 May 2020. Fixed the pot and switch swap, left positions the same to re-use original front panel. Added small PCB for the vref.
+
+For v0.3:
+
 - consider trimmers for the input gain resistors on the "untrimmed" (1.0x gain) inputs. Need not be front-palel acessible
 - reposition the trimmers so the panel looks symmetrical. Maybe use panel-mount trimmers.
 - if the resistors look cramped in practice, space them a bit more

@@ -24,7 +24,9 @@ Unlike many other comparators, the LM339 can be powered off of large supplies. S
 
 ## Input voltage conditioning to unipolar
 
-See Application Note snoaa35a for split voltage divider with clamp. Input series resistor R1a 70k and zener diode to ground gives max -600mV; then R1b 20k series and R2 10k to gnd reduces this to -200mV. Positive 10V becomes +1V meanwhile.
+See Application Note snoaa35a for split voltage divider with clamp. Input series resistor R1a 70k and zener diode to ground gives max -600mV; then R1b 20k series and R2 10k to gnd reduces this to -200mV. Positive 10V becomes +1V meanwhile. Might be a bit low for the slope detector?
+
+Or, inverting op-amp mix input tri with +5V (rough, 5V rail is ok) and overall gain 0.5ish to give 0 to -5V signal, then second inverting stage to restore positive signal.
 
 Could either condition input, or condition output of comparator.
 
