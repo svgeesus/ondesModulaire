@@ -48,6 +48,8 @@ breadboard analog post-DAC circuit using Teensy LC pin14 DAC just for testing.
 
 Could also have MIDI out on pin 1 TX1. Just send pitchbend.
 
+![tensy-pinout](pitchpins-pinout.png)
+
 ### DAC
 
 Total swing = 29 demi-semitones. Use DAC with total swing of n*32 so each
@@ -291,6 +293,20 @@ Ordered OSH Park 2 May 2020 [OSH Park](https://oshpark.com/shared_projects/Cj8NE
 ## Panel
 
 Switch has circular, 12.7mm -0+0.2mm diameter mounting hole - say 12.8, so inner radius 6.4
-Outer radius 7.40mm see https://calcresource.com/geom-hexagon.html
+Outer radius 7.40mm see [hexagon calculations](https://calcresource.com/geom-hexagon.html)
 
 Top bezel is 14.0mm diameter.
+
+## Testing results
+
+* No power shorts
+* Initial PCB error, wrong europower pin for +5V. Fixed with bodge wire.
+* +12 -12 +5 seem ok (after bodge; before, 0mA on 5V)
+* Current draw 17ma 5V, 2mA 12V, 8ma -12V
+* Teensy displays blink OK so getting power, programmable
+* Vref outputs 2.999930V initially (error 70μV or 23ppm). Slight climb as it warms up over 10 minutes.
+* DAC test program, output does vary.
+* jumper for Voffs goes to -11.8V implying an unterminated feedback loop so op-amp climbs near rail.
+* Fixed! Connection for feedback went to wrong side of input resistor. Bodge wire and track cut.
+*  83mV offset measures okay
+* wish there were more stable measurement points, like single pins rather than chip pins or test points.
