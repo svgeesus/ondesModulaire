@@ -211,6 +211,7 @@ same but now setting 50R trimmer to 50, to compensate
 = 1.2968281782867
 = 5.212mV high
 
+![dac scaling](dac-scaling.png)
 
 ### Negative voltage offset
 
@@ -256,6 +257,8 @@ further effect from input resistor to mixer, trimmed at mixer stage.
 That trim will also affect the DAC output,
 but DAC scaling has its own trimmer and can also be adjusted digitally.
 
+![offset](vref-offs.png)
+
 ### Output (second inverting mixer stage to restore polarity)
 
 Use innie 47r and 33pF C0G cap for cv inverter topology. [got 47R 0.1% and 33pF]
@@ -264,6 +267,8 @@ If that trim shifts the offset, correct 0V code digitally to compensate CV out.
 
 Both inputs to the mixer via 3-way pin connector, can be jumpered to 0V (for trimming) or
 actual voltage.
+
+![mixer](mixer.png)
 
 Option: Use Hinton balanced output impedance circuit, Bantam TT.
 
