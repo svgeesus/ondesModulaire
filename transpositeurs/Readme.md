@@ -14,6 +14,7 @@ They may be pressed in combination to generate larger shifts.
 | 4    | +1    | +2    |  166.666666666666667   | tone |
 | 5    | +2    | +4    |  333.333333333333333   | third |
 | 6    | +3 1/2    | +7    |  583.333333333333333   | fifth |
+| 2to6 | | 14.5 | 1208.33333333333 | |
 
 My initial design attempts were purely analog. However,
 analog buttons circuit is basically a DAC, so try designing as a DAC.
@@ -133,12 +134,12 @@ Do not measure at these code points.
 
 Values below are _before_ the DAC scaling.
 
-| buttons    |  dstones   |  code   | (code * 512)    |  V before offset   |  (V - offs)  |
+| buttons    |  dstones   |  code   | (code * 512)    |  V before offset   |  (V - offs)  | scaled (V-offs)
 |:--  |--: |--:  |--:  |--:  |--:   |
-| unused    |     | 0    |     | 0V    | ~-187.51mV    |
-| 1    |  -1   | 1n    | 512    | 93.75mV    | -93.75mV    |
-| none    | 0    | 2n    | 1024    | 187.51mV    | 0V    |
-| 2    |  1   | 3n    |     |     |     |
+| unused    |     | 0    |     | 0V    | ~-187.51mV    | around -83mV
+| 1    |  -1   | 1n    | 512    | 93.75mV    | -93.75mV    | 41.6667mV
+| none    | 0    | 2n    | 1024    | 187.51mV    | 0V    | 0V |
+| 2    |  1   | 3n    |   1536  |     |     |
 | 3    |  2   | 4n    |     |     |     |
 | 2+3, 4+1   | 3    | 5n    |     |     |     |
 | 4    |  4   | 6n    |     |     |     |
@@ -315,3 +316,44 @@ Top bezel is 14.0mm diameter.
 * Fixed! Connection for feedback went to wrong side of input resistor. Bodge wire and track cut.
 *  83mV offset measures okay
 * wish there were more stable measurement points, like single pins rather than chip pins or test points.
+
+### Measurements
+
+ondes_DAC_explorer_01
+
+const uint16_t dacval[vals] = {0, lowest, zeropoint, six, maxpins, 16383};
+
+Jumper for DAC output, offset jumpered to zero.
+Do not use zero or max values to calculate overall gain, due to
+zero and FS errors.
+
+Example: 2.99993 * 512 / 16,383 = 0.09375353476164 * 0.4444 = 41.664mV
+
+| DAC code | expected voltage | measured voltage | error, ppm | error, cent |
+|:--       |:--               |:--               |:--         |:--          |
+| 0        | 0                | 31.2 mV ?? check | ---        |             |
+| 512      | 41.664 mV        | 41.768 mV        | +2496 ppm  | 0.1248      |
+| 1024     | 83.328 mV        | 83.501 mV        | +2076 ppm  | 0.2076      |
+| 8192     | 666.625 mV       | 666.762 mV       | +205 ppm   | 0.1644      |
+| 15872    | 1.291668 V       | 1.29179 V        | +94.4 ppm  | 0.1464      |
+| 16383    | 1.333169 V       | 1.33338 V        | ---        |             |
+
+ondes_DAC_explorer_02
+
+constant output of maxpins DAC count 15872 = 1.291668 V), for trimming with DAC gain trimmer.
+
+* Desired value = 1.291616V.
+* Initial value =  1.291785V.
+* After trimming = 1.291619V
+
+ondes_DAC_explorer_03
+
+constant output of zeropoint DAC count 1024 = 83.337777 mV), for nulling with DAC gain trimmer.
+Jumpers for both DAC and offset.
+
+Nulled to 9.8 μV σ 8.8μV.
+
+ondes_DAC_explorer_02
+
+Same program, Jumpers for both DAC and offset.
+Now leave DAC gain alone, to retain zero; adjust maxpins to exactly 1.208333 V
