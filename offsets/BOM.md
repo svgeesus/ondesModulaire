@@ -24,7 +24,7 @@ Over-ordering on commonly-used 10k and 100k resistors for use in other projects,
 
 These are the low-accuracy resistors (only needed for design verification) but useful for other projects.
 
-- (12) Susumu RG2012N-104-D-T5 100k 0.5% Mouser $0.77/10 $0.267/100 get 100? (check what hi-cost version needs) = **$26.70**
+- (12) Susumu RG2012N-104-D-T5 100k 0.5% 10ppm Mouser $0.77/10 $0.267/100 get 100? (check what hi-cost version needs) = **$26.70**
 - (18) Susumu RG2012N-103-D-T5 10k 0.5% Mouser $0.77/10 $0.267/100 get 25 = $16.50 or 100 for **$26.70**
 
 Definitely needed high-accuracy resistors! *And critical 100k pairs need to be matched closer.*
@@ -90,4 +90,62 @@ Thonk order Feb 15 2019 **arrived**
 
 Mouser order May 03 2020 **arrived** but missing 3 items and forgot the multiturn pot
 
-Mouser order 2,
+Mouser order 2, **arrived**
+
+## Parts by number
+
+R1      1k      0.5%    10ppm   Susumu RG2012N-102-D-T5
+R2      100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+R3      1k      0.5%    10ppm   Susumu RG2012N-102-D-T5
+R4      100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+
+R101    100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+R102    105k    0.5%    10ppm   Susumu RG2012N-1053-D-T5
+R103    5k trim 10%     100ppm  Bourns 3296W-1-502LF
+R104    68k1    0.5%    10ppm   Susumu RG2012N-6812-D-T5
+
+R201    100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+R202    105k    0.5%    10ppm   Susumu RG2012N-1053-D-T5
+R203    5k      10%     100ppm  Bourns 3296W-1-502LF
+R204    68k1    0.5%    10ppm   Susumu RG2012N-6812-D-T5
+
+R301    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R302    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R303    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R304    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+
+R401    100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+R402    100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+R403    100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+R404    100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
+
+R501    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R502    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R502    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R504    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R505    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R506    1M      0.5%   25ppm    Susumu RR1220P-105-D
+R507    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R508    1k      0.5%   10ppm    Susumu RG2012N-102-D-T5
+
+R601    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R602    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+
+R701    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R702    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R703    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R704    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R705    1k      0.5%   10ppm    Susumu RG2012N-102-D-T5
+
+R801    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R802    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R803    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R804    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R805    1k      0.5%   10ppm    Susumu RG2012N-102-D-T5
+
+R901    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R902    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+
+VR1     10k     20%    ??ppm    Thonk Alpha 9mm Vertical
+VR2     10k     20%    ??ppm    Thonk Alpha 9mm Vertical
+VR3     100k    5%     50ppm    Bourns 3590S-4-104L 10-turn 0.25% linearity, wirewound

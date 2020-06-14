@@ -47,9 +47,9 @@ Tempco of trimmer dominates the gain error on the two trimmed inputs.
 
 ![untrimmed](untrim-inputs.png)
 
-These are for CV sources which are correctly designed and can drive with a low output impedance.
+These are for CV sources which are correctly designed and can drive with a low output impedance. And so we use 10k input because the available tolerance is better for 10k (0.02%, 5ppm) than for 100k (0.05%, 10ppm) and adding a trimmer would increase the tempco ppm.
 
-Inverting 1.0x 100k input gain stage = **2** op-amps.
+Inverting 1.0x 10k input gain stage = **2** op-amps.
 
 
 ### Mixers
@@ -59,6 +59,18 @@ Inverting 1.0x 100k input gain stage = **2** op-amps.
 ![mix](summer.png)
 
 One inverting mixer for inputs one to four plus ultrafine offset. Mixer is also the output stage = 1 op-amp.
+
+Compensation cap 33pF, resistor 330R + 10k,
+f = 1 / ( 2 * PI * 330 * 3.3E-11 ) = 14,614,778 14 Mhz way too high!!
+
+Compensation cap 33pF, resistor 47R,
+f = 1 / ( 2 * PI * 3.3E-11 * 47 ) = 102,614,405
+
+Compensation cap 33pF, resistor 1k,
+f = 1 / ( 2 * PI * 3.3E-11 * 1,000 ) = 4,822,877
+1 / ( 2 * PI * 3.3E-11 * 11,000 ) = 438,443 403kHz ok
+
+Cap should have been much larger
 
 #### Offset mixers
 
@@ -92,7 +104,8 @@ Inverting plus non-inverting buffers give +5V -5V. Apply across two pots for var
 
 ![buffers](vref-buffers.png)
 
-Voltage divider to ultrafine multiturn pot, plus larger resistor in input mixer gives +50 to -50mV ultrafine trim (±60 cents, or 12 cents per turn; experiment to find useful value).
+Voltage divider to ultrafine multiturn pot, plus larger resistor in input mixer gives +50 to -50mV ultrafine trim (±60 cents, or 12 cents per turn; experiment to find useful value). 0.5% is fine due to the tempco and adjustability of the multiturn pot,
+but 10ppm helps stability.
 
 ## Op-amps
 
@@ -268,7 +281,7 @@ For the offsets, perhas a regular alpha pot plus a dpdt switch (like C&K [7201SY
 8.13 x 9.14mm size.
 0.2" (5.08mm) x 0.1" (2.54mm) pin spacing
 
-Get tempco of the Thonk Alpha pot (but ratiometric, so does not matter).
+Unspecified tempco of the Thonk Alpha pot (but ratiometric, so does not matter).
 
 Thonkikon jacks at the bottom of the panel.
 
@@ -465,7 +478,7 @@ v0.2 PCB ordered after discovering several unrouted traces, 18 May 2020. Fixed t
 
 For v0.3:
 
-- consider trimmers for the input gain resistors on the "untrimmed" (1.0x gain) inputs. Need not be front-palel acessible
+- consider trimmers for the input gain resistors on the "untrimmed" (1.0x gain) inputs. Need not be front-panel accessible, just used to compensate for static resistor msmatch. Put in parallel with a large static resistor to reduce tempco effect.
 - reposition the trimmers so the panel looks symmetrical. Maybe use panel-mount trimmers.
 - if the resistors look cramped in practice, space them a bit more
 - better spacing between offsets pots and switches. Probably means moving the inter-board connectors, for example above and below the posts/switches, to get more room side to side
