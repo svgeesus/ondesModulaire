@@ -121,7 +121,7 @@ R404    100k    0.5%    10ppm   Susumu RG2012N-104-D-T5
 
 R501    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
 R502    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
-R502    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
+R503    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
 R504    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
 R505    10k     0.02%  5ppm     Susumu RG2012V-103-P-T1
 R506    1M      0.5%   25ppm    Susumu RR1220P-105-D
