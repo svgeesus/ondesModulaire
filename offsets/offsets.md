@@ -35,9 +35,9 @@ One non-inverting unity and one inverting unity for + and - Vref = **2** op-amps
 
 ![trimmed inputs](trim-inputs.png)
 
-These are for CV sources with ill-advided 1k output resistors and the like. Inverting 1.07x 100k input gain stage (2, one per input) = **2** opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
+These are for CV sources with ill-advised 1k output resistors and the like. Inverting 1.07x 100k input gain stage (2, one per input) = **2** opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
 
-Maybe ±7% adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 105% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
+However ±7% adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 105% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
 
 E96 value is 69.8k. However Mouser doesn't carry it (min order 5k, non-stocked) but they do have 68.1k. With a 5k trimmer, range is +5% to  105 * 68.1 / ( 68.1 + 5 ) = 97.818 = -2%.
 
@@ -84,7 +84,7 @@ None, just straight to the jacks. Single output jacks, can use passive mut if mo
 
 ## Vref
 
-Use a 6-pin vref board connector for flexibility. +12V, -12V, 5V force, 5V sense, 0v force, 0V sense? Non-kelvin Vrefs can just tie the force and sense together. Allows anything from a cheapo vref to an LM399 board. Or just use a simple Vref, 0V connection which is sufficient here; stability more important than absolute value. Can still tie the gnd connection to the load, per *Standard Series Mode* figure. May also help to add insulation to prevent turbulent air flow.
+Use a 6-pin vref board connector for flexibility. +12V, -12V, 5V force, 5V sense, 0v force, 0V sense? Non-kelvin Vrefs can just tie the force and sense together. Allows anything from a cheapo vref to an LM399 board. Or just use a simple Vref, 0V connection which is sufficient here; stability more important than absolute value. Can still tie the gnd connection to the load, per *Standard Series Mode* figure. May also help to add thermal insulation to prevent turbulent air flow.
 
 ### LTLT1236-5
 
@@ -121,7 +121,7 @@ Compare to ±50mV ultrafine tune = ±60cent tuning range = 12cent/turn = 33milli
 
 ## Resistors
 
-Balance of quality (tolerance, drift) and cost. Avoid quad packs, as they are only pairwise matched. Go for single low tempco 0.1% resistors and do any additional matching (the two untrimmed CV inputs vs. the mixer gain resistor is the critical point). 0805 size for ease of hand soldering.
+Balance of quality (tolerance, drift) and cost. Avoid quad packs, as they are only pairwise matched. Go for single low tempco 0.1% or better resistors and do any additional matching (the two untrimmed CV inputs vs. the mixer gain resistor is the critical point). 0805 size for ease of hand soldering.
 
 Place gain trimmers just below ultrafine pot, PC mount.
 
@@ -478,14 +478,14 @@ v0.2 PCB ordered after discovering several unrouted traces, 18 May 2020. Fixed t
 
 For v0.3:
 
-- consider trimmers for the input gain resistors on the "untrimmed" (1.0x gain) inputs. Need not be front-panel accessible, just used to compensate for static resistor msmatch. Put in parallel with a large static resistor to reduce tempco effect.
+- consider trimmers for the input gain resistors on the "untrimmed" (1.0x gain) inputs. Need not be front-panel accessible, just used to compensate for static resistor mismatch. Put in parallel with a large static resistor to reduce tempco effect.
 - reposition the trimmers so the panel looks symmetrical. Maybe use panel-mount trimmers.
-- if the resistors look cramped in practice, space them a bit more
+- if the resistors look cramped in practice, space them a bit more (no, they are OK)
 - better spacing between offsets pots and switches. Probably means moving the inter-board connectors, for example above and below the posts/switches, to get more room side to side
 
 ## Error analysis
 
-### Untrimmed input buffer (properly made sources)
+### On untrimmed input buffer (properly made sources)
 
 Gain error: Input buffer is pair of 100k 0.05%, error is 50R. Worst case match is 100,050 to 99,950.
 
@@ -502,11 +502,11 @@ Offset error: Input buffer has *max* offset of ±25μV = 30 millicents
 Hand matching resistor pairs on these inputs reduces total system error significantly.
 Should really have included parallel trimmers for these.
 
-### Trimmed inputs
+### On trimmed inputs
 
 Gain error: depends on resolution of trimmer movement (depends on manual dexterity, backlash, drift over time) and especially, depends on tempco of the gain divider chain. Re-trimming as temperature changes is likely. Front-mounted trimmers allows trimming at equilibrium case temperature.
 
-### CV mixer
+### On CV mixer
 
 Gain error: Mixer is pair of 10k 0.02%, error is 2R.
 Worst case match is 10,002 to 9,998.
