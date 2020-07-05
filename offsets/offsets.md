@@ -479,6 +479,7 @@ v0.2 PCB ordered after discovering several unrouted traces, 18 May 2020. Fixed t
 For v0.3:
 
 - consider trimmers for the input gain resistors on the "untrimmed" (1.0x gain) inputs. Need not be front-panel accessible, just used to compensate for static resistor mismatch. Put in parallel with a large static resistor to reduce tempco effect.
+- add missing CV3B connection (airwire)
 - all output jacks have switched pin connected to GND giving a dead short unless a jack is inserted! Don't use the switched pin on outputs, dummy.
 - reposition the trimmers so the panel looks symmetrical. Maybe use panel-mount trimmers.
 - if the resistors look cramped in practice, space them a bit more (no, they are OK)
