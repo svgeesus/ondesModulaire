@@ -525,3 +525,38 @@ For comparison, mixer gain error with cheap 0.5% resistors:
 
 10,050 / 9,950 = 1.01005025125628 = 100mV error on 10V
 = 120 cents (more than a semitone!)
+
+![connections](board-connections.png)
+
+## Debug measurements
+
+### Rear panel, cheap components, main mixer
+
+Zero test
+
+- CV1T, CV3T, CVIN2, CVIN4, UFTUNE all to GND (bypasses trimmed input buffers)
+- Measure CVOUT (should be zero)
+- 3.5mV (as expected for TL074)
+
+UFTune test
+
+- CV1T, CV3T, CVIN2, CVIN4, all to GND
+- UFTUNE to 0.9V (0.899999V)
+- CVOUT = -0.896232
+- gain -0.9958 (as expected for 0.5% resistors)
+- error on +5V = 20.928mV = 25 cents
+
+Untrimmed in test
+
+- CV1T, CV3T, CVIN2, UFTUNE all to GND
+- CVIN4 to 0.9V (0.899999V)
+- CVOUT = 0.904820
+- gain = 1.0054 (as expected for 0.5% resistors)
+- error on +5V = 26.78mV =  32 cents
+
+Trimmed in test (expected gain -1.05)
+
+- CVIN1 to 0.9V (0.899999V)
+- CV1B = -0.944110
+- gain = 1.0490 (as expected for 0.5% resistors)
+- error on +5V = -4.938mV = -5.9 cents
