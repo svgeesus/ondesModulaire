@@ -560,3 +560,15 @@ Trimmed in test (buffer only, expected gain -1.05)
 - CV1B = -0.944110
 - gain = 1.0490 (as expected for 0.5% resistors)
 - error on +5V = -4.938mV = -5.9 cents
+
+Vref positive (expected 5V ±2.5mV or 0.05%)
+
+- Measure GND to VREFPLUS
+- 4.999361V
+- 639 μV error = -0.01278%
+
+Vref negative (expected -5V)
+
+- Measure GND to VREFMINUS
+- -10.014817V sd 4.358mV, lots of drift
+- Twice expected voltage, odd. Wrong resistors? Check 901 & 902
