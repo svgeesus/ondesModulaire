@@ -566,9 +566,18 @@ Vref positive (expected 5V ±2.5mV or 0.05%)
 - Measure GND to VREFPLUS
 - 4.999361V
 - 639 μV error = -0.01278%
+- re-measure, 4.999377V sd 10μV
 
 Vref negative (expected -5V)
 
 - Measure GND to VREFMINUS
 - -10.014817V sd 4.358mV, lots of drift
+![-10V drift](10dr.png)
 - Twice expected voltage, odd. Wrong resistors? Check 901 & 902
+- culprit was a cold joint on the op-amp gnd reference, so floating.
+- re-measure, -5.001852 sd 8μV but steady drift
+![-5V drift](-5V.png)
+- settled after 4 hours (warm up)
+-
+
+
