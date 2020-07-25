@@ -553,6 +553,7 @@ Untrimmed in test (buffer plus main mixer)
 - CVOUT = 0.904820
 - gain = 1.0054 (as expected for 0.5% resistors)
 - error on +5V = 26.78mV =  32 cents
+- redo for CVIN2
 
 Trimmed in test (buffer only, expected gain -1.05)
 
@@ -560,6 +561,7 @@ Trimmed in test (buffer only, expected gain -1.05)
 - CV1B = -0.944110
 - gain = 1.0490 (as expected for 0.5% resistors)
 - error on +5V = -4.938mV = -5.9 cents
+- redo for CVIN3
 
 Vref positive (expected 5V ±2.5mV or 0.05%)
 
@@ -578,6 +580,9 @@ Vref negative (expected -5V)
 - re-measure, -5.001852 sd 8μV but steady drift
 ![-5V drift](-5V.png)
 - settled after 4 hours (warm up)
--
 
+Fin test
 
+-  measure Fout1, Fout2 with 0V inputs
+- measure Fout1 with Fin 0.9V, 5V
+- measure Fout2 with Fin 0.9V, 5V
