@@ -586,3 +586,16 @@ Fin test
 -  measure Fout1, Fout2 with 0V inputs
 - measure Fout1 with Fin 0.9V, 5V
 - measure Fout2 with Fin 0.9V, 5V
+
+
+<!-- comparison
+
+https://ajhsynth.com/Precision.html
+
+0 to +10V range, accurate to 0.5mV (500uV) over the full range.
+
+0 to -10V range, accurate to 1mV over the full range.
+
+$275.00
+
+-->
