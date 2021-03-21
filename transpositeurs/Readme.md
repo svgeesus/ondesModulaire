@@ -357,3 +357,11 @@ ondes_DAC_explorer_02
 
 Same program, Jumpers for both DAC and offset.
 Now leave DAC gain alone, to retain zero; adjust maxpins to exactly 1.208333 V
+
+### Next steps
+
+* Measure Vref output
+* Re-measure the previous tests, to check (and re-familiarize after the break)
+* start on front panel design
+
+Need to decide if standard Eurorack, or modified tiroir-skiff with back panel for outputs.

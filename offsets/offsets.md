@@ -587,6 +587,9 @@ Fin test
 - measure Fout1 with Fin 0.9V, 5V
 - measure Fout2 with Fin 0.9V, 5V
 
+Continue to measure back panel after covid break, then if OK build a second back panel with the high-grade components.
+
+
 
 <!-- comparison
 
