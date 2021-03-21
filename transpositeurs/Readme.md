@@ -2,19 +2,20 @@
 
 Transpositeurs are a set of six buttons,
 in the tiroir of an ondes Martenot,
-placed to the right of the touche d'intensité,
+placed to the right of the _touche d'intensité_,
 which produce small shifts in pitch.
 They may be pressed in combination to generate larger shifts.
+Effectively, a quantized pitchbend.
 
-|  button   |   tones  |  semitones   | millivolts (semitones /12)    | interval |
-|--:  |--:  |--:  |--:  |--:  |
-| 1    | -1/4    | -0.5    | -41.6666666666666667    | quarter-down |
-| 2    | +1/4    | +0.5    | 41.6666666666666667    | quarter-up |
-| 3    | +1/2    | +1    | 83.3333333333333333    | semitone |
-| 4    | +1    | +2    |  166.666666666666667   | tone |
-| 5    | +2    | +4    |  333.333333333333333   | third |
-| 6    | +3 1/2    | +7    |  583.333333333333333   | fifth |
-| 2to6 | | 14.5 | 1208.33333333333 | |
+|  button   |   tones  |  semitones   | millivolts (semitones /12)    | interval     |
+|--:        |--:       |--:           |--:                            |--:           |
+| 1         | -1/4     | -0.5         |   -41.6666666666666667        | quarter-down |
+| 2         | +1/4     | +0.5         |    41.6666666666666667        | quarter-up   |
+| 3         | +1/2     | +1           |    83.3333333333333333        | semitone     |
+| 4         | +1       | +2           |  166.666666666666667          | tone         |
+| 5         | +2       | +4           |  333.333333333333333          | third        |
+| 6         | +3 1/2   | +7           |  583.333333333333333          | fifth        |
+| 2to6      |          | 14.5         | 1208.33333333333              |              |
 
 My initial design attempts were purely analog. However,
 analog buttons circuit is basically a DAC, so try designing as a DAC.
@@ -132,43 +133,43 @@ Values in demi-semitones (multiples of 50 cents) where n=512 for 14-bit DAC.
 Voltages at code 0 and code 2^14-1 approximate due to zero and fs error terms.
 Do not measure at these code points.
 
-Values below are _before_ the DAC scaling.
+Values below are _before_ the DAC scaling, except for the last column.
 
-| buttons    |  dstones   |  code   | (code * 512)    |  V before offset   |  (V - offs)  | scaled (V-offs)
-|:--  |--: |--:  |--:  |--:  |--:   |
-| unused    |     | 0    |     | 0V    | ~-187.51mV    | around -83mV
-| 1    |  -1   | 1n    | 512    | 93.75mV    | -93.75mV    | 41.6667mV
-| none    | 0    | 2n    | 1024    | 187.51mV    | 0V    | 0V |
-| 2    |  1   | 3n    |   1536  |     |     |
-| 3    |  2   | 4n    |     |     |     |
-| 2+3, 4+1   | 3    | 5n    |     |     |     |
-| 4    |  4   | 6n    |     |     |     |
-| 4+2    | 5    | 7n    |     |     |     |
-| 4+3    | 6    | 8n    |     |     |     |
-| 5+1    | 7    | 9n    |     |     |     |
-| 5    | 8    | 10n    |     |     |     |
-| 5+2    | 9    | 11n    |     |     |     |
-| 5+3    | 10    | 12n    |     |     |     |
-| 5+3+2    | 11    | 13n    |     |     |     |
-| 5+4    | 12    | 14n    |     |     |     |
-| 5+4+2, 6+1    | 13    |  15n   |     |     |     |
-| 6, 5+4+3  | 14    | 16n    |     |     |     |
-| 6+2, 5+4+3+2 | 15    |  17n   |     |     |     |
-| 6+3    | 16    | 18n    |     |     |     |
-| 6+3+2    | 17    |  19n   |     |     |     |
-| 6+4    | 18    | 20n    |     |     |     |
-| 6+4+2    | 19    | 21n    |     |     |     |
-| 6+4+3    | 20    | 22n    |     |     |     |
-| 6+5+1    | 21    | 23n    |     |     |     |
-| 6+5    | 22    | 24n    |     |     |     |
-| 6+5+2    | 23    |  25n   |     |     |     |
-| 6+5+3    | 24    | 26n    |     |     |     |
-| 6+5+4+1    | 25    | 27n    |     |     |     |
-| 6+5+4    | 26    | 28n    |     |     |     |
-| 6+5+4+3+1    | 27    | 29n    |     |     |     |
-| 6+5+4+3    | 28    | 30n    |     |     |     |
-| 6+5+4+3+2    | 29    | 31n    | 15872    | 2.90642V    | 2.7189159V    |
-| unused    | 30    | 32n-1    | 16383    | 3.000V    | ~2.81249V    |
+| buttons       |  dstones       |  code  | (code * 512)  |  V before offset   |  (V - offs)  | scaled (V-offs) |
+|:--            |--:             |--:     |--:            |--:                 |--:           |--:              |
+| unused        |       | 0      |        | 0V            | ~-187.51mV         | around -83mV |                 |
+| 1             |  -1   | 1n     |    512 | 93.75mV       | -93.75mV           | -41.6667mV    |                 |
+| none          | 0     | 2n     |   1024 | 187.51mV      | 0V                 | 0V           |                 |
+| 2             |  1    | 3n     |   1536 |     |     |                 |
+| 3             |  2    | 4n     |        |     |     |                 |
+| 2+3, 4+1      | 3     | 5n     |        |     |     |                 |
+| 4             |  4    | 6n     |        |     |     |                 |
+| 4+2           | 5     | 7n     |        |     |     |                 |
+| 4+3           | 6     | 8n     |        |     |     |                 |
+| 5+1           | 7     | 9n     |        |     |     |                 |
+| 5             | 8     | 10n    |        |     |     |                 |
+| 5+2           | 9     | 11n    |        |     |     |                 |
+| 5+3           | 10    | 12n    |        |     |     |                 |
+| 5+3+2         | 11    | 13n    |        |     |     |                 |
+| 5+4           | 12    | 14n    |        |     |     |                 |
+| 5+4+2, 6+1    | 13    |  15n   |        |     |     |                 |
+| 6, 5+4+3      | 14    | 16n    |        |     |     |                 |
+| 6+2, 5+4+3+2  | 15    |  17n   |        |     |     |                 |
+| 6+3           | 16    | 18n    |        |     |     |                 |
+| 6+3+2         | 17    |  19n   |        |     |     |                 |
+| 6+4           | 18    | 20n    |        |     |     |                 |
+| 6+4+2         | 19    | 21n    |        |     |     |                 |
+| 6+4+3         | 20    | 22n    |        |     |     |                 |
+| 6+5+1         | 21    | 23n    |        |     |     |                 |
+| 6+5           | 22    | 24n    |        |     |     |                 |
+| 6+5+2         | 23    |  25n   |        |     |     |                 |
+| 6+5+3         | 24    | 26n    |        |     |     |                 |
+| 6+5+4+1       | 25    | 27n    |        |     |     |                 |
+| 6+5+4         | 26    | 28n    |        |     |     |                 |
+| 6+5+4+3+1     | 27    | 29n    |        |     |     |                 |
+| 6+5+4+3       | 28    | 30n    |        |               |                   |                 |
+| 6+5+4+3+2     | 29    | 31n    |  15872 | 2.90642V      |  2.7189159V       |   1.208407V     |
+| unused        | 30    | 32n-1  |  16383 | 3.000V        | ~2.81249V         |  ~1.250000V     |
 
 ### Dac scale factor
 
