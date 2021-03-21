@@ -17,6 +17,8 @@ Effectively, a quantized pitchbend.
 | 6         | +3 1/2   | +7           |  583.333333333333333          | fifth        |
 | 2to6      |          | 14.5         | 1208.33333333333              |              |
 
+Total swing 1,208.33333333333 - -41.6666666666667 = 1.250000V
+
 My initial design attempts were purely analog. However,
 analog buttons circuit is basically a DAC, so try designing as a DAC.
 
@@ -125,56 +127,68 @@ Total swing 1,208.33333333333 + 41.6666666666667 = 1.250V.
 
 Make DAC with around convenient unipolar swing, trim offset
 to get negative 0.5semi lowest (ie trim for zero volts when sending code
-for no buttons pressed), trim gain to get exact value when all buttons pressed.
+for no buttons pressed), trim gain to get exact value when
+highest shift (buttons 2-6 all pressed).
 
 ### Values at all button combinations
 
 Values in demi-semitones (multiples of 50 cents) where n=512 for 14-bit DAC.
-Voltages at code 0 and code 2^14-1 approximate due to zero and fs error terms.
-Do not measure at these code points.
+
+Code to voltage is 3V / (2^14-1) = **183.116645303058mV**
+
+Voltages at code 0 and code 2^14-1 are approximate, due to zero and fs error terms.
+_Do not measure_ at these code points.
+
+DAC voltage then offset to generate 0V at _no buttons pressed_
+(and thus, -41.6667 mV with button 1 pressed)
+
+(DAC - offset) is then scaled, so output voltage for (button 2 to 6) is exactly 1208.33333333333mV
 
 Values below are _before_ the DAC scaling, except for the last column.
 
-| buttons       |  dstones       |  code  | (code * 512)  |  V before offset   |  (V - offs)  | scaled (V-offs) |
+| buttons       |  dstones       |  code  | (code * 512)  |  DAC output V      |  (V - offs)  | scaled (V-offs) |
 |:--            |--:             |--:     |--:            |--:                 |--:           |--:              |
-| unused        |       | 0      |        | 0V            | ~-187.51mV         | around -83mV |                 |
-| 1             |  -1   | 1n     |    512 | 93.75mV       | -93.75mV           | -41.6667mV    |                 |
-| none          | 0     | 2n     |   1024 | 187.51mV      | 0V                 | 0V           |                 |
-| 2             |  1    | 3n     |   1536 |     |     |                 |
-| 3             |  2    | 4n     |        |     |     |                 |
-| 2+3, 4+1      | 3     | 5n     |        |     |     |                 |
-| 4             |  4    | 6n     |        |     |     |                 |
-| 4+2           | 5     | 7n     |        |     |     |                 |
-| 4+3           | 6     | 8n     |        |     |     |                 |
-| 5+1           | 7     | 9n     |        |     |     |                 |
-| 5             | 8     | 10n    |        |     |     |                 |
-| 5+2           | 9     | 11n    |        |     |     |                 |
-| 5+3           | 10    | 12n    |        |     |     |                 |
-| 5+3+2         | 11    | 13n    |        |     |     |                 |
-| 5+4           | 12    | 14n    |        |     |     |                 |
-| 5+4+2, 6+1    | 13    |  15n   |        |     |     |                 |
-| 6, 5+4+3      | 14    | 16n    |        |     |     |                 |
-| 6+2, 5+4+3+2  | 15    |  17n   |        |     |     |                 |
-| 6+3           | 16    | 18n    |        |     |     |                 |
-| 6+3+2         | 17    |  19n   |        |     |     |                 |
-| 6+4           | 18    | 20n    |        |     |     |                 |
-| 6+4+2         | 19    | 21n    |        |     |     |                 |
-| 6+4+3         | 20    | 22n    |        |     |     |                 |
-| 6+5+1         | 21    | 23n    |        |     |     |                 |
-| 6+5           | 22    | 24n    |        |     |     |                 |
-| 6+5+2         | 23    |  25n   |        |     |     |                 |
-| 6+5+3         | 24    | 26n    |        |     |     |                 |
-| 6+5+4+1       | 25    | 27n    |        |     |     |                 |
-| 6+5+4         | 26    | 28n    |        |     |     |                 |
-| 6+5+4+3+1     | 27    | 29n    |        |     |     |                 |
-| 6+5+4+3       | 28    | 30n    |        |               |                   |                 |
-| 6+5+4+3+2     | 29    | 31n    |  15872 | 2.90642V      |  2.7189159V       |   1.208407V     |
-| unused        | 30    | 32n-1  |  16383 | 3.000V        | ~2.81249V         |  ~1.250000V     |
+| unused        |                | 0      |            0  | 0V                 | ~-187.51mV   | around -83mV    |
+| 1             | -1             | 1n     |          512  |  93.755722mV       | -93.755722mV | -41.6667mV      |
+| none          |  0             | 2n     |         1024  | __187.51144mV__    | 0V           | 0V              |
+| 2             |  1             | 3n     |         1536  |                    |              |                 |
+| 3             |  2             | 4n     |               |                    |              |                 |
+| 2+3, 4+1      |  3             | 5n     |               |                    |              |                 |
+| 4             |  4             | 6n     |               |                    |              |                 |
+| 4+2           |  5             | 7n     |               |                    |              |                 |
+| 4+3           |  6             | 8n     |               |                    |              |                 |
+| 5+1           |  7             | 9n     |               |                    |              |                 |
+| 5             |  8             | 10n    |               |                    |              |                 |
+| 5+2           |  9             | 11n    |               |                    |              |                 |
+| 5+3           | 10             | 12n    |               |                    |              |                 |
+| 5+3+2         | 11             | 13n    |               |                    |              |                 |
+| 5+4           | 12             | 14n    |               |                    |              |                 |
+| 5+4+2, 6+1    | 13             | 15n    |               |                    |              |                 |
+| 6, 5+4+3      | 14             | 16n    |               |                    |              |                 |
+| 6+2, 5+4+3+2  | 15             | 17n    |               |                    |              |                 |
+| 6+3           | 16             | 18n    |               |                    |              |                 |
+| 6+3+2         | 17             | 19n    |               |                    |              |                 |
+| 6+4           | 18             | 20n    |               |                    |              |                 |
+| 6+4+2         | 19             | 21n    |               |                    |              |                 |
+| 6+4+3         | 20             | 22n    |               |                    |              |                 |
+| 6+5+1         | 21             | 23n    |               |                    |              |                 |
+| 6+5           | 22             | 24n    |               |                    |              |                 |
+| 6+5+2         | 23             | 25n    |               |                    |              |                 |
+| 6+5+3         | 24             | 26n    |               |                    |              |                 |
+| 6+5+4+1       | 25             | 27n    |               |                    |              |                 |
+| 6+5+4         | 26             | 28n    |               |                    |              |                 |
+| 6+5+4+3+1     | 27             | 29n    |               |                    |              |                 |
+| 6+5+4+3       | 28             | 30n    |               |                    |              |                 |
+| 6+5+4+3+2     | 29             | 31n    |        15872  |  2.90642V          |  2.7189159V  |   1.2083333V    |
+| unused        | 30             | 32n-1  |        16383  | ~3.000V            | ~2.81249V    |  ~1.250000V     |
 
 ### Dac scale factor
 
-Swing for 3V FS is (31n -1n) = (2.90625 - 0.09375) = 2.8125
-Scale factor is  1.25 / 2.8125 = 0.44444444444444
+Unscaled DAC swing for nominal 3V FS is (V(31n) - V(1n)) = (2.90642739425014 - 0.09375572239517) = 2.81267167185497
+Scale factor is
+
+1.25 / 2.81267167185497 = __0.44441731770833__
+
 So with an input resistor of 10k the feedback resistor is 4k444
 closest E96 4k42 which is 24R low. So a 50R trimmer?
 
@@ -218,8 +232,9 @@ same but now setting 50R trimmer to 50, to compensate
 ### Negative voltage offset
 
 Offset is 3 * 1,024 / 16,383 = 0.18751144479033
-Before scaling, 187.5mV to take 'none' to 0V
-with 3V ref, voltage divider 10 / 0.18751144479033 * 3 = 159.990234375 so 150k to 10k
+Before scaling, 187.511mV to take 'none' to 0V
+
+With 3V ref, voltage divider 10 / 0.18751144479033 * 3 = 159.990234375 so 150k to 10k
 E96 values 150k
 BUT
 After DAC scaling, 2n is 3.000 * 1024 / 16383 * 4444/10000
