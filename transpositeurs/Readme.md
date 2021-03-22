@@ -42,17 +42,14 @@ free pins - maybe LEDs for buttons?
 buttons not matrixed, hardware debounce, trigger interrupts.
 transp. buttons need 6 inputs: 4,5,6,7,8,9
 
-* try with bounce lib, or use hw debounce.
-debounce uses hex schmitt trigger, need 3: one for this, two for waveswitch)
-	3rd has 4 unused - wire up anyway for other switches like clav/bague.
-	one PCB, OSH park makes 3 anyway.
+* try with bounce lib rather than hardware debounce.
 
 breadboard debounce circuit, test debounced switch to interrupt ISR.
 breadboard analog post-DAC circuit using Teensy LC pin14 DAC just for testing.
 
 Could also have MIDI out on pin 1 TX1. Just send pitchbend.
 
-![tensy-pinout](pitchpins-pinout.png)
+![teensy-pinout](pitchpins-pinout.png)
 
 ### DAC
 
@@ -317,6 +314,8 @@ Ordered OSH Park 2 May 2020 [OSH Park](https://oshpark.com/shared_projects/Cj8NE
 ## Panel
 
 Switch shinchin_112-R13-502MA-BB-1172895 [datasheet](datasheets/shinchin_112-R13-502MA-BB-1172895.pdf)
+
+![switch](switch-dims.png)
 
 Has circular, 12.7mm -0+0.2mm diameter mounting hole - say 12.8, so inner radius 6.4
 Outer radius 7.40mm see [hexagon calculations](https://calcresource.com/geom-hexagon.html)
