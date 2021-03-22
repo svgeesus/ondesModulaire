@@ -338,7 +338,7 @@ PCB is 29.52mm wide.
 * DAC test program, output does vary.
 * jumper for Voffs goes to -11.8V implying an unterminated feedback loop so op-amp climbs near rail.
 * Fixed! Connection for feedback went to wrong side of input resistor. Bodge wire and track cut.
-*  83mV offset measures okay
+* 83mV offset measures okay
 * wish there were more stable measurement points, like single pins rather than chip pins or test points.
 
 ## Measurements
@@ -351,7 +351,7 @@ Jumper for DAC output, offset jumpered to zero.
 Do not use zero or max values to calculate overall gain, due to
 zero and FS errors.
 
-Example: 2.99993 * 512 / 16,383 = 0.09375353476164 * 0.4444 = 41.664mV
+Example: 2.99993 × 512 / 16,383 = 0.09375353476164 × 0.4444 = 41.664mV
 
 | DAC code | expected voltage | measured voltage | error, ppm | error, cent |
 |:--       |:--               |:--               |:--         |:--          |
