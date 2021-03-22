@@ -192,38 +192,40 @@ Scale factor is
 So with an input resistor of 10k the feedback resistor is 4k444
 closest E96 4k42 which is 24R low. So a 50R trimmer?
 
- 1LSB = ( 3 * 0.444444444 ) / ( 2^14 ) = 8.13802082519531E-5
+ 1LSB = ( 3 × 0.444444444 ) / ( 2^14 ) = 8.13802082519531E-5
  = 81μV at op-amp out
  = 8.13802082519531E-5 * 1,200 = 97.65 millicents
 
 tolerances:
 Susumu RG2012V-103-P-T1 10k 0.02% 5ppm $2.60/25
-- error on 10k is 2R
-- error on 4k42 is 0.8R (!)
+
+* error on 10k is 2R
+* error on 4k42 is 0.8R (!)
+
 MAX6126-3 has initial accuracy ±0.5mV
 
 31n expected value from table above is 2.90642V before mixing in the offset.
-3.000 * 15872 / 16383 * 4444/10000
+3.000 × 15872 / 16383 × 4444/10000
 = 1.29161633400476
 
 worst case high (Vref high, resistor tolerances tip to high, gain error +20LSB so 15872 is like 15892)
-31n is 3.0005 * (15892 / 16383) * (4420.8 + 24 / 9998)
-= 3.0005 * (15,892 / 16,383) * ((4,420.8 + 24) / 9,998)
+31n is 3.0005 × (15892 / 16383) × (4420.8 + 24 / 9998)
+= 3.0005 × (15,892 / 16,383) × ((4,420.8 + 24) / 9,998)
 = 1.29395105158369
 2.335mV high
 
 worst case low (Vref low, resistors to low, gain error -20LSB so 15872 is like 15852)
-31n is 2.9995 * (15852/16,383) * ((4,419.2 + 24) / 10002)
+31n is 2.9995 × (15852/16,383) × ((4,419.2 + 24) / 10002)
 = 1.28928375587655
 -2.333mV low
 
 same but now setting 50R trimmer to 0, to compensate
-3.0005 * (15,892 / 16,383) * ((4,420.8) / 9,998)
+3.0005 × (15,892 / 16,383) × ((4,420.8) / 9,998)
 = 1.28696427484728
 = 4.652mv low, so easily covers the required adjustment
 
 same but now setting 50R trimmer to 50, to compensate
-2.9995 * (15852/16,383) * ((4,419.2 + 50) / 10002)
+2.9995 × (15852/16,383) × ((4,419.2 + 50) / 10002)
 = 1.2968281782867
 = 5.212mV high
 
@@ -231,13 +233,13 @@ same but now setting 50R trimmer to 50, to compensate
 
 ### Negative voltage offset
 
-Offset is 3 * 1,024 / 16,383 = 0.18751144479033
+Offset is 3 × 1,024 / 16,383 = 0.18751144479033
 Before scaling, 187.511mV to take 'none' to 0V
 
 With 3V ref, voltage divider 10 / 0.18751144479033 * 3 = 159.990234375 so 150k to 10k
 E96 values 150k
 BUT
-After DAC scaling, 2n is 3.000 * 1024 / 16383 * 4444/10000
+After DAC scaling, 2n is 3.000 × 1024 / 16383 × 4444/10000
 = 83.330mV
 divider is 35k700 to 1020
 
@@ -246,10 +248,10 @@ Susumu RG2012V-103-P-T1 10k 0.02% 5ppm $2.60/25 error on 1k020 is 0.2R
 and (for values > 10k) Susumu RG2012N-104-W-T1 100k 0.05%  10ppm $0.753/25 error on 35k700 is 18R
 MAX6126-3 has initial accuracy ±0.5mV
 
-worst case high: 3.0005 * 1020.2 / (35682 + 1020.2)
+worst case high: 3.0005 × 1020.2 / (35682 + 1020.2)
 = 83.404mV 70μV high (85 millicents)
 
-worst case low: 2.9995 * 1019.8 / ( 35718 + 1019.8)
+worst case low: 2.9995 × 1019.8 / ( 35718 + 1019.8)
 = 83.263mV 70μV low (85 millicents)
 
 These tiny errors do not merit a trimmer;
@@ -260,11 +262,11 @@ so redo calculations with 0.1%:
 
 Error on 1k020 is 1.02R; error on 35k700 is 35.7R (!!)
 
-worst case high: 3.0005 * 1021 /(35664 + 1021)
+worst case high: 3.0005 × 1021 /(35664 + 1021)
 = 0.08350853209759
 = 178μV high (214 millicents)
 
-worst case low: 2.9995 * 1019 / (35736 + 1019)
+worst case low: 2.9995 × 1019 / (35736 + 1019)
 = 0.0831584954428
 = 172μV low (206 millicents)
 
@@ -314,10 +316,16 @@ Ordered OSH Park 2 May 2020 [OSH Park](https://oshpark.com/shared_projects/Cj8NE
 
 ## Panel
 
-Switch has circular, 12.7mm -0+0.2mm diameter mounting hole - say 12.8, so inner radius 6.4
+Switch shinchin_112-R13-502MA-BB-1172895 [datasheet](datasheets/shinchin_112-R13-502MA-BB-1172895.pdf)
+
+Has circular, 12.7mm -0+0.2mm diameter mounting hole - say 12.8, so inner radius 6.4
 Outer radius 7.40mm see [hexagon calculations](https://calcresource.com/geom-hexagon.html)
+check, measure, looks larger.
 
 Top bezel is 14.0mm diameter.
+
+PCB is 29.52mm wide.
+29.52 / 5.08 = 5.81102362204724 so 6HP (30mm) panel.
 
 ## Testing results
 
@@ -333,9 +341,9 @@ Top bezel is 14.0mm diameter.
 *  83mV offset measures okay
 * wish there were more stable measurement points, like single pins rather than chip pins or test points.
 
-### Measurements
+## Measurements
 
-ondes_DAC_explorer_01
+### ondes_DAC_explorer_01 DAC no-offset
 
 const uint16_t dacval[vals] = {0, lowest, zeropoint, six, maxpins, 16383};
 
@@ -354,7 +362,7 @@ Example: 2.99993 * 512 / 16,383 = 0.09375353476164 * 0.4444 = 41.664mV
 | 15872    | 1.291668 V       | 1.29179 V        | +94.4 ppm  | 0.1464      |
 | 16383    | 1.333169 V       | 1.33338 V        | ---        |             |
 
-ondes_DAC_explorer_02
+### ondes_DAC_explorer_02 DAC-const no-offset
 
 constant output of maxpins DAC count 15872 = 1.291668 V), for trimming with DAC gain trimmer.
 
@@ -362,19 +370,19 @@ constant output of maxpins DAC count 15872 = 1.291668 V), for trimming with DAC 
 * Initial value =  1.291785V.
 * After trimming = 1.291619V
 
-ondes_DAC_explorer_03
+### ondes_DAC_explorer_03 DAC-const offset
 
 constant output of zeropoint DAC count 1024 = 83.337777 mV), for nulling with DAC gain trimmer.
 Jumpers for both DAC and offset.
 
 Nulled to 9.8 μV σ 8.8μV.
 
-ondes_DAC_explorer_02
+### ondes_DAC_explorer_02 DAC-const offset
 
 Same program, Jumpers for both DAC and offset.
 Now leave DAC gain alone, to retain zero; adjust maxpins to exactly 1.208333 V
 
-### Next steps
+## Next steps
 
 * Measure Vref output
 * Re-measure the previous tests, to check (and re-familiarize after the break)
