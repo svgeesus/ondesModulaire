@@ -95,7 +95,7 @@ normal noise is 1.2ppm = 3.6μV so not worth it ]
 **LT6658AIDE-3** 0.5mV initial accuracy 10ppm/°C  SOIC-8
 Temp drift essentially flat from 20 to 40°C (fig.11)
 
-**MAX6126A30+** 0.5mV initial accuracy, 3ppm/°C SOIC-8
+**MAX6126A30+** 0.6mV (0.02%) A grade initial accuracy, 3ppm/°C SOIC-8
 0.1μF to 10μF (best: 10μF // 0.1μF) output cap close to DAC Ref input.
 0.1μF input cap and optional 0.1μF noise cap.
 
@@ -103,9 +103,9 @@ Temp drift essentially flat from 20 to 40°C (fig.11)
 
 Op-amps, use a quad SOIC-14.
 
-OPA4172ID ±200μV (typ) ±1mV (max @ 25°C) ±1.15mV (max over 40°C to +125°C) offset. 240millicent (typ) 1.3cent (max over temp). **$2.84/10**
+**OPA4172ID** ±200μV (typ) ±1mV (max @ 25°C) ±1.15mV (max over 40°C to +125°C) offset. 240millicent (typ) 1.3cent (max over temp). **$2.84/10**
 
-OPA4197ID  ±25μV (typ) ±100μV (max @ 25°C)  120millicent (max @ 25°C ) **$3.39/10** (IDR version)
+**OPA4197ID**  ±25μV (typ) ±100μV (max @ 25°C)  120millicent (max @ 25°C ) **$3.39/10** (IDR version)
 
 ### Resistors
 
@@ -296,9 +296,15 @@ using circuit from (CA-033) MIDI 1.0 Electrical Specification Update [2014].
 
 ## PCB
 
-Ordered OSH Park 2 May 2020 [OSH Park](https://oshpark.com/shared_projects/Cj8NEUIK)
+v0.1 Ordered OSH Park 2 May 2020 [OSH Park](https://oshpark.com/shared_projects/Cj8NEUIK)
 
 ![PCB](board.png)
+
+v0.2 changes:
+
+ - 5V to correct pin on Europower header !
+ - corrected feedback loop on IC1A (offset)
+- maybe user GND and OUT force, sense pins better?
 
 ### Top
 
@@ -326,12 +332,31 @@ Top bezel is 14.0mm diameter.
 PCB is 29.52mm wide.
 29.52 / 5.08 = 5.81102362204724 so 6HP (30mm) panel.
 
+## Code
+
+### Controlling the DAC
+
+ - ondes_DAC_explorer_01 sends different values
+ - ondes_DAC_explorer_02 sends constant 1.291668V to check/trim scaling **check value**
+ - ondes_DAC_explorer_03 sends constant 0V for offset measurement (no nulling possible)
+
+### Reading the buttons
+
+Bounce2 code for array of buttons
+  https://stackoverflow.com/questions/63853857/arduino-teensy-array-of-bounce-not-actually-updating
+
+  - ondes_multibutton_01
+
+### Sending MIDI
+
+Use pitchbend
+
 ## Testing results
 
 * No power shorts
 * Initial PCB error, wrong europower pin for +5V. Fixed with bodge wire.
 * +12 -12 +5 seem ok (after bodge; before, 0mA on 5V)
-* Current draw 17ma 5V, 2mA 12V, 8ma -12V
+* Current draw 17ma 5V, 2mA 12V, 8ma -12V. LC @48MHz can draw up to 15mA itself.
 * Teensy displays blink OK so getting power, programmable
 * Vref outputs 2.999930V initially (error 70μV or 23ppm). Slight climb as it warms up over 10 minutes.
 * DAC test program, output does vary.
@@ -343,8 +368,6 @@ PCB is 29.52mm wide.
 ## Measurements
 
 ### ondes_DAC_explorer_01 DAC no-offset
-
-const uint16_t dacval[vals] = {0, lowest, zeropoint, six, maxpins, 16383};
 
 Jumper for DAC output, offset jumpered to zero.
 Do not use zero or max values to calculate overall gain, due to
@@ -385,6 +408,11 @@ Now leave DAC gain alone, to retain zero; adjust maxpins to exactly 1.208333 V
 
 * Measure Vref output
 * Re-measure the previous tests, to check (and re-familiarize after the break)
+* test array of buttons. Measure actual bounce to get timeout. Measure lag.
 * start on front panel design
+* maybe spin out v0.2 PCB without bodges
 
-Need to decide if standard Eurorack, or modified tiroir-skiff with back panel for outputs.
+Need to decide if standard Eurorack, or modified tiroir-skiff with back panel for outputs. If so, good PSU seems hard to get, may need to make own:
+
+ - ±12V around 100mA
+ - 5V around 300mA or more
