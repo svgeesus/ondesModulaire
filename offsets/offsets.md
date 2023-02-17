@@ -2,9 +2,9 @@
 
 ## Purpose
 
-_This module is a precision adder for pitch CV signals. The design aims for the highest precision possible; pitch deviation should be less than 15 cents cumulative over 10 octaves. An ultrafine tune is also provided. The output is low impedance, allowing it to drive an unbuffered mult._
+_This module is a four-input precision adder for pitch CV signals. The design aims for the highest precision possible; pitch deviation should be less than 15 cents cumulative over 10 octaves. An ultrafine tune is also provided. The output is low impedance, allowing it to drive an unbuffered mult._
 
-_Also, two outputs are provided which track the main pitch CV but are offset from it. These are primarily intended for driving the pitch input on keyboard-tracking filters._
+_Also, two further outputs are provided which track the main pitch CV but are offset from it. These provide the sum of the main pitch CV mix, a voltage offset, and an offset input. They are primarily intended for driving the pitch input on keyboard-tracking filters._
 
 
 ## Inputs and Outputs
@@ -13,11 +13,11 @@ Two pitch CV inputs with trimmable 1V/oct gain, for sources with a 1k output res
 
 Two untrimmed pitch CV inputs, for sources with low output resistance.
 
-Variable small offset (ultrafine tune). ~~Switch to null ultrafine tune, for easy zero offset~~ (just unplug the pot, for setup).
+Variable small offset (ultrafine tune).
 
 Pitch CV output (sum of inputs and ultrafine offset).
 
-Two sets of pitch CV, with additional offsets and external CV in, for filters.
+Two sets of pitch CV, with additional offset knobs and external CV in, for filters.
 
 8HP (40mm).
 
@@ -35,9 +35,9 @@ One non-inverting unity and one inverting unity for + and - Vref = **2** op-amps
 
 ![trimmed inputs](trim-inputs.png)
 
-These are for CV sources with ill-advised 1k output resistors and the like. Inverting 1.07x 100k input gain stage (2, one per input) = **2** opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 7% was from Dave Jones buffered mult design.
+These are for CV sources which have  ill-advised 1k output resistors and the like. Inverting 1.05x 100k input gain stage (2, one per input) = **2** opamps. Voltage divider with trimmer and resistor to bring down to 1V/oct. 
 
-However ±7% adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 105% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
+Original ±7% was from Dave Jones buffered mult design. However this adjustment range is too much. 1k output impedance into 4-way passive mult into 4 100k inputs (1k out to 25k in) is -3.8% drop, requiring a 4% compensating boost. Mostly, errors will be a drop not an increase. So an adjustment range of +5% to -2% seems better. Implies an input gain of 105% (use 100k and 105k resistors). With a 5k trimmer, 98 * 5 / 7 = 70k resistor to ground.
 
 E96 value is 69.8k. However Mouser doesn't carry it (min order 5k, non-stocked) but they do have 68.1k. With a 5k trimmer, range is +5% to  105 * 68.1 / ( 68.1 + 5 ) = 97.818 = -2%.
 
@@ -47,7 +47,7 @@ Tempco of trimmer dominates the gain error on the two trimmed inputs.
 
 ![untrimmed](untrim-inputs.png)
 
-These are for CV sources which are correctly designed and can drive with a low output impedance. And so we use 10k input because the available tolerance is better for 10k (0.02%, 5ppm) than for 100k (0.05%, 10ppm) and adding a trimmer would increase the tempco ppm.
+These are for CV sources which are correctly designed and can drive variable from a low output impedance. And so we use 10k input, because the available tolerance is better for 10k (0.02%, 5ppm) than for 100k (0.05%, 10ppm) and adding a trimmer would increase the tempco ppm.
 
 Inverting 1.0x 10k input gain stage = **2** op-amps.
 
@@ -61,16 +61,16 @@ Inverting 1.0x 10k input gain stage = **2** op-amps.
 One inverting mixer for inputs one to four plus ultrafine offset. Mixer is also the output stage = 1 op-amp.
 
 Compensation cap 33pF, resistor 330R + 10k,
-f = 1 / ( 2 * PI * 330 * 3.3E-11 ) = 14,614,778 14 Mhz way too high!!
+f = 1 / ( 2 * PI * 3.3E-11 * 330 ) = 14,614,778 14 Mhz way too high!!
 
 Compensation cap 33pF, resistor 47R,
 f = 1 / ( 2 * PI * 3.3E-11 * 47 ) = 102,614,405
 
 Compensation cap 33pF, resistor 1k,
 f = 1 / ( 2 * PI * 3.3E-11 * 1,000 ) = 4,822,877
-1 / ( 2 * PI * 3.3E-11 * 11,000 ) = 438,443 403kHz ok
+1 / ( 2 * PI * 3.3E-11 * 11,000 ) = 438,443 yup, 403kHz is ok
 
-Cap should have been much larger
+Cap should have been much larger (1nF)
 
 #### Offset mixers
 
@@ -84,17 +84,18 @@ None, just straight to the jacks. Single output jacks, can use passive mut if mo
 
 ## Vref
 
-Use a 6-pin vref board connector for flexibility. +12V, -12V, 5V force, 5V sense, 0v force, 0V sense? Non-kelvin Vrefs can just tie the force and sense together. Allows anything from a cheapo vref to an LM399 board. Or just use a simple Vref, 0V connection which is sufficient here; stability more important than absolute value. Can still tie the gnd connection to the load, per *Standard Series Mode* figure. May also help to add thermal insulation to prevent turbulent air flow.
+Use a 5-pin vref board connector: +12V, -12V, 0V power and 5V, 0v output.
+A simple Vref, 0V connection is sufficient here; stability more important than absolute value. Can still tie the gnd connection to the load, per *Standard Series Mode* figure. May also help to add thermal insulation to prevent turbulent air flow.
 
 ### LTLT1236-5
 
 [LT1236ACN8-5](https://www.mouser.com/ProductDetail/Analog-Devices/LT1236ACN8-5PBF) **$7.96/1** A grade tempco 2 ppm/°C, initial accuracy 2.5mV, drift 20ppm/1kHr. But see datasheet fig.G08 _Output Voltage Temperature Drift LT1236-5_
 
-Probably good enough in this appplication, but vref socket allows upgrading if needed.
+Probably good enough in this appplication.
 
-DIP package. For precise 5V trim, also needs 27k, 50k trimmer, 1N4148 or similar diode. Not clear that is especially valuable in this application. Maybe add footprints on PCB, but allow to be used unpopulated.
+DIP package. For precise 5V trim, also needs 27k, 50k trimmer, 1N4148 or similar diode. Not clear that is especially valuable in this application. ~~Maybe add footprints on PCB, but allow to be used unpopulated~~.
 
-10k load (from inverting buffer) means 0.5mA current is sourced, which is optimal (see datasheet, figure LT1236 G13).
+10k load (from inverting buffer) means 0.5mA current is sourced, which is _optimal_ (see datasheet, figure LT1236 G13).
 
 ![vref](vref-pinout.png)
 
@@ -109,11 +110,11 @@ but 10ppm helps stability.
 
 ## Op-amps
 
-OPA4172ID ±200μV (typ) ±1mV (max @ 25°C) ±1.15mV (max over 40°C to +125°C) offset. 240millicent (typ) 1.3cent (max over temp). **$2.84/10**
+**OPA4172ID** ±200μV (typ) ±1mV (max @ 25°C) ±1.15mV (max over 40°C to +125°C) offset. 240millicent (typ) 1.3cent (max over temp). **$2.84/10**
 
-OPA4197ID  ±25μV (typ) ±100μV (max @ 25°C)  120millicent (max @ 25°C ) **$3.39/10** (IDR version)
+**OPA4197ID**  ±25μV (typ) ±100μV (max @ 25°C)  120millicent (max @ 25°C ) **$3.39/10** (IDR version)
 
-OPA4192ID ±5μV (typ) ±25μV (max @ 25°C) ±50μV (max over 0 to 70°C) offset, low offset drift (±0.2 µV/°C, typ). quad, good price/perf tradeoff (**$6.25/10**).
+**OPA4192ID** ±5μV (typ) ±25μV (max @ 25°C) ±50μV (max over 0 to 70°C) offset, low offset drift (±0.2 µV/°C, typ). quad, good price/perf tradeoff (**$6.25/10**).
 
 all in SOIC-14 package. 1.27mm (1/20 inch) pin spacing, so easy to hand solder. Needs 12 opamps = 3 quad packages.
 
