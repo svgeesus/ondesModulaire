@@ -30,7 +30,7 @@ Nasillard is another pulse, but with around 5% mark/space.
 - two output buffers (TL072).
 - small pcb with just 2 pots. 6 jacks wired to pcb.
 
-[Schematic (PDF](schematic.pdf)
+[Schematic (PDF)](schematic.pdf)
 
 ![board](./images/top.png) ([PDF](board.pdf))
 
