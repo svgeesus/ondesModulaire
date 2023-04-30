@@ -15,7 +15,7 @@ Generic 1% metal film, no particular requirements for tempco or precision.
 
 ## Capacitors
 
-Oordinary decoupling caps and electrolytics.
+Ordinary decoupling caps and electrolytics.
 
 - 100nF ceramic, 2.5mm * 7
 - 1uF ceramic, 5mm * 1

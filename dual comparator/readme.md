@@ -21,8 +21,10 @@ Nasillard is another pulse, but with around 5% mark/space.
 
 ## Implementation
 
+Informed by [AN-849 Using Op Amps as Comparators](./AN-849.pdf) and in particular, transition time, overload recovery time and absence of phase reversal.
+
 - two trimmers, to null attenuverter
-- low cost 195 5V ref (direct to norm pots)
+- low cost REF195 5V ref (direct to norm pots)
 - two audio input buffers (2 audio) TL074
 - two CV attenuverters (other half of 074)
 - LT1213 dual op-amp as comparator
